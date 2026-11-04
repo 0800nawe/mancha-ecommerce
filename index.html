@@ -266,9 +266,9 @@
                 <span>EL CLÁSICO</span>
               </div>
 
-              <!-- Contenedor superior sin padding con imagen masiva estilo Bad Hombres -->
-              <div class="bg-[#D68844]/20 w-full p-0 h-72 md:h-80 flex items-center justify-center border-b border-[#1C1917]/15 overflow-hidden relative">
-                <img src="./Images/producto-burrito-280g.jpg" alt="Burrito Clásico 280g" loading="lazy" decoding="async" class="h-[110%] w-auto object-contain max-w-none scale-110 drop-shadow-xl mix-blend-multiply group-hover:scale-115 transition-transform duration-500">
+              <!-- Contenedor superior con altura fija idéntica y proporción para Burrito Clásico (280g) -->
+              <div class="bg-[#D68844]/20 w-full h-72 md:h-80 flex items-center justify-center border-b border-[#1C1917]/15 overflow-hidden relative">
+                <img src="Images/producto-burrito-280g.png" alt="Burrito Clásico 280g" loading="lazy" decoding="async" class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500">
               </div>
 
               <!-- Zona de información -->
@@ -298,9 +298,9 @@
                 <span>FORMATO XL</span>
               </div>
 
-              <!-- Contenedor superior sin padding con imagen masiva estilo Bad Hombres -->
-              <div class="bg-[#3A4534]/15 w-full p-0 h-72 md:h-80 flex items-center justify-center border-b border-[#1C1917]/15 overflow-hidden relative">
-                <img src="./Images/producto-burrote-400g.jpg" alt="Burrote XL 400g" loading="lazy" decoding="async" class="h-[110%] w-auto object-contain max-w-none scale-110 drop-shadow-xl mix-blend-multiply group-hover:scale-115 transition-transform duration-500">
+              <!-- Contenedor superior con altura fija idéntica y proporción para Burrote XL (400g) -->
+              <div class="bg-[#3A4534]/15 w-full h-72 md:h-80 flex items-center justify-center border-b border-[#1C1917]/15 overflow-hidden relative">
+                <img src="Images/producto-burrote-400g.png" alt="Burrote XL 400g" loading="lazy" decoding="async" class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500">
               </div>
 
               <!-- Zona de información -->
@@ -1082,7 +1082,7 @@
         
         <!-- COLUMNA IZQUIERDA (FOTO: 72 en mobile / h-full en desktop) -->
         <div class="w-full md:w-1/2 h-72 md:h-full relative shrink-0 block overflow-hidden border-b md:border-b-0 md:border-r border-[#1C1917]/15 bg-brand-cream">
-          <img id="product-main-img" src="./Images/configurador-hero.jpg" alt="Burritos Mancha" class="w-full h-full object-cover object-center absolute inset-0">
+          <img id="product-main-img" src="./Images/configurador-hero.jpg" alt="Burritos Mancha" loading="lazy" decoding="async" class="w-full h-full object-cover object-center absolute inset-0">
         </div>
 
         <!-- COLUMNA DERECHA (FORMULARIO: Fluye en mobile / scroll interno en desktop) -->
@@ -1110,11 +1110,11 @@
               
               <!-- Opción 1: 280G Clásico -->
               <button type="button" id="btn-size-280" class="w-20 cursor-pointer text-center group focus:outline-none bg-transparent p-0 border-0 text-left">
-                <div id="size-box-280" class="relative w-20 h-20 border-2 border-[#1C1917] transition-all">
+                <div id="size-box-280" class="relative w-20 h-20 aspect-square border-2 border-[#1C1917] transition-all">
                   <div id="size-check-280" class="absolute top-1 left-1 z-10 w-3.5 h-3.5 bg-brand-ochre text-[#1C1917] flex items-center justify-center text-[9px] font-black leading-none">
                     ✓
                   </div>
-                  <img src="./Images/producto-burrito-280g.jpg" alt="Burrito 280g" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                  <img src="Images/producto-burrito-280g.png" alt="Burrito 280g" loading="lazy" decoding="async" class="w-full h-full object-contain">
                 </div>
                 <div class="mt-1.5 text-center">
                   <span class="block font-montserrat font-bold text-xs text-[#1C1917] uppercase tracking-wide">280G</span>
@@ -1124,11 +1124,11 @@
 
               <!-- Opción 2: 400G XL -->
               <button type="button" id="btn-size-400" class="w-20 cursor-pointer text-center group focus:outline-none bg-transparent p-0 border-0 text-left">
-                <div id="size-box-400" class="relative w-20 h-20 border border-[#1C1917]/20 opacity-75 hover:opacity-100 transition-all">
+                <div id="size-box-400" class="relative w-20 h-20 aspect-square border border-[#1C1917]/20 opacity-75 hover:opacity-100 transition-all">
                   <div id="size-check-400" class="hidden absolute top-1 left-1 z-10 w-3.5 h-3.5 bg-brand-ochre text-[#1C1917] flex items-center justify-center text-[9px] font-black leading-none">
                     ✓
                   </div>
-                  <img src="./Images/producto-burrote-400g.jpg" alt="Burrote 400g XL" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                  <img src="Images/producto-burrote-400g.png" alt="Burrote 400g XL" loading="lazy" decoding="async" class="w-full h-full object-contain">
                 </div>
                 <div class="mt-1.5 text-center">
                   <span class="block font-montserrat font-bold text-xs text-[#1C1917] uppercase tracking-wide">400G</span>
@@ -1229,7 +1229,7 @@
                   
                   <!-- Info del Producto -->
                   <div class="flex items-center gap-4">
-                    <img src="producto-boniatos.jpg" alt="Boniato McCain (500g)" class="w-16 h-16 md:w-20 md:h-20 rounded-md object-cover">
+                    <img src="Images/producto-boniatos.jpg" alt="Boniato McCain (500g)" loading="lazy" decoding="async" class="w-16 h-16 md:w-20 md:h-20 rounded-md object-cover">
                     <div class="flex flex-col">
                       <span class="font-bold text-[#1C1917] text-sm">Boniato McCain (500g)</span>
                       <span class="text-xs text-stone-500 font-medium">+ $8.900</span>
@@ -2058,22 +2058,22 @@
       // Estados de Tamaño (Card 1 vs Card 2)
       if (currentSize === '280g') {
         if (sizeBox280) {
-          sizeBox280.className = 'relative w-20 h-20 border-2 border-[#1C1917] transition-all';
+          sizeBox280.className = 'relative w-20 h-20 aspect-square border-2 border-[#1C1917] transition-all';
         }
         if (sizeCheck280) sizeCheck280.classList.remove('hidden');
 
         if (sizeBox400) {
-          sizeBox400.className = 'relative w-20 h-20 border border-[#1C1917]/20 opacity-75 hover:opacity-100 transition-all';
+          sizeBox400.className = 'relative w-20 h-20 aspect-square border border-[#1C1917]/20 opacity-75 hover:opacity-100 transition-all';
         }
         if (sizeCheck400) sizeCheck400.classList.add('hidden');
       } else {
         if (sizeBox280) {
-          sizeBox280.className = 'relative w-20 h-20 border border-[#1C1917]/20 opacity-75 hover:opacity-100 transition-all';
+          sizeBox280.className = 'relative w-20 h-20 aspect-square border border-[#1C1917]/20 opacity-75 hover:opacity-100 transition-all';
         }
         if (sizeCheck280) sizeCheck280.classList.add('hidden');
 
         if (sizeBox400) {
-          sizeBox400.className = 'relative w-20 h-20 border-2 border-[#1C1917] transition-all';
+          sizeBox400.className = 'relative w-20 h-20 aspect-square border-2 border-[#1C1917] transition-all';
         }
         if (sizeCheck400) sizeCheck400.classList.remove('hidden');
       }
@@ -2606,7 +2606,7 @@
 
           return `
           <div class="flex items-start gap-3.5 py-4 border-b border-[#1C1917]/10">
-            <img src="${item.size === '280g' ? './Images/producto-burrito-280g.jpg' : './Images/producto-burrote-400g.jpg'}" alt="${item.sizeName}" loading="lazy" decoding="async" class="w-16 h-16 object-cover rounded-none border border-[#1C1917]/10 shrink-0">
+            <img src="${item.size === '280g' ? 'Images/producto-burrito-280g.png' : 'Images/producto-burrote-400g.png'}" alt="${item.sizeName}" loading="lazy" decoding="async" class="w-16 h-16 object-cover rounded-none border border-[#1C1917]/10 shrink-0">
             <div class="flex-1 min-w-0">
               <div class="font-montserrat font-extrabold text-xs uppercase tracking-tight text-[#1C1917]">
                 ${item.packLabel.toUpperCase()} · ${item.size === '280g' ? 'BURRITO 280G' : 'BURROTE 400G'}
@@ -2646,7 +2646,7 @@
           const boniatoTotal = cantidadBoniato * 8900;
           boniatoHtml = `
           <div class="flex items-start gap-3.5 py-4 border-b border-[#1C1917]/10">
-            <img src="producto-boniatos.jpg" alt="Boniato McCain (500g)" loading="lazy" decoding="async" class="w-16 h-16 object-cover rounded-none border border-[#1C1917]/10 shrink-0">
+            <img src="Images/producto-boniatos.jpg" alt="Boniato McCain (500g)" loading="lazy" decoding="async" class="w-16 h-16 object-cover rounded-none border border-[#1C1917]/10 shrink-0">
             <div class="flex-1 min-w-0">
               <div class="font-montserrat font-extrabold text-xs uppercase tracking-tight text-[#1C1917]">
                 Boniato McCain (500g)
