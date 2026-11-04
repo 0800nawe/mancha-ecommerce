@@ -1431,6 +1431,14 @@
           <input type="text" id="checkout-nombre" required placeholder="Ej: Juan Pérez" class="w-full px-3 py-2 text-sm bg-transparent border border-[#1C1917]/30 rounded-none focus:outline-none focus:border-[#1C1917]">
         </div>
 
+        <!-- Campo 1b: TELÉFONO -->
+        <div>
+          <label for="checkout-telefono" class="block font-montserrat font-bold text-xs uppercase tracking-wider text-[#1C1917] mb-1">
+            Teléfono <span class="text-[#1C1917]/50 font-normal">(WhatsApp)</span>
+          </label>
+          <input type="tel" id="checkout-telefono" placeholder="Ej: 11 2345 6789" class="w-full px-3 py-2 text-sm bg-transparent border border-[#1C1917]/30 rounded-none focus:outline-none focus:border-[#1C1917]">
+        </div>
+
         <!-- Campo 2: LOCALIDAD DE ENTREGA (CON OPTGROUPS) -->
         <div>
           <label for="checkout-localidad" class="block font-montserrat font-bold text-xs uppercase tracking-wider text-[#1C1917] mb-1">
@@ -2341,6 +2349,7 @@
 
     // Campos del Formulario de Envío
     const checkoutNombre = document.getElementById('checkout-nombre');
+    const checkoutTelefono = document.getElementById('checkout-telefono');
     const checkoutLocalidad = document.getElementById('checkout-localidad');
     const checkoutDiaAviso = document.getElementById('checkout-dia-aviso');
     const checkoutCalle = document.getElementById('checkout-calle');
@@ -2498,7 +2507,7 @@
     }
 
     // Limpieza de bordes: al escribir en los inputs o cambiar los selects obligatorios
-    [checkoutNombre, checkoutLocalidad, checkoutCalle, checkoutPago].forEach(el => {
+    [checkoutNombre, checkoutTelefono, checkoutLocalidad, checkoutCalle, checkoutPago].forEach(el => {
       if (el) {
         el.addEventListener('input', () => el.classList.remove('border-[#B5361D]'));
         el.addEventListener('change', () => el.classList.remove('border-[#B5361D]'));
@@ -2847,6 +2856,8 @@
         }
 
         const nombre = checkoutNombre ? checkoutNombre.value.trim() : '';
+        const telefonoRaw = checkoutTelefono ? checkoutTelefono.value.trim() : '';
+        const numero = telefonoRaw.replace(/\D/g, '');
         const localidad = checkoutLocalidad ? checkoutLocalidad.value : '';
         const calle = checkoutCalle ? checkoutCalle.value.trim() : '';
         const depto = checkoutDepto ? checkoutDepto.value.trim() : '';
@@ -2886,7 +2897,80 @@
         const shippingInfo = getShippingInfo(localidad, totalBurritos);
         const totalFinal = totalNetoProductos + shippingInfo.costo;
 
-        // 2. Construye el mensaje respetando la estructura limpia y libre de mojibake
+        // Franja horaria y resumen de logística
+        const zona = LOGISTICA_ZONAS[localidad];
+        const franja = zona ? zona.dia : (localidad === 'Otra zona' ? 'A coordinar vía WhatsApp' : '');
+
+        // Resumen de packs y desglose por sabor/tamaño para el webhook
+        const resumenPacksArr = burritoPacks.map(item => {
+          const qty = item.quantity || 1;
+          const label = item.packLabel || ('Pack x' + item.pack);
+          return qty > 1 ? (qty + 'x ' + label) : label;
+        });
+        if (totalBoniatoQty > 0) {
+          resumenPacksArr.push(totalBoniatoQty + 'x Boniato McCain');
+        }
+        const detallesPacks = resumenPacksArr.length > 0 ? resumenPacksArr.join(', ') : 'Sin packs';
+
+        const pollo280 = burritoPacks
+          .filter(it => it.size === '280g')
+          .reduce((sum, it) => sum + ((it.pollo || 0) * (it.quantity || 1)), 0);
+
+        const pork280 = burritoPacks
+          .filter(it => it.size === '280g')
+          .reduce((sum, it) => sum + ((it.pulledPork || 0) * (it.quantity || 1)), 0);
+
+        const pollo400 = burritoPacks
+          .filter(it => it.size === '400g')
+          .reduce((sum, it) => sum + ((it.pollo || 0) * (it.quantity || 1)), 0);
+
+        const pork400 = burritoPacks
+          .filter(it => it.size === '400g')
+          .reduce((sum, it) => sum + ((it.pulledPork || 0) * (it.quantity || 1)), 0);
+
+        // Cálculo de porcentaje de descuento
+        const subtotalBurritosBase = burritoPacks.reduce((sum, it) => sum + ((it.burritoOriginalPrice || it.originalPrice || 0) * (it.quantity || 1)), 0);
+        const totalBurritosNeto = burritoPacks.reduce((sum, it) => sum + (((it.burritoPromoPrice !== undefined) ? it.burritoPromoPrice : (it.promoPrice || it.totalPrice || 0)) * (it.quantity || 1)), 0);
+        const ahorro = subtotalBurritosBase - totalBurritosNeto;
+        const descuento = (subtotalBurritosBase > 0 && ahorro > 0)
+          ? Math.round((ahorro / subtotalBurritosBase) * 100) + '%'
+          : '0%';
+
+        // 2. Disparo asíncrono al Webhook de Google Sheets (en segundo plano, sin bloquear WhatsApp)
+        const webhookData = {
+          cliente: nombre,
+          numero: numero,
+          franja: franja,
+          direccion: calle,
+          localidad: localidad,
+          depto: depto,
+          detallesPacks: detallesPacks,
+          pollo280: pollo280,
+          pork280: pork280,
+          pollo400: pollo400,
+          pork400: pork400,
+          total: totalFinal,
+          descuento: descuento,
+          pago: pago,
+          notas: notas
+        };
+
+        try {
+          fetch('https://script.google.com/macros/s/AKfycbw63Do_XKTmCjSAmQwh3iWWZEN0byUFXHnjwU7f7aWp7etgiIALghz5t91xOPxpj1HF/exec', {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+              'Content-Type': 'text/plain;charset=utf-8'
+            },
+            body: JSON.stringify(webhookData)
+          }).catch(err => {
+            console.warn('Error al registrar pedido en Google Sheets:', err);
+          });
+        } catch (fetchErr) {
+          console.warn('Error al invocar webhook:', fetchErr);
+        }
+
+        // 3. Construye el mensaje respetando la estructura limpia y libre de mojibake
         const direccionCompleta = (calle + (depto ? ' ' + depto : '')).trim();
         const costoEnvioTexto = shippingInfo.textoWhatsApp;
 
@@ -2912,6 +2996,9 @@
 
         let mensaje = `*MANCHA BURRITOS · NUEVO PEDIDO*\n\n`;
         mensaje += `*Cliente:* ${nombre}\n`;
+        if (numero) {
+          mensaje += `*Teléfono:* ${numero}\n`;
+        }
         mensaje += `*Entrega:* ${localidad}\n`;
         mensaje += `*Dirección:* ${direccionCompleta}\n`;
         mensaje += `*Pago:* ${pago}\n`;
@@ -2924,7 +3011,7 @@
         mensaje += `*TOTAL A PAGAR: $${totalFinal.toLocaleString('es-AR')}*\n`;
         mensaje += `-----------------------------------`;
 
-        // 3. Disparo seguro sin transformaciones intermedias ni mojibake
+        // 4. Disparo seguro a WhatsApp sin transformaciones intermedias ni mojibake
         const url = "https://wa.me/" + NUMERO_WHATSAPP + "?text=" + encodeURIComponent(mensaje);
         window.open(url, "_blank");
 
@@ -2939,7 +3026,6 @@
       });
     }
 
-    // Eventos de selección desde la sección Formatos en Home ("ASEGURÁ TUS BURRITOS")
     const cardFormat280 = document.getElementById('card-format-280');
     const cardFormat400 = document.getElementById('card-format-400');
     const btnPedirBurrito = document.getElementById('btn-pedir-burrito');
