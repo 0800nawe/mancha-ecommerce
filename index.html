@@ -1,0 +1,2986 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth overflow-x-hidden">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MANCHA BURRITOS | Burritos Congelados de Comida Real</title>
+  
+  <!-- Open Graph / Previsualización WhatsApp y Redes -->
+  <meta property="og:title" content="MANCHA BURRITOS | Comida Real Congelada" />
+  <meta property="og:description" content="Burritos caseros congelados listos en 15 minutos. Pechuga y bola de lomo de cerdo desmechada. Caseros, Bs. As." />
+  <meta property="og:image" content="./Images/og-share.jpg" />
+  <meta property="og:type" content="website" />
+  
+  <!-- Google Fonts: Montserrat (700, 900), Playfair Display (ital@0;1) & Poppins (400, 500, 600) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Playfair+Display:ital@0;1&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          spacing: {
+            '4.5': '1.125rem',
+          },
+          colors: {
+            // Paleta Oficial Mancha Burritos
+            'crema-mancha': '#F9F1E6',
+            'carbon': '#1C1917',
+            'rojo-mancha': '#B5361D',
+            'ocre-caliente': '#D68844',
+            'verde-oliva-base': '#3A4534',
+            'verde-oliva-claro': '#525E4C',
+            brand: {
+              cream: '#F9F1E6',
+              red: '#B5361D',
+              ochre: '#D68844',
+              yellow: '#FDD991',
+              dark: '#1C1917',
+              olive: '#3A4534',
+              'olive-light': '#525E4C',
+            }
+          },
+          fontFamily: {
+            montserrat: ['"Montserrat"', 'sans-serif'],
+            poppins: ['"Poppins"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Prevención global de desbordamiento horizontal */
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+
+    /* Utilidad para scroll horizontal fluido sin barras visibles */
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Variables de la Paleta Oficial Mancha Burritos */
+    :root {
+      --color-crema-mancha: #F9F1E6;
+      --color-carbon: #1C1917;
+      --color-rojo-mancha: #B5361D;
+      --color-ocre-caliente: #D68844;
+      --color-verde-oliva-base: #3A4534;
+      --color-verde-oliva-claro: #525E4C;
+    }
+
+    /* Tipografía y comportamiento base */
+    body {
+      background-color: #F9F1E6;
+      color: #1C1917;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .font-serif {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+
+    /* Animación continua del Marquee / Ticker */
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 45s linear infinite;
+    }
+
+    .marquee-container:hover .marquee-track {
+      animation-play-state: paused;
+    }
+  </style>
+</head>
+<body class="bg-brand-cream text-brand-dark min-h-screen flex flex-col antialiased selection:bg-brand-ochre selection:text-brand-dark overflow-x-hidden">
+
+    <!-- =========================================================================
+       1. ANNOUNCEMENT BAR (Posicionamiento normal/relativo en lo más alto del body)
+       ========================================================================= -->
+  <div id="announcement-bar" class="relative w-full z-50 bg-[#3A4534] text-[#F9F1E6] text-[10px] md:text-[11px] font-montserrat font-medium py-2 px-4 text-center tracking-widest uppercase border-b border-[#F9F1E6]/10 h-[34px] flex items-center justify-center">
+    ENVÍOS PROGRAMADOS A TU FREEZER
+  </div>
+
+  <!-- =========================================================================
+       2. HEADER / NAVBAR (Al inicio debajo de la barra, fijo al scrollear)
+       ========================================================================= -->
+  <header id="main-header" class="absolute top-[34px] left-0 w-full z-50 bg-transparent transition-all duration-300 px-8 md:px-16 py-3.5 h-[66px] flex items-center justify-between select-none">
+    
+    <!-- Izquierda: Logo "MANCHA" con tamaño y protagonismo oficial -->
+    <a href="#home" id="brand-logo" class="flex items-center leading-none focus:outline-none group shrink-0" aria-label="Mancha Home">
+      <span class="font-montserrat font-black text-3xl md:text-4xl tracking-tighter text-[#B5361D] uppercase group-hover:text-brand-ochre transition-colors">MANCHA</span>
+    </a>
+
+    <!-- Centro: Enlaces de navegación con contraste claro sobre el fondo del Hero (Poppins) -->
+    <nav class="hidden md:flex items-center space-x-9" aria-label="Navegación principal">
+      <a href="#home" id="nav-home" class="nav-item font-poppins font-medium text-[13px] tracking-[0.14em] uppercase text-[#F9F1E6] hover:text-brand-ochre transition-colors duration-200">
+        HOME
+      </a>
+      <a href="#productos" id="nav-productos" class="nav-item font-poppins font-medium text-[13px] tracking-[0.14em] uppercase text-[#F9F1E6] hover:text-brand-ochre transition-colors duration-200">
+        PRODUCTOS
+      </a>
+      <a href="#faq" id="nav-faq" class="nav-item font-poppins font-medium text-[13px] tracking-[0.14em] uppercase text-[#F9F1E6] hover:text-brand-ochre transition-colors duration-200">
+        PREGUNTAS FRECUENTES
+      </a>
+      <a href="contacto.html" class="font-poppins font-medium text-[13px] tracking-[0.14em] uppercase text-[#F9F1E6] hover:text-brand-ochre transition-colors duration-200">
+        CONTACTO
+      </a>
+    </nav>
+
+    <!-- Derecha: Botón de carrito contra el borde derecho con contador reactivo y estilo limpio -->
+    <div class="flex items-center gap-4 shrink-0">
+      <button id="cart-btn" type="button" class="text-[#F9F1E6] hover:text-[#D68844] transition-colors flex items-center gap-1.5 font-montserrat text-sm p-1 focus:outline-none group" aria-label="Abrir carrito">
+        <svg class="w-5 h-5 text-[#F9F1E6] group-hover:text-[#D68844] transition-colors duration-200" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+        </svg>
+        <span class="tracking-wider text-[#F9F1E6] group-hover:text-[#D68844] transition-colors duration-200">
+          (<span id="cart-count">0</span>)
+        </span>
+      </button>
+
+      <!-- Botón hamburguesa para dispositivos móviles -->
+      <button id="mobile-toggle" type="button" class="md:hidden text-[#F9F1E6] hover:text-brand-ochre p-1 focus:outline-none transition-colors" aria-label="Menú">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Menú Mobile desplegable minimalista (Poppins) -->
+    <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-[#1C1917] px-8 py-5 border-t border-[#1C1917]/40 shadow-xl">
+      <nav class="flex flex-col space-y-4">
+        <a href="#home" id="mobile-nav-home" class="mobile-nav-item font-poppins font-medium text-sm tracking-widest uppercase text-[#F9F1E6] hover:text-brand-ochre transition-colors">
+          HOME
+        </a>
+        <a href="#productos" id="mobile-nav-productos" class="mobile-nav-item font-poppins font-medium text-sm tracking-widest uppercase text-[#F9F1E6] hover:text-brand-ochre transition-colors">
+          PRODUCTOS
+        </a>
+        <a href="#faq" id="mobile-nav-faq" class="mobile-link font-poppins font-medium text-sm tracking-widest uppercase text-[#F9F1E6] hover:text-brand-ochre transition-colors">
+          PREGUNTAS FRECUENTES
+        </a>
+        <a href="contacto.html" class="mobile-link font-poppins font-medium text-sm tracking-widest uppercase text-[#F9F1E6] hover:text-brand-ochre transition-colors">
+          CONTACTO
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       CONTENEDOR PRINCIPAL: VISTAS INTERACTIVAS
+       ========================================================================= -->
+  <main class="flex-grow">
+    
+    <!-- =======================================================================
+         VISTA 1: HOME (Hero + Ticker)
+         ======================================================================= -->
+    <div id="view-home" class="w-full">
+      
+      <!-- HERO SECTION (Equilibrio desktop/mobile con foto cruda y scrim superior) -->
+      <section id="home" class="relative w-full h-[80vh] min-h-[600px] flex flex-col justify-between overflow-hidden bg-[#1C1917] bg-cover" style="background-image: url('./Images/hero-burrito.jpg'); background-position: center 78%;">
+        
+        <!-- Scrim superior focalizado: solo oscurece la zona alta para legibilidad sin arruinar el plato abajo -->
+        <div class="absolute inset-0 bg-gradient-to-b from-[#1C1917]/85 via-[#1C1917]/25 to-transparent z-0 pointer-events-none h-3/5"></div>
+
+        <!-- Contenedor: Alineado a max-w-7xl igual que el header, mobile texto arriba centrado con aire / Desktop grid 12 col -->
+        <div class="relative z-10 w-full max-w-7xl mx-auto h-full flex flex-col justify-start items-center text-center pt-32 px-6 md:grid md:grid-cols-12 md:items-start md:pt-0 md:px-0">
+          
+          <!-- Bloque de texto (Desktop col-span-7 lg:col-span-6 con espaciado y alineación editorial) -->
+          <div class="w-full max-w-[340px] md:max-w-none md:col-span-7 lg:col-span-6 text-center md:text-left md:pt-48 md:pb-24 md:pl-16 md:items-start">
+            
+            <!-- 1) Título principal en Montserrat Black con formato exacto -->
+            <h1 class="text-3xl md:text-5xl font-montserrat font-black text-[#F9F1E6] tracking-tight leading-[1.1] mb-3">BURRITOS ARTESANALES CONGELADOS</h1>
+
+            <!-- 2) Línea corta con drop-shadow -->
+            <p class="font-poppins font-medium text-xs sm:text-sm tracking-[0.16em] uppercase text-[#F9F1E6] drop-shadow-md mb-2 md:mb-3">
+              DEL FREEZER AL HORNO. LISTOS EN 15 MINUTOS.
+            </p>
+
+            <!-- 3) Botón CTA -->
+            <div class="mt-4">
+              <button id="hero-cta-btn" type="button" class="inline-block bg-brand-ochre text-brand-dark font-montserrat font-bold text-xs sm:text-sm tracking-[0.14em] uppercase px-8 sm:px-10 py-3.5 sm:py-4 rounded-none hover:bg-brand-yellow transition-colors duration-200 shadow-md">
+                HACÉ TU PEDIDO
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Espacio reservado para que la fotografía respire a la derecha en Desktop -->
+          <div class="hidden md:block md:col-span-5 lg:col-span-6 pointer-events-none"></div>
+
+        </div>
+      </section>
+
+      <!-- BARRA DE BENEFICIOS INFERIOR (MARQUEE TICKER GRUESO Y ELEGANTE) -->
+      <section class="w-full bg-[#3A4534] text-[#F9F1E6] py-4.5 overflow-hidden border-t border-b border-[#1C1917]/30 shadow-md marquee-container select-none" aria-label="Beneficios">
+        <div class="marquee-track font-montserrat font-bold text-xs uppercase tracking-widest text-[#F9F1E6] whitespace-nowrap">
+          <div class="flex items-center space-x-2 px-2 shrink-0">
+            <span>LISTOS EN 15 MINUTOS &nbsp;◆&nbsp; HASTA 58G DE PROTEÍNA &nbsp;◆&nbsp; COMIDA CASERA &nbsp;◆&nbsp; DEL FREEZER AL HORNO &nbsp;◆&nbsp; 100% INGREDIENTES REALES &nbsp;◆&nbsp;</span>
+            <span>LISTOS EN 15 MINUTOS &nbsp;◆&nbsp; HASTA 58G DE PROTEÍNA &nbsp;◆&nbsp; COMIDA CASERA &nbsp;◆&nbsp; DEL FREEZER AL HORNO &nbsp;◆&nbsp; 100% INGREDIENTES REALES &nbsp;◆&nbsp;</span>
+          </div>
+          <div class="flex items-center space-x-2 px-2 shrink-0">
+            <span>LISTOS EN 15 MINUTOS &nbsp;◆&nbsp; HASTA 58G DE PROTEÍNA &nbsp;◆&nbsp; COMIDA CASERA &nbsp;◆&nbsp; DEL FREEZER AL HORNO &nbsp;◆&nbsp; 100% INGREDIENTES REALES &nbsp;◆&nbsp;</span>
+            <span>LISTOS EN 15 MINUTOS &nbsp;◆&nbsp; HASTA 58G DE PROTEÍNA &nbsp;◆&nbsp; COMIDA CASERA &nbsp;◆&nbsp; DEL FREEZER AL HORNO &nbsp;◆&nbsp; 100% INGREDIENTES REALES &nbsp;◆&nbsp;</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           SECCIÓN: ASEGURÁ TUS BURRITOS (Presentación de Formatos estilo Bad Hambres)
+           ===================================================================== -->
+      <section id="seccion-asegura-burritos" class="bg-brand-cream py-10 md:py-12 border-t border-brand-dark/15 overflow-hidden">
+        <div class="max-w-[1400px] mx-auto px-4 md:px-12">
+          
+          <!-- Encabezado Centrado -->
+          <div class="text-center max-w-xl mx-auto mb-6">
+            <h2 class="font-montserrat font-black text-2xl sm:text-3xl md:text-4xl uppercase tracking-[0.16em] text-brand-dark sm:whitespace-nowrap">
+              ASEGURÁ TUS BURRITOS
+            </h2>
+            <p class="font-poppins text-sm sm:text-[15px] text-brand-dark/80 mt-3 leading-relaxed">
+              Comida casera congelada lista en 15 minutos,<br class="hidden sm:inline"> directo del freezer a tu horno.
+            </p>
+          </div>
+
+          <!-- Grilla / Carrusel Mobile Fluido (flex en mobile con snap / grilla en desktop) -->
+          <div id="carousel-productos" class="max-w-4xl mx-auto flex md:grid md:grid-cols-2 overflow-x-auto snap-x snap-mandatory hide-scrollbar scroll-smooth gap-4 pb-4 px-4 md:px-0 items-stretch">
+            
+            <!-- TARJETA IZQUIERDA: BURRITO CLÁSICO (280G) -->
+            <div id="card-format-280" class="group cursor-pointer w-[85vw] max-w-[320px] md:w-full md:max-w-none flex-none snap-center flex flex-col border border-[#1C1917]/15 bg-[#F9F1E6] overflow-hidden relative transition-all duration-200 hover:-translate-y-1 rounded-none">
+              
+              <!-- Badge ovalado (píldora) "EL CLÁSICO" en Verde Oliva Base -->
+              <div class="absolute top-4 left-4 z-10 px-3 py-2 rounded-full flex items-center justify-center text-[9px] uppercase font-montserrat font-black tracking-wider text-center shadow-md text-[#F9F1E6] bg-[#3A4534] select-none">
+                <span>EL CLÁSICO</span>
+              </div>
+
+              <!-- Contenedor superior sin padding con imagen masiva estilo Bad Hombres -->
+              <div class="bg-[#D68844]/20 w-full p-0 h-72 md:h-80 flex items-center justify-center border-b border-[#1C1917]/15 overflow-hidden relative">
+                <img src="./Images/producto-burrito-280g.jpg" alt="Burrito Clásico 280g" loading="lazy" decoding="async" class="h-[110%] w-auto object-contain max-w-none scale-110 drop-shadow-xl mix-blend-multiply group-hover:scale-115 transition-transform duration-500">
+              </div>
+
+              <!-- Zona de información -->
+              <div class="p-5 flex flex-col grow">
+                <h3 class="font-montserrat font-black text-lg text-[#1C1917] tracking-tight uppercase">
+                  BURRITO CLÁSICO (280G)
+                </h3>
+                <p class="font-poppins text-xs sm:text-sm text-stone-600 mt-1 leading-relaxed">
+                  El tamaño clásico para todos los días.
+                </p>
+
+                <!-- Botón anclado al fondo unificado en Ocre Caliente -->
+                <div id="btn-pedir-burrito" class="mt-auto pt-4">
+                  <div class="w-full bg-[#D68844] hover:bg-[#b86f31] group-hover:bg-[#b86f31] text-white font-montserrat font-black text-xs uppercase tracking-wider py-3 px-4 transition-colors duration-200 text-center flex items-center justify-center">
+                    <span>PEDIR BURRITO</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- TARJETA DERECHA: BURROTE XL (400G) -->
+            <div id="card-format-400" class="group cursor-pointer w-[85vw] max-w-[320px] md:w-full md:max-w-none flex-none snap-center flex flex-col border border-[#1C1917]/15 bg-[#F9F1E6] overflow-hidden relative transition-all duration-200 hover:-translate-y-1 rounded-none">
+              
+              <!-- Badge ovalado (píldora) "FORMATO XL" en Negro Carbón -->
+              <div class="absolute top-4 left-4 z-10 px-3 py-2 rounded-full flex items-center justify-center text-[9px] uppercase font-montserrat font-black tracking-wider text-center shadow-md text-[#F9F1E6] bg-[#1C1917] select-none">
+                <span>FORMATO XL</span>
+              </div>
+
+              <!-- Contenedor superior sin padding con imagen masiva estilo Bad Hombres -->
+              <div class="bg-[#3A4534]/15 w-full p-0 h-72 md:h-80 flex items-center justify-center border-b border-[#1C1917]/15 overflow-hidden relative">
+                <img src="./Images/producto-burrote-400g.jpg" alt="Burrote XL 400g" loading="lazy" decoding="async" class="h-[110%] w-auto object-contain max-w-none scale-110 drop-shadow-xl mix-blend-multiply group-hover:scale-115 transition-transform duration-500">
+              </div>
+
+              <!-- Zona de información -->
+              <div class="p-5 flex flex-col grow">
+                <h3 class="font-montserrat font-black text-lg text-[#1C1917] tracking-tight uppercase">
+                  BURROTE XL (400G)
+                </h3>
+                <p class="font-poppins text-xs sm:text-sm text-stone-600 mt-1 leading-relaxed">
+                  43% más grande. Hasta 58g de proteína.
+                </p>
+
+                <!-- Botón anclado al fondo unificado en Ocre Caliente -->
+                <div id="btn-pedir-burrote" class="mt-auto pt-4">
+                  <div class="w-full bg-[#D68844] hover:bg-[#b86f31] group-hover:bg-[#b86f31] text-white font-montserrat font-black text-xs uppercase tracking-wider py-3 px-4 transition-colors duration-200 text-center flex items-center justify-center">
+                    <span>PEDIR BURROTE</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Dots Indicadores Mobile (Botones Interactivos) -->
+          <div id="dots-asegura" class="flex justify-center items-center gap-2 mt-2 md:hidden">
+            <button type="button" onclick="document.getElementById('carousel-productos').scrollBy({left: -300, behavior: 'smooth'})" class="h-2 w-2 rounded-full bg-[#1C1917] hover:bg-[#1C1917] transition-colors cursor-pointer" aria-label="Ver producto anterior"></button>
+            <button type="button" onclick="document.getElementById('carousel-productos').scrollBy({left: 300, behavior: 'smooth'})" class="h-2 w-2 rounded-full bg-[#1C1917]/30 hover:bg-[#1C1917] transition-colors cursor-pointer" aria-label="Ver siguiente producto"></button>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           SECCIÓN: POR QUÉ JUEGAN EN OTRA LIGA (6 Ingredientes Diferenciales - Color Blocking Verde Oliva)
+           ===================================================================== -->
+      <section id="macro-ingredientes-section" class="bg-[#3A4534] text-[#F9F1E6] py-10 md:py-12 w-full overflow-hidden">
+        <div class="max-w-6xl mx-auto text-center px-4 sm:px-6">
+          
+          <!-- Encabezado de Sección -->
+          <div class="mb-10 max-w-2xl mx-auto">
+            <span class="font-serif italic text-lg md:text-xl text-[#D68844] mb-1 block">
+              Transparencia total
+            </span>
+            <h2 class="font-montserrat font-black text-2xl md:text-4xl uppercase tracking-tight text-[#F9F1E6] mb-3">
+              POR QUÉ JUEGAN EN OTRA LIGA
+            </h2>
+            <p class="font-poppins text-xs md:text-sm text-[#F9F1E6]/75 max-w-lg mx-auto leading-relaxed">
+              Sin rellenos vacíos ni ultraprocesados. Ingredientes reales que se ven y se sienten en cada bocado.
+            </p>
+          </div>
+
+          <!-- Estructura de 6 Ingredientes (Grilla 3x2 en Desktop / Apilado en Mobile) -->
+          <div id="carousel-ingredientes" class="flex md:grid md:grid-cols-3 overflow-x-auto md:overflow-visible snap-x snap-mandatory gap-4 md:gap-3 pb-4 md:pb-0 px-4 md:px-0 hide-scrollbar scroll-smooth max-w-6xl mx-auto text-left">
+            
+            <!-- Bloque 1: La Bola de Lomo -->
+            <div class="w-[85vw] max-w-[320px] flex-none snap-center md:w-auto md:max-w-none md:flex-initial relative overflow-hidden h-52 md:h-64 rounded-none border border-[#F9F1E6]/20 flex flex-col justify-end p-5 md:p-6 group">
+              <img src="./Images/macro-pork.jpg" alt="La Bola de Lomo" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 rounded-none">
+              <div class="absolute inset-x-0 bottom-0 h-1/2 md:h-3/5 bg-gradient-to-t from-[#1C1917]/95 via-[#1C1917]/40 to-transparent pointer-events-none"></div>
+              <div class="relative z-10">
+                <h3 class="font-montserrat font-black text-base md:text-lg uppercase tracking-wider text-white">
+                  LA BOLA DE LOMO
+                </h3>
+                <p class="font-poppins text-xs text-[#F9F1E6]/90 mt-1 leading-relaxed">
+                  Corte magro de cerdo braseado a fuego lento, desmechado a mano y bañado en barbacoa casera.
+                </p>
+              </div>
+            </div>
+
+            <!-- Bloque 2: 100% Pechuga Real -->
+            <div class="w-[85vw] max-w-[320px] flex-none snap-center md:w-auto md:max-w-none md:flex-initial relative overflow-hidden h-52 md:h-64 rounded-none border border-[#F9F1E6]/20 flex flex-col justify-end p-5 md:p-6 group">
+              <img src="./Images/macro-pollo.jpg" alt="100% Pechuga Real" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 rounded-none">
+              <div class="absolute inset-x-0 bottom-0 h-1/2 md:h-3/5 bg-gradient-to-t from-[#1C1917]/95 via-[#1C1917]/40 to-transparent pointer-events-none"></div>
+              <div class="relative z-10">
+                <h3 class="font-montserrat font-black text-base md:text-lg uppercase tracking-wider text-white">
+                  100% PECHUGA REAL
+                </h3>
+                <p class="font-poppins text-xs text-[#F9F1E6]/90 mt-1 leading-relaxed">
+                  Pechuga tierna desmechada con salteado fresco de morrón verde, cebolla y toque cítrico.
+                </p>
+              </div>
+            </div>
+
+            <!-- Bloque 3: Mozzarella Fundente -->
+            <div class="w-[85vw] max-w-[320px] flex-none snap-center md:w-auto md:max-w-none md:flex-initial relative overflow-hidden h-52 md:h-64 rounded-none border border-[#F9F1E6]/20 flex flex-col justify-end p-5 md:p-6 group">
+              <img src="./Images/macro-queso.jpg" alt="Mozzarella Fundente" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 rounded-none">
+              <div class="absolute inset-x-0 bottom-0 h-1/2 md:h-3/5 bg-gradient-to-t from-[#1C1917]/95 via-[#1C1917]/40 to-transparent pointer-events-none"></div>
+              <div class="relative z-10">
+                <h3 class="font-montserrat font-black text-base md:text-lg uppercase tracking-wider text-white">
+                  MOZZARELLA FUNDENTE
+                </h3>
+                <p class="font-poppins text-xs text-[#F9F1E6]/90 mt-1 leading-relaxed">
+                  Queso de primera calidad que estira y gratina perfecto en cada bocado.
+                </p>
+              </div>
+            </div>
+
+            <!-- Bloque 4: Pasta de Porotos Negros -->
+            <div class="w-[85vw] max-w-[320px] flex-none snap-center md:w-auto md:max-w-none md:flex-initial relative overflow-hidden h-52 md:h-64 rounded-none border border-[#F9F1E6]/20 flex flex-col justify-end p-5 md:p-6 group">
+              <img src="./Images/macro-porotos.jpg" alt="Pasta de Porotos Negros" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 rounded-none">
+              <div class="absolute inset-x-0 bottom-0 h-1/2 md:h-3/5 bg-gradient-to-t from-[#1C1917]/95 via-[#1C1917]/40 to-transparent pointer-events-none"></div>
+              <div class="relative z-10">
+                <h3 class="font-montserrat font-black text-base md:text-lg uppercase tracking-wider text-white">
+                  PASTA DE POROTOS NEGROS
+                </h3>
+                <p class="font-poppins text-xs text-[#F9F1E6]/90 mt-1 leading-relaxed">
+                  El secreto de humedad del Pulled Pork: cocción lenta y especiada, sin conservantes.
+                </p>
+              </div>
+            </div>
+
+            <!-- Bloque 5: Crema Cítrica Casera -->
+            <div class="w-[85vw] max-w-[320px] flex-none snap-center md:w-auto md:max-w-none md:flex-initial relative overflow-hidden h-52 md:h-64 rounded-none border border-[#F9F1E6]/20 flex flex-col justify-end p-5 md:p-6 group">
+              <img src="./Images/macro-crema.jpg" alt="Crema Cítrica Casera" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 rounded-none">
+              <div class="absolute inset-x-0 bottom-0 h-1/2 md:h-3/5 bg-gradient-to-t from-[#1C1917]/95 via-[#1C1917]/40 to-transparent pointer-events-none"></div>
+              <div class="relative z-10">
+                <h3 class="font-montserrat font-black text-base md:text-lg uppercase tracking-wider text-white">
+                  CREMA CÍTRICA CASERA
+                </h3>
+                <p class="font-poppins text-xs text-[#F9F1E6]/90 mt-1 leading-relaxed">
+                  La base sedosa del Pollo: queso crema aromatizado con ralladura fresca de limón.
+                </p>
+              </div>
+            </div>
+
+            <!-- Bloque 6: Tortilla de 30 cm -->
+            <div class="w-[85vw] max-w-[320px] flex-none snap-center md:w-auto md:max-w-none md:flex-initial relative overflow-hidden h-52 md:h-64 rounded-none border border-[#F9F1E6]/20 flex flex-col justify-end p-5 md:p-6 group">
+              <img src="./Images/macro-tortilla.jpg" alt="Tortilla de 30 cm" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 rounded-none">
+              <div class="absolute inset-x-0 bottom-0 h-1/2 md:h-3/5 bg-gradient-to-t from-[#1C1917]/95 via-[#1C1917]/40 to-transparent pointer-events-none"></div>
+              <div class="relative z-10">
+                <h3 class="font-montserrat font-black text-base md:text-lg uppercase tracking-wider text-white">
+                  TORTILLA DE 30 CM
+                </h3>
+                <p class="font-poppins text-xs text-[#F9F1E6]/90 mt-1 leading-relaxed">
+                  Trigo elástico y dorado que sella crocante en sartén o aire caliente sin quebrarse.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Dots Indicadores Mobile -->
+          <div id="dots-ingredientes" class="flex justify-center items-center gap-1.5 mt-3 md:hidden">
+            <span class="h-1.5 w-1.5 rounded-full bg-[#F9F1E6] transition-colors duration-200"></span>
+            <span class="h-1.5 w-1.5 rounded-full bg-[#F9F1E6]/30 transition-colors duration-200"></span>
+            <span class="h-1.5 w-1.5 rounded-full bg-[#F9F1E6]/30 transition-colors duration-200"></span>
+            <span class="h-1.5 w-1.5 rounded-full bg-[#F9F1E6]/30 transition-colors duration-200"></span>
+            <span class="h-1.5 w-1.5 rounded-full bg-[#F9F1E6]/30 transition-colors duration-200"></span>
+            <span class="h-1.5 w-1.5 rounded-full bg-[#F9F1E6]/30 transition-colors duration-200"></span>
+          </div>
+
+          <!-- Botón CTA al pie de la sección -->
+          <div class="mt-10 text-center">
+            <button type="button" id="btn-cta-franjas" class="inline-block bg-[#D68844] hover:bg-[#b87032] text-[#1C1917] font-montserrat font-black text-sm uppercase px-8 py-4 tracking-wider transition-colors duration-200 cursor-pointer">
+              ASEGURÁ TUS BURRITOS
+            </button>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           SECCIÓN: COMIDA REAL / CONOCÉ LO QUE COMÉS (Color Blocking Crema)
+           ===================================================================== -->
+      <section id="conoce-lo-que-comes" class="bg-[#F2EAE1] text-[#1C1917] py-16 md:py-24 w-full border-t border-[#1C1917]/10">
+        <div class="max-w-5xl mx-auto px-6">
+          
+          <!-- Encabezado de Sección -->
+          <div class="max-w-xl">
+            <span class="block font-poppins text-xs font-bold uppercase tracking-widest text-stone-500 mb-2">
+              COMIDA REAL SIN VUELTAS
+            </span>
+            <h2 class="font-montserrat font-black text-3xl md:text-4xl uppercase tracking-tight text-[#1C1917] mb-3">
+              CONOCÉ LO QUE COMÉS
+            </h2>
+          </div>
+
+          <!-- Bloque de Sabores (Directo sobre fondo crema, sin fondo blanco ni marcos) -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mt-12">
+            
+            <!-- Sabor 01 (Pulled Pork) -->
+            <div class="flex flex-col">
+              <div class="aspect-[16/10] w-full overflow-hidden rounded-none bg-stone-200">
+                <img src="./Images/configurador-pork.jpg" alt="Pulled Pork" loading="lazy" decoding="async" class="w-full h-full object-cover object-[center_75%] rounded-none">
+              </div>
+              <span class="text-xs font-montserrat font-bold text-[#D68844] tracking-wider uppercase mt-4 mb-1 block">
+                SABOR 01
+              </span>
+              <h3 class="text-2xl font-montserrat font-black text-[#1C1917] uppercase tracking-tight leading-none">
+                PULLED PORK
+              </h3>
+              <p class="text-sm text-stone-600 mt-2 leading-relaxed font-poppins">
+                Bola de lomo de cerdo braseada a fuego lento, salsa barbacoa casera, salteado de morrón rojo, cebolla y ajo, pasta de porotos negros y queso mozzarella.
+              </p>
+              <div>
+                <span class="inline-block px-3 py-1 text-[11px] font-montserrat font-bold tracking-wider uppercase border border-[#1C1917]/30 text-[#1C1917] bg-transparent rounded-none mt-2">
+                  Contundente y ahumado
+                </span>
+              </div>
+            </div>
+
+            <!-- Sabor 02 (Pollo Cítrico) -->
+            <div class="flex flex-col">
+              <div class="aspect-[16/10] w-full overflow-hidden rounded-none bg-stone-200">
+                <img src="./Images/configurador-pollo.jpg" alt="Pollo Cítrico" loading="lazy" decoding="async" class="w-full h-full object-cover object-[center_75%] rounded-none">
+              </div>
+              <span class="text-xs font-montserrat font-bold text-[#D68844] tracking-wider uppercase mt-4 mb-1 block">
+                SABOR 02
+              </span>
+              <h3 class="text-2xl font-montserrat font-black text-[#1C1917] uppercase tracking-tight leading-none">
+                POLLO CÍTRICO
+              </h3>
+              <p class="text-sm text-stone-600 mt-2 leading-relaxed font-poppins">
+                100% pechuga de pollo desmechada, salteado de morrón verde, cebolla y ajo, queso crema con ralladura fresca de limón y mozzarella.
+              </p>
+              <div>
+                <span class="inline-block px-3 py-1 text-[11px] font-montserrat font-bold tracking-wider uppercase border border-[#1C1917]/30 text-[#1C1917] bg-transparent rounded-none mt-2">
+                  Fresco y especiado
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Divisor ultrafino -->
+          <div class="border-t border-[#1C1917]/15 my-12"></div>
+
+          <!-- Métricas Nutricionales (Big Numbers en lugar de tabla cerrada) -->
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            
+            <!-- Item 1 -->
+            <div>
+              <span class="text-4xl md:text-5xl font-montserrat font-black text-[#B5361D] leading-none block">
+                58g
+              </span>
+              <span class="text-xs font-montserrat font-bold tracking-wider text-stone-600 uppercase mt-2 block">
+                PROTEÍNA / BURROTE
+              </span>
+            </div>
+
+            <!-- Item 2 -->
+            <div>
+              <span class="text-4xl md:text-5xl font-montserrat font-black text-[#B5361D] leading-none block">
+                40g
+              </span>
+              <span class="text-xs font-montserrat font-bold tracking-wider text-stone-600 uppercase mt-2 block">
+                PROTEÍNA / CLÁSICO
+              </span>
+            </div>
+
+            <!-- Item 3 -->
+            <div>
+              <span class="text-4xl md:text-5xl font-montserrat font-black text-[#1C1917] leading-none block">
+                100%
+              </span>
+              <span class="text-xs font-montserrat font-bold tracking-wider text-stone-600 uppercase mt-2 block">
+                PECHUGA Y BOLA DE LOMO
+              </span>
+            </div>
+
+            <!-- Item 4 -->
+            <div>
+              <span class="text-4xl md:text-5xl font-montserrat font-black text-[#1C1917] leading-none block">
+                15 MIN
+              </span>
+              <span class="text-xs font-montserrat font-bold tracking-wider text-stone-600 uppercase mt-2 block">
+                DEL FREEZER AL PLATO
+              </span>
+            </div>
+
+          </div>
+
+          <!-- Botón toggle para desplegar tabla completa -->
+          <div id="valores-nutricionales" class="text-center mt-10">
+            <button type="button" id="toggle-nutrition-table" class="text-xs font-montserrat font-bold tracking-widest text-[#1C1917] underline hover:text-[#D68844] cursor-pointer transition-colors focus:outline-none select-none">
+              [ + VER TABLA NUTRICIONAL DETALLADA ]
+            </button>
+          </div>
+
+          <!-- Contenedor colapsable de la tabla completa (Desktop: Tabla 6 col / Mobile: Cards individuales) -->
+          <div id="nutrition-table-container" class="hidden mt-8 transition-all duration-300">
+            
+            <!-- Vista Mobile: 4 tarjetas compactas sin scroll horizontal -->
+            <div class="grid grid-cols-1 gap-3 md:hidden">
+              
+              <!-- Tarjeta 1: Burrito Pollo -->
+              <div class="border border-[#1C1917]/15 p-4 bg-[#F9F1E6]">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="font-montserrat font-bold text-sm text-[#1C1917]">Burrito Pollo</span>
+                  <span class="font-poppins text-xs text-[#1C1917]/70 font-medium">280g · 598 kcal</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2 pt-2 border-t border-[#1C1917]/10 text-center">
+                  <div>
+                    <span class="block text-[10px] text-[#1C1917]/50 uppercase tracking-wider font-montserrat">PROTEÍNA</span>
+                    <span class="font-montserrat font-bold text-[#B5361D] text-sm">40,5g</span>
+                  </div>
+                  <div>
+                    <span class="block text-[10px] text-[#1C1917]/50 uppercase tracking-wider font-montserrat">CARBS</span>
+                    <span class="font-montserrat font-semibold text-[#1C1917] text-sm">55,7g</span>
+                  </div>
+                  <div>
+                    <span class="block text-[10px] text-[#1C1917]/50 uppercase tracking-wider font-montserrat">GRASAS</span>
+                    <span class="font-montserrat font-semibold text-[#1C1917] text-sm">24,1g</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tarjeta 2: Burrote Pollo -->
+              <div class="border border-[#1C1917]/15 p-4 bg-[#F9F1E6]">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="font-montserrat font-bold text-sm text-[#1C1917]">Burrote Pollo</span>
+                  <span class="font-poppins text-xs text-[#1C1917]/70 font-medium">400g · 856 kcal</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2 pt-2 border-t border-[#1C1917]/10 text-center">
+                  <div>
+                    <span class="block text-[10px] text-[#1C1917]/50 uppercase tracking-wider font-montserrat">PROTEÍNA</span>
+                    <span class="font-montserrat font-bold text-[#B5361D] text-sm">58,3g</span>
+                  </div>
+                  <div>
+                    <span class="block text-[10px] text-[#1C1917]/50 uppercase tracking-wider font-montserrat">CARBS</span>
+                    <span class="font-montserrat font-semibold text-[#1C1917] text-sm">77,4g</span>
+                  </div>
+                  <div>
+                    <span class="block text-[10px] text-[#1C1917]/50 uppercase tracking-wider font-montserrat">GRASAS</span>
+                    <span class="font-montserrat font-semibold text-[#1C1917] text-sm">35,2g</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tarjeta 3: Burrito Pulled Pork -->
+              <div class="border border-[#1C1917]/15 p-4 bg-[#F9F1E6]">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="font-montserrat font-bold text-sm text-[#1C1917]">Burrito Pulled Pork</span>
+                  <span class="font-poppins text-xs text-[#1C1917]/70 font-medium">280g · 618 kcal</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2 pt-2 border-t border-[#1C1917]/10 text-center">
+                  <div>
+                    <span class="block text-[10px] text-[#1C1917]/50 uppercase tracking-wider font-montserrat">PROTEÍNA</span>
+                    <span class="font-montserrat font-bold text-[#B5361D] text-sm">38,9g</span>
+                  </div>
+                  <div>
+                    <span class="block text-[10px] text-[#1C1917]/50 uppercase tracking-wider font-montserrat">CARBS</span>
+                    <span class="font-montserrat font-semibold text-[#1C1917] text-sm">60,3g</span>
+                  </div>
+                  <div>
+                    <span class="block text-[10px] text-[#1C1917]/50 uppercase tracking-wider font-montserrat">GRASAS</span>
+                    <span class="font-montserrat font-semibold text-[#1C1917] text-sm">24,6g</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tarjeta 4: Burrote Pulled Pork -->
+              <div class="border border-[#1C1917]/15 p-4 bg-[#F9F1E6]">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="font-montserrat font-bold text-sm text-[#1C1917]">Burrote Pulled Pork</span>
+                  <span class="font-poppins text-xs text-[#1C1917]/70 font-medium">400g · 883 kcal</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2 pt-2 border-t border-[#1C1917]/10 text-center">
+                  <div>
+                    <span class="block text-[10px] text-[#1C1917]/50 uppercase tracking-wider font-montserrat">PROTEÍNA</span>
+                    <span class="font-montserrat font-bold text-[#B5361D] text-sm">56,2g</span>
+                  </div>
+                  <div>
+                    <span class="block text-[10px] text-[#1C1917]/50 uppercase tracking-wider font-montserrat">CARBS</span>
+                    <span class="font-montserrat font-semibold text-[#1C1917] text-sm">84,1g</span>
+                  </div>
+                  <div>
+                    <span class="block text-[10px] text-[#1C1917]/50 uppercase tracking-wider font-montserrat">GRASAS</span>
+                    <span class="font-montserrat font-semibold text-[#1C1917] text-sm">36,0g</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Vista Desktop: Tabla horizontal de 6 columnas -->
+            <div class="hidden md:block overflow-x-auto">
+              <table class="w-full text-left border-collapse min-w-[540px]">
+                <thead>
+                  <tr class="border-b border-[#1C1917]/20">
+                    <th class="py-3 px-3 font-montserrat font-bold text-[#1C1917]/60 text-xs tracking-wider uppercase">PRODUCTO</th>
+                    <th class="py-3 px-3 font-montserrat font-bold text-[#1C1917]/60 text-xs tracking-wider uppercase text-center">PESO</th>
+                    <th class="py-3 px-3 font-montserrat font-bold text-[#1C1917]/60 text-xs tracking-wider uppercase text-center">KCAL</th>
+                    <th class="py-3 px-3 font-montserrat font-bold text-[#B5361D] text-xs tracking-wider uppercase text-center">PROTEÍNA</th>
+                    <th class="py-3 px-3 font-montserrat font-bold text-[#1C1917]/60 text-xs tracking-wider uppercase text-center">CARBS</th>
+                    <th class="py-3 px-3 font-montserrat font-bold text-[#1C1917]/60 text-xs tracking-wider uppercase text-center">GRASAS</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-[#1C1917]/10 font-poppins text-xs sm:text-sm text-[#1C1917]/80">
+                  <tr class="hover:bg-[#1C1917]/5 transition-colors">
+                    <td class="py-3 px-3 font-montserrat font-bold text-[#1C1917]">Burrito Pollo</td>
+                    <td class="py-3 px-3 text-center">280g</td>
+                    <td class="py-3 px-3 text-center">598 kcal</td>
+                    <td class="py-3 px-3 text-center font-montserrat font-bold text-[#B5361D]">40,5g</td>
+                    <td class="py-3 px-3 text-center">55,7g</td>
+                    <td class="py-3 px-3 text-center">24,1g</td>
+                  </tr>
+                  <tr class="hover:bg-[#1C1917]/5 transition-colors">
+                    <td class="py-3 px-3 font-montserrat font-bold text-[#1C1917]">Burrote Pollo</td>
+                    <td class="py-3 px-3 text-center">400g</td>
+                    <td class="py-3 px-3 text-center">856 kcal</td>
+                    <td class="py-3 px-3 text-center font-montserrat font-bold text-[#B5361D]">58,3g</td>
+                    <td class="py-3 px-3 text-center">77,4g</td>
+                    <td class="py-3 px-3 text-center">35,2g</td>
+                  </tr>
+                  <tr class="hover:bg-[#1C1917]/5 transition-colors">
+                    <td class="py-3 px-3 font-montserrat font-bold text-[#1C1917]">Burrito Pulled Pork</td>
+                    <td class="py-3 px-3 text-center">280g</td>
+                    <td class="py-3 px-3 text-center">618 kcal</td>
+                    <td class="py-3 px-3 text-center font-montserrat font-bold text-[#B5361D]">38,9g</td>
+                    <td class="py-3 px-3 text-center">60,3g</td>
+                    <td class="py-3 px-3 text-center">24,6g</td>
+                  </tr>
+                  <tr class="hover:bg-[#1C1917]/5 transition-colors">
+                    <td class="py-3 px-3 font-montserrat font-bold text-[#1C1917]">Burrote Pulled Pork</td>
+                    <td class="py-3 px-3 text-center">400g</td>
+                    <td class="py-3 px-3 text-center">883 kcal</td>
+                    <td class="py-3 px-3 text-center font-montserrat font-bold text-[#B5361D]">56,2g</td>
+                    <td class="py-3 px-3 text-center">84,1g</td>
+                    <td class="py-3 px-3 text-center">36,0g</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>          </div>
+
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           SECCIÓN: CÓMO HACEMOS LAS COSAS (Proceso Editorial - Color Blocking Oliva Oscuro)
+           ===================================================================== -->
+      <section id="proceso-section" class="bg-[#525E4C] text-[#F9F1E6] py-12 md:py-16 w-full overflow-hidden border-t border-[#1C1917]/10">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+
+          <!-- Encabezado de Sección con Contraste Tipográfico -->
+          <div class="mb-10 md:mb-12">
+            <span class="font-serif italic text-lg md:text-xl text-[#D68844] mb-1 block">
+              El proceso detrás de Mancha
+            </span>
+            <h2 class="font-montserrat font-black text-2xl md:text-4xl uppercase tracking-tight text-[#F9F1E6]">
+              CÓMO HACEMOS LAS COSAS
+            </h2>
+          </div>
+
+          <!-- Estructura de los 3 Pasos (Desktop: Grilla 3 col / Mobile: Carrusel horizontal snap fluido) -->
+          <div id="carousel-proceso" class="flex md:grid md:grid-cols-3 overflow-x-auto snap-x snap-mandatory hide-scrollbar scroll-smooth gap-4 pb-4 px-4 md:px-0 items-stretch text-left">
+            
+            <!-- PASO 01 -->
+            <div class="w-[85vw] max-w-[320px] md:w-full md:max-w-none flex-none snap-center whitespace-normal flex flex-col bg-[#F9F1E6] border border-[#1C1917]/10 shadow-sm overflow-hidden">
+              <img src="./Images/paso-01-hecho-a-mano.jpg" alt="Hechos a mano en Caseros" loading="lazy" decoding="async" class="w-full h-48 lg:h-56 object-cover">
+              <div class="p-5 flex flex-col grow text-[#1C1917]">
+                <div class="w-9 h-9 rounded-full bg-[#1C1917] text-[#F9F1E6] font-montserrat font-black text-xs flex items-center justify-center mb-3 shrink-0">
+                  01
+                </div>
+                <h3 class="font-montserrat font-black text-base md:text-lg uppercase text-[#1C1917] tracking-tight mb-1">
+                  HECHOS A MANO EN CASEROS
+                </h3>
+                <p class="font-poppins text-xs md:text-sm text-[#1C1917]/80 leading-relaxed">
+                  Cocinamos en tandas chicas con ingredientes reales desde cero. Cerdo y pollo desmechados a mano, vegetales salteados en el momento y tortillas de 30 cm.
+                </p>
+              </div>
+            </div>
+
+            <!-- PASO 02 -->
+            <div class="w-[85vw] max-w-[320px] md:w-full md:max-w-none flex-none snap-center whitespace-normal flex flex-col bg-[#F9F1E6] border border-[#1C1917]/10 shadow-sm overflow-hidden">
+              <img src="./Images/paso-02-termosellado.png" alt="Termosellados directo a tu freezer" loading="lazy" decoding="async" class="w-full h-48 lg:h-56 object-cover">
+              <div class="p-5 flex flex-col grow text-[#1C1917]">
+                <div class="w-9 h-9 rounded-full bg-[#1C1917] text-[#F9F1E6] font-montserrat font-black text-xs flex items-center justify-center mb-3 shrink-0">
+                  02
+                </div>
+                <h3 class="font-montserrat font-black text-base md:text-lg uppercase text-[#1C1917] tracking-tight mb-1">
+                  TERMOSELLADOS DIRECTO A TU FREEZER
+                </h3>
+                <p class="font-poppins text-xs md:text-sm text-[#1C1917]/80 leading-relaxed">
+                  Envasados con sellado hermético apto para freezer y etiqueta de lote. Entregamos los viernes y sábados en frío para que stockees sin perder calidad.
+                </p>
+              </div>
+            </div>
+
+            <!-- PASO 03 -->
+            <div class="w-[85vw] max-w-[320px] md:w-full md:max-w-none flex-none snap-center whitespace-normal flex flex-col bg-[#F9F1E6] border border-[#1C1917]/10 shadow-sm overflow-hidden">
+              <img src="./Images/paso-03-regeneracion.png" alt="Del freezer al plato en 15 minutos" loading="lazy" decoding="async" class="w-full h-48 lg:h-56 object-cover">
+              <div class="p-5 flex flex-col grow text-[#1C1917]">
+                <div class="w-9 h-9 rounded-full bg-[#1C1917] text-[#F9F1E6] font-montserrat font-black text-xs flex items-center justify-center mb-3 shrink-0">
+                  03
+                </div>
+                <h3 class="font-montserrat font-black text-base md:text-lg uppercase text-[#1C1917] tracking-tight mb-1">
+                  DEL FREEZER AL PLATO EN 15 MINUTOS
+                </h3>
+                <p class="font-poppins text-xs md:text-sm text-[#1C1917]/80 leading-relaxed">
+                  Directo a horno, sartén con tapa o air fryer. Vuelta y vuelta hasta dorar la tortilla y fundir el queso. Comida casera lista sin ensuciar ollas.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Dots Indicadores Mobile (Botones Interactivos) -->
+          <div id="dots-proceso" class="flex justify-center items-center gap-2 mt-2 md:hidden">
+            <button type="button" onclick="document.getElementById('carousel-proceso').scrollBy({left: -300, behavior: 'smooth'})" class="h-2 w-2 rounded-full bg-[#F9F1E6] hover:bg-[#F9F1E6] transition-colors cursor-pointer" aria-label="Paso anterior"></button>
+            <button type="button" onclick="document.getElementById('carousel-proceso').scrollBy({left: 300, behavior: 'smooth'})" class="h-2 w-2 rounded-full bg-[#F9F1E6]/30 hover:bg-[#F9F1E6] transition-colors cursor-pointer" aria-label="Siguiente paso"></button>
+            <button type="button" onclick="document.getElementById('carousel-proceso').scrollBy({left: 300, behavior: 'smooth'})" class="h-2 w-2 rounded-full bg-[#F9F1E6]/30 hover:bg-[#F9F1E6] transition-colors cursor-pointer" aria-label="Último paso"></button>
+          </div>
+
+        </div>
+      </section>
+
+            <!-- =====================================================================
+           SECCIÓN: PREGUNTAS FRECUENTES (FAQ - Color Blocking Crema Mancha #F9F1E6)
+           ===================================================================== -->
+      <section id="faq-section" class="bg-[#F9F1E6] text-[#1C1917] py-10 md:py-12 w-full">
+        <div class="max-w-4xl mx-auto px-6">
+          
+          <!-- Encabezado de Sección -->
+          <div class="mb-8">
+            <span class="block font-poppins text-xs font-bold uppercase tracking-widest text-[#D68844] mb-2">
+              RESOLVÉ TUS DUDAS
+            </span>
+            <h2 class="font-montserrat font-black text-2xl md:text-3xl uppercase tracking-tight text-[#1C1917]">
+              PREGUNTAS FRECUENTES
+            </h2>
+          </div>
+
+          <!-- Estructura de Acordeón Plano (5 ítems) con bordes grises claros -->
+          <div class="border-t border-stone-300">
+            
+            <!-- Ítem 1 -->
+            <div class="faq-item border-b border-stone-300">
+              <button type="button" class="faq-toggle w-full py-5 flex items-center justify-between text-left cursor-pointer group focus:outline-none" aria-expanded="false">
+                <span class="font-montserrat font-bold text-sm md:text-base text-[#1C1917] group-hover:text-[#D68844] transition-colors pr-4">
+                  ¿Cómo se calientan y regeneran?
+                </span>
+                <span class="faq-icon inline-block text-[#1C1917] font-montserrat font-bold text-xl md:text-2xl transition-transform duration-200 shrink-0 select-none leading-none group-hover:text-[#D68844]">
+                  +
+                </span>
+              </button>
+              <div class="faq-answer hidden pb-5 text-sm font-poppins text-stone-700 space-y-2 leading-relaxed">
+                <p>Se entregan cocidos y congelados. Proceso en 2 pasos:</p>
+                <div class="space-y-2 pl-1 pt-1">
+                  <p>
+                    <strong class="text-[#1C1917] font-bold">1) Descongelado previo:</strong> bajalo a la heladera unas horas antes o dale 2 min en función descongelar en microondas.
+                  </p>
+                  <p>
+                    <strong class="text-[#1C1917] font-bold">2) Calentado y dorado (~15 min):</strong> en horno común, eléctrico o air fryer dándolo vuelta a mitad de tiempo; o en sartén a fuego bajo <span class="font-bold text-[#D68844]">SIEMPRE CON TAPA</span> para concentrar el calor sin quemar la masa.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Ítem 2 -->
+            <div class="faq-item border-b border-stone-300">
+              <button type="button" class="faq-toggle w-full py-5 flex items-center justify-between text-left cursor-pointer group focus:outline-none" aria-expanded="false">
+                <span class="font-montserrat font-bold text-sm md:text-base text-[#1C1917] group-hover:text-[#D68844] transition-colors pr-4">
+                  ¿Cuánto duran y cómo se conservan?
+                </span>
+                <span class="faq-icon inline-block text-[#1C1917] font-montserrat font-bold text-xl md:text-2xl transition-transform duration-200 shrink-0 select-none leading-none group-hover:text-[#D68844]">
+                  +
+                </span>
+              </button>
+              <div class="faq-answer hidden pb-5 text-sm font-poppins text-stone-700 space-y-2 leading-relaxed">
+                <p>
+                  En freezer duran <strong class="text-[#1C1917] font-bold">hasta 3 meses</strong> en su envase termosellado con fecha de elaboración (apto freezer).
+                </p>
+                <p>
+                  En heladera aguantan <strong class="text-[#1C1917] font-bold">hasta 3 días</strong> una vez descongelados.
+                </p>
+                <p class="pt-1 text-xs text-[#B5361D] font-bold uppercase tracking-wider">
+                  Importante: una vez descongelados, no volver a congelar.
+                </p>
+              </div>
+            </div>
+
+            <!-- Ítem 3 -->
+            <div class="faq-item border-b border-stone-300">
+              <button type="button" class="faq-toggle w-full py-5 flex items-center justify-between text-left cursor-pointer group focus:outline-none" aria-expanded="false">
+                <span class="font-montserrat font-bold text-sm md:text-base text-[#1C1917] group-hover:text-[#D68844] transition-colors pr-4">
+                  ¿Qué días y horarios se entregan los pedidos?
+                </span>
+                <span class="faq-icon inline-block text-[#1C1917] font-montserrat font-bold text-xl md:text-2xl transition-transform duration-200 shrink-0 select-none leading-none group-hover:text-[#D68844]">
+                  +
+                </span>
+              </button>
+              <div class="faq-answer hidden pb-5 text-sm font-poppins text-stone-700 space-y-2 leading-relaxed">
+                <div>
+                  <div class="inline-flex items-center gap-2 bg-white border border-stone-300 text-[#1C1917] px-3.5 py-1.5 text-xs font-montserrat font-black uppercase tracking-wider mb-3 shadow-sm rounded">
+                    <span>⏰ CIERRE DE PEDIDOS:</span>
+                    <span class="text-[#D68844]">JUEVES 20:00 HS</span>
+                  </div>
+                </div>
+                <div class="space-y-2">
+                  <div class="flex items-start gap-2">
+                    <span class="text-[#D68844] font-bold mt-0.5">•</span>
+                    <p>
+                      <strong class="text-[#1C1917] font-bold">Viernes 17:00 a 21:00 hs:</strong> Anillos 0, 1 y 2.
+                    </p>
+                  </div>
+                  <div class="flex items-start gap-2">
+                    <span class="text-[#D68844] font-bold mt-0.5">•</span>
+                    <p>
+                      <strong class="text-[#1C1917] font-bold">Sábados 10:00 a 14:00 hs:</strong> Ruta Especial Corredor Norte.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Ítem 4 -->
+            <div class="faq-item border-b border-stone-300">
+              <button type="button" class="faq-toggle w-full py-5 flex items-center justify-between text-left cursor-pointer group focus:outline-none" aria-expanded="false">
+                <span class="font-montserrat font-bold text-sm md:text-base text-[#1C1917] group-hover:text-[#D68844] transition-colors pr-4">
+                  ¿Cuáles son las zonas y costos de envío?
+                </span>
+                <span class="faq-icon inline-block text-[#1C1917] font-montserrat font-bold text-xl md:text-2xl transition-transform duration-200 shrink-0 select-none leading-none group-hover:text-[#D68844]">
+                  +
+                </span>
+              </button>
+              <div class="faq-answer hidden pb-5 text-sm font-poppins text-stone-700 space-y-3 leading-relaxed">
+                
+                <!-- Buscador Interactivo de Barrios -->
+                <div>
+                  <input 
+                    type="text" 
+                    id="zone-search-input" 
+                    placeholder="🔍 Buscá tu barrio o localidad (ej: Devoto, Ramos, Ballester)..." 
+                    class="w-full px-3.5 py-2.5 bg-white border border-stone-300 text-[#1C1917] placeholder-stone-400 font-poppins text-xs sm:text-sm rounded focus:outline-none focus:border-[#D68844] transition-colors shadow-sm"
+                  >
+                </div>
+
+                <div id="zone-cards-container" class="space-y-2.5">
+                  
+                  <!-- Anillo 0 -->
+                  <div class="zone-card p-3.5 bg-white border border-stone-200 rounded shadow-sm transition-colors">
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="font-montserrat font-bold text-xs uppercase tracking-wider text-[#1C1917]">Anillo 0</span>
+                      <span class="bg-[#3A4534] text-[#F9F1E6] font-montserrat font-bold text-[10px] px-2 py-0.5 uppercase tracking-wide rounded">100% GRATIS</span>
+                    </div>
+                    <p class="text-xs text-stone-600 leading-relaxed">
+                      <strong class="text-[#1C1917]">Tres de Febrero</strong> (Caseros, Santos Lugares, Sáenz Peña, Raffo, Palomar/Ciudad Jardín, Bosch, Coronado, Podestá, Ciudadela), <strong class="text-[#1C1917]">San Martín sur</strong> (Centro, San Andrés, Lynch, Ballester sur), <strong class="text-[#1C1917]">Ramos Norte y Haedo Norte</strong> (entre Acceso Oeste y vías), <strong class="text-[#1C1917]">CABA</strong> (Devoto, Villa Real, Versalles).
+                    </p>
+                  </div>
+
+                  <!-- Anillo 1 -->
+                  <div class="zone-card p-3.5 bg-white border border-stone-200 rounded shadow-sm transition-colors">
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="font-montserrat font-bold text-xs uppercase tracking-wider text-[#1C1917]">Anillo 1</span>
+                      <span class="font-montserrat font-bold text-[11px] text-stone-700">$4.000 <span class="text-[#D68844] font-extrabold text-[10px] uppercase ml-1">— ¡GRATIS desde Pack x10!</span></span>
+                    </div>
+                    <p class="text-xs text-stone-600 leading-relaxed">
+                      <strong class="text-[#1C1917]">San Martín norte</strong> (Villa Maipú, Ballester norte), <strong class="text-[#1C1917]">Loma Hermosa</strong>, <strong class="text-[#1C1917]">Ramos Sur</strong>, <strong class="text-[#1C1917]">Haedo Sur</strong>, <strong class="text-[#1C1917]">CABA</strong> (Monte Castro, Villa del Parque, Villa Pueyrredón, Agronomía, Liniers y Villa Luro - sobre Acc. Oeste).
+                    </p>
+                  </div>
+
+                  <!-- Anillo 2 -->
+                  <div class="zone-card p-3.5 bg-white border border-stone-200 rounded shadow-sm transition-colors">
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="font-montserrat font-bold text-xs uppercase tracking-wider text-[#1C1917]">Anillo 2</span>
+                      <span class="font-montserrat font-bold text-[11px] text-stone-700">$6.000 <span class="text-[#D68844] font-extrabold text-[10px] uppercase ml-1">— ¡GRATIS DESDE PACK X15!</span></span>
+                    </div>
+                    <p class="text-xs text-stone-600 leading-relaxed">
+                      <strong class="text-[#1C1917]">Morón Centro</strong>, <strong class="text-[#1C1917]">Castelar Norte</strong>, <strong class="text-[#1C1917]">Villa Luzuriaga</strong>, <strong class="text-[#1C1917]">Hurlingham</strong>, <strong class="text-[#1C1917]">Villa Tesei</strong>, <strong class="text-[#1C1917]">José León Suárez</strong>, <strong class="text-[#1C1917]">Billinghurst</strong>.
+                    </p>
+                  </div>
+
+                  <!-- Ruta Especial Sábados -->
+                  <div class="zone-card p-3.5 bg-white border border-stone-200 rounded shadow-sm transition-colors">
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="font-montserrat font-bold text-xs uppercase tracking-wider text-[#1C1917]">Ruta Especial Sábados</span>
+                      <span class="font-montserrat font-bold text-[11px] text-stone-700">$8.000 <span class="text-[#D68844] font-extrabold text-[10px] uppercase ml-1">— ¡GRATIS desde Pack x15!</span></span>
+                    </div>
+                    <p class="text-xs text-stone-600 leading-relaxed">
+                      <strong class="text-[#1C1917]">CABA Norte</strong> (Saavedra, Villa Urquiza, Núñez, Belgrano) y <strong class="text-[#1C1917]">Vicente López</strong> entero.
+                    </p>
+                  </div>
+
+                  <p id="zone-no-results" class="hidden text-xs text-stone-500 font-poppins text-center py-2">
+                    No encontramos esa localidad en la lista. ¡Escribinos por WhatsApp para consultar cobertura personalizada!
+                  </p>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- Ítem 5 -->
+            <div class="faq-item border-b border-stone-300">
+              <button type="button" class="faq-toggle w-full py-5 flex items-center justify-between text-left cursor-pointer group focus:outline-none" aria-expanded="false">
+                <span class="font-montserrat font-bold text-sm md:text-base text-[#1C1917] group-hover:text-[#D68844] transition-colors pr-4">
+                  ¿Cómo se confirma el pedido y cómo se paga?
+                </span>
+                <span class="faq-icon inline-block text-[#1C1917] font-montserrat font-bold text-xl md:text-2xl transition-transform duration-200 shrink-0 select-none leading-none group-hover:text-[#D68844]">
+                  +
+                </span>
+              </button>
+              <div class="faq-answer hidden pb-5 text-sm font-poppins text-stone-700 space-y-2.5 leading-relaxed">
+                <ol class="space-y-2.5">
+                  <li class="flex items-start gap-2.5">
+                    <span class="font-montserrat font-black text-xs bg-[#1C1917] text-[#F9F1E6] w-5 h-5 flex items-center justify-center shrink-0 rounded-full">1</span>
+                    <span>Armás tu pack en la web y enviás el pedido directo a nuestro WhatsApp.</span>
+                  </li>
+                  <li class="flex items-start gap-2.5">
+                    <span class="font-montserrat font-black text-xs bg-[#1C1917] text-[#F9F1E6] w-5 h-5 flex items-center justify-center shrink-0 rounded-full">2</span>
+                    <span>Te respondemos al instante con el alias para abonar por transferencia bancaria (o coordinar una seña mínima del 50%).</span>
+                  </li>
+                  <li class="flex items-start gap-2.5">
+                    <span class="font-montserrat font-black text-xs bg-[#1C1917] text-[#F9F1E6] w-5 h-5 flex items-center justify-center shrink-0 rounded-full">3</span>
+                    <span>El día de la entrega te avisamos antes de salir hacia tu domicilio y te enviamos un mensaje cuando estemos a 5 cuadras.</span>
+                  </li>
+                </ol>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           FOOTER PRINCIPAL (Fat Footer definitivo con links reales y comunidad)
+           ===================================================================== -->
+      <footer class="bg-[#1C1917] text-[#F9F1E6] pt-8 md:pt-10 pb-6 px-6 w-full border-t border-stone-800">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8 md:mb-12">
+          
+          <!-- Columna 1 (Marca) -->
+          <div>
+            <h2 class="font-montserrat font-black text-3xl text-[#D68844] tracking-tight mb-2 md:mb-4">MANCHA</h2>
+            <p class="text-stone-400 text-sm font-medium pr-4 leading-relaxed">
+              Burritos congelados hechos a mano. Del freezer al horno, listos en 15 minutos.
+            </p>
+          </div>
+
+          <!-- Columna 2 (Explorar) -->
+          <div>
+            <h3 class="font-bold text-[#8A9681] tracking-widest uppercase text-xs mb-3 md:mb-6">Explorar</h3>
+            <div class="flex flex-col gap-3 font-poppins">
+              <a href="#" id="footer-link-home" class="text-sm font-semibold text-stone-300 hover:text-white transition-colors">Inicio</a>
+              <a href="#armado-pedido" id="footer-link-burritos" class="text-sm font-semibold text-stone-300 hover:text-white transition-colors">Nuestros Burritos</a>
+              <a href="#faq" id="footer-link-faq" class="text-sm font-semibold text-stone-300 hover:text-white transition-colors">Preguntas Frecuentes</a>
+              <a href="contacto.html" class="text-sm font-semibold text-stone-300 hover:text-white transition-colors">Contacto</a>
+            </div>
+          </div>
+
+          <!-- Columna 3 (Comunidad) -->
+          <div>
+            <h3 class="font-bold text-[#8A9681] tracking-widest uppercase text-xs mb-3 md:mb-6">Comunidad</h3>
+            <p class="text-stone-400 text-sm mb-4 md:mb-6 leading-relaxed font-poppins">
+              Seguinos en nuestras redes y enterate de todas las novedades.
+            </p>
+            <div class="flex items-center gap-4">
+              <!-- Instagram -->
+              <a href="https://www.instagram.com/manchaburritos/" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-[#D68844] transition-colors" aria-label="Instagram">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"/></svg>
+              </a>
+              <!-- TikTok -->
+              <a href="https://www.tiktok.com/@mancha.burritos" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-[#D68844] transition-colors" aria-label="TikTok">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+              </a>
+              <!-- WhatsApp -->
+              <a href="https://wa.me/5491155264989?text=Hola!%20Vengo%20de%20la%20web%20y%20quería%20hacer%20una%20consulta." target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-[#D68844] transition-colors" aria-label="WhatsApp">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 21c-1.566 0-3.097-.42-4.444-1.218l-4.945 1.298 1.32-4.819A8.955 8.955 0 012.744 12c0-4.962 4.041-9 9.003-9s9.003 4.038 9.003 9c0 4.962-4.041 9-9.003 9zM12.031 4.5c-4.136 0-7.5 3.364-7.5 7.5 0 1.488.435 2.879 1.189 4.053l-.782 2.855 2.927-.768a7.466 7.466 0 004.166 1.26c4.136 0 7.5-3.364 7.5-7.5s-3.364-7.5-7.5-7.5zm4.498 10.387c-.187-.094-1.107-.546-1.278-.609-.172-.062-.297-.094-.422.094-.125.187-.484.609-.594.734-.109.125-.219.141-.406.047-.187-.094-.79-.291-1.505-.929-.556-.497-.932-1.111-1.041-1.298-.109-.187-.012-.288.082-.381.085-.084.187-.219.281-.328.094-.109.125-.187.187-.312.062-.125.031-.234-.016-.328-.047-.094-.422-1.016-.578-1.391-.152-.365-.308-.316-.422-.322l-.36-.008c-.125 0-.328.047-.5.234s-.656.641-.656 1.562.672 1.812.766 1.938c.094.125 1.323 2.02 3.205 2.83.448.193.797.309 1.07.396.449.143.859.123 1.182.075.361-.054 1.107-.453 1.264-.891.156-.438.156-.812.109-.891-.047-.078-.172-.125-.359-.219z"/></svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Barra inferior de Copyright -->
+        <hr class="max-w-6xl mx-auto border-stone-800 mb-4 md:mb-8">
+        <div class="max-w-6xl mx-auto text-xs text-stone-500 font-medium text-center md:text-left">
+          <p>&copy; 2026 MANCHA BURRITOS. Todos los derechos reservados.</p>
+        </div>
+      </footer>
+
+
+    </div>
+
+    <!-- =======================================================================
+         VISTA 2: PRODUCTOS (Configurador interactivo Split 50/50 estilo BAD HAMBRES)
+         ======================================================================= -->
+    <div id="view-productos" class="hidden w-full bg-brand-cream pt-[66px]">
+      <div id="armado-pedido" data-id="product-builder" class="flex flex-col w-full h-auto overflow-visible md:flex-row md:h-[calc(100vh-66px)] md:overflow-hidden relative">
+        
+        <!-- COLUMNA IZQUIERDA (FOTO: 72 en mobile / h-full en desktop) -->
+        <div class="w-full md:w-1/2 h-72 md:h-full relative shrink-0 block overflow-hidden border-b md:border-b-0 md:border-r border-[#1C1917]/15 bg-brand-cream">
+          <img id="product-main-img" src="./Images/configurador-hero.jpg" alt="Burritos Mancha" class="w-full h-full object-cover object-center absolute inset-0">
+        </div>
+
+        <!-- COLUMNA DERECHA (FORMULARIO: Fluye en mobile / scroll interno en desktop) -->
+        <div id="configurador-formulario" class="w-full md:w-1/2 h-auto md:h-full overflow-visible md:overflow-y-auto px-5 py-8 md:px-12 md:py-12 flex flex-col justify-between space-y-6 bg-brand-cream">
+          
+          <!-- Encabezado de Producto -->
+          <div>
+            <span class="text-[#1C1917]/70 font-semibold tracking-wider text-xs uppercase block mb-1">
+              COMIDA REAL CONGELADA
+            </span>
+            <h2 id="product-main-title" class="font-montserrat font-black text-2xl md:text-3xl uppercase text-[#1C1917] tracking-tight">
+              BURRITO CLÁSICO (280G)
+            </h2>
+            <p class="font-poppins text-xs sm:text-sm text-stone-600 mt-1 leading-relaxed">
+              Comida casera congelada. Elegí el tamaño, tu pack y combiná sabores.
+            </p>
+          </div>
+
+          <!-- SECCIÓN 1: TAMAÑO (Solo thumbnail con etiquetas) -->
+          <div>
+            <p class="font-montserrat font-extrabold text-xs uppercase tracking-wider text-[#1C1917] mb-2">
+              TAMAÑO
+            </p>
+            <div class="flex gap-3 w-fit select-none">
+              
+              <!-- Opción 1: 280G Clásico -->
+              <button type="button" id="btn-size-280" class="w-20 cursor-pointer text-center group focus:outline-none bg-transparent p-0 border-0 text-left">
+                <div id="size-box-280" class="relative w-20 h-20 border-2 border-[#1C1917] transition-all">
+                  <div id="size-check-280" class="absolute top-1 left-1 z-10 w-3.5 h-3.5 bg-brand-ochre text-[#1C1917] flex items-center justify-center text-[9px] font-black leading-none">
+                    ✓
+                  </div>
+                  <img src="./Images/producto-burrito-280g.jpg" alt="Burrito 280g" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                </div>
+                <div class="mt-1.5 text-center">
+                  <span class="block font-montserrat font-bold text-xs text-[#1C1917] uppercase tracking-wide">280G</span>
+                  <span class="block font-poppins text-[10px] text-stone-500">Clásico</span>
+                </div>
+              </button>
+
+              <!-- Opción 2: 400G XL -->
+              <button type="button" id="btn-size-400" class="w-20 cursor-pointer text-center group focus:outline-none bg-transparent p-0 border-0 text-left">
+                <div id="size-box-400" class="relative w-20 h-20 border border-[#1C1917]/20 opacity-75 hover:opacity-100 transition-all">
+                  <div id="size-check-400" class="hidden absolute top-1 left-1 z-10 w-3.5 h-3.5 bg-brand-ochre text-[#1C1917] flex items-center justify-center text-[9px] font-black leading-none">
+                    ✓
+                  </div>
+                  <img src="./Images/producto-burrote-400g.jpg" alt="Burrote 400g XL" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                </div>
+                <div class="mt-1.5 text-center">
+                  <span class="block font-montserrat font-bold text-xs text-[#1C1917] uppercase tracking-wide">400G</span>
+                  <span class="block font-poppins text-[10px] text-stone-500">XL</span>
+                </div>
+              </button>
+
+            </div>
+          </div>
+
+          <!-- SECCIÓN 2: CANTIDAD DEL PACK (Pack seleccionado en Verde Oliva Base #3A4534) -->
+          <div>
+            <div class="flex items-center justify-between">
+              <p class="font-montserrat font-extrabold text-xs uppercase tracking-wider text-[#1C1917]">
+                CANTIDAD DEL PACK
+              </p>
+              <p id="unit-price-label" class="font-montserrat font-bold text-xs text-[#1C1917]">
+                $7.125 / UNIDAD
+              </p>
+            </div>
+
+            <!-- Grilla de 4 Packs -->
+            <div class="grid grid-cols-4 gap-2.5 mt-2">
+              
+              <!-- Pack 5 -->
+              <button type="button" data-pack="5" class="pack-btn py-2.5 px-1.5 text-center rounded-none transition-colors duration-200 bg-transparent text-[#1C1917] border border-[#1C1917]/30 hover:border-[#1C1917] flex flex-col items-center justify-center min-h-[64px] cursor-pointer">
+                <span class="block font-montserrat font-extrabold text-base leading-none">5</span>
+                <span class="block text-[10px] uppercase opacity-80 mt-1 font-montserrat font-semibold tracking-wider">UNIDADES</span>
+              </button>
+
+              <!-- Pack 10 (Activo por defecto) -->
+              <button type="button" data-pack="10" class="pack-btn py-2.5 px-1.5 text-center rounded-none transition-colors duration-200 bg-[#3A4534] text-[#F9F1E6] border border-[#3A4534] flex flex-col items-center justify-center min-h-[64px] cursor-pointer">
+                <span class="block font-montserrat font-extrabold text-base leading-none">10</span>
+                <span class="block text-[10px] uppercase opacity-80 mt-1 font-montserrat font-semibold tracking-wider">UNIDADES</span>
+                <span class="pack-badge inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded mt-1 bg-[#F9F1E6] text-[#3A4534]">5% OFF</span>
+              </button>
+
+              <!-- Pack 15 -->
+              <button type="button" data-pack="15" class="pack-btn py-2.5 px-1.5 text-center rounded-none transition-colors duration-200 bg-transparent text-[#1C1917] border border-[#1C1917]/30 hover:border-[#1C1917] flex flex-col items-center justify-center min-h-[64px] cursor-pointer">
+                <span class="block font-montserrat font-extrabold text-base leading-none">15</span>
+                <span class="block text-[10px] uppercase opacity-80 mt-1 font-montserrat font-semibold tracking-wider">UNIDADES</span>
+                <span class="pack-badge inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded mt-1 bg-stone-200 text-stone-500">10% OFF</span>
+              </button>
+
+              <!-- Pack 20 -->
+              <button type="button" data-pack="20" class="pack-btn py-2.5 px-1.5 text-center rounded-none transition-colors duration-200 bg-transparent text-[#1C1917] border border-[#1C1917]/30 hover:border-[#1C1917] flex flex-col items-center justify-center min-h-[64px] cursor-pointer">
+                <span class="block font-montserrat font-extrabold text-base leading-none">20</span>
+                <span class="block text-[10px] uppercase opacity-80 mt-1 font-montserrat font-semibold tracking-wider">UNIDADES</span>
+                <span class="pack-badge inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded mt-1 bg-stone-200 text-stone-500">15% OFF</span>
+              </button>
+
+            </div>
+          </div>
+
+          <!-- SECCIÓN 3: FILA DE SABORES Y CÁPSULA STEPPER (+ / -) -->
+          <div>
+            <p class="font-montserrat font-extrabold text-xs uppercase tracking-wider text-[#1C1917] mb-2">
+              SABORES
+            </p>
+
+            <div class="border-t border-stone-200">
+              
+              <!-- Fila Pollo Clásico -->
+              <div class="flex items-center justify-between py-2.5 border-b border-stone-200">
+                <span class="font-montserrat font-bold text-sm text-[#1C1917] uppercase">
+                  POLLO CLÁSICO
+                </span>
+
+                <!-- Estructura exacta para Pollo Clásico -->
+                <div class="flex items-center bg-white rounded-full border border-stone-200 overflow-hidden h-10">
+                  <button id="btn-restar-pollo" class="w-10 h-full flex items-center justify-center text-stone-500 hover:text-[#1C1917] hover:bg-stone-100 font-bold transition-colors cursor-pointer">-</button>
+                  <span id="contador-pollo" class="text-sm font-bold text-[#1C1917] w-8 text-center h-full flex items-center justify-center">0</span>
+                  <button id="btn-sumar-pollo" class="w-10 h-full flex items-center justify-center text-stone-500 hover:text-[#1C1917] hover:bg-stone-100 font-bold transition-colors cursor-pointer">+</button>
+                </div>
+              </div>
+
+              <!-- Fila Pulled Pork -->
+              <div class="flex items-center justify-between py-2.5 border-b border-stone-200">
+                <span class="font-montserrat font-bold text-sm text-[#1C1917] uppercase">
+                  PULLED PORK
+                </span>
+
+                <!-- Estructura exacta para Pulled Pork -->
+                <div class="flex items-center bg-white rounded-full border border-stone-200 overflow-hidden h-10">
+                  <button id="btn-restar-pork" class="w-10 h-full flex items-center justify-center text-stone-500 hover:text-[#1C1917] hover:bg-stone-100 font-bold transition-colors cursor-pointer">-</button>
+                  <span id="contador-pork" class="text-sm font-bold text-[#1C1917] w-8 text-center h-full flex items-center justify-center">0</span>
+                  <button id="btn-sumar-pork" class="w-10 h-full flex items-center justify-center text-stone-500 hover:text-[#1C1917] hover:bg-stone-100 font-bold transition-colors cursor-pointer">+</button>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Adicionales (Cross-selling) -->
+            <div class="mt-2">
+              <h4 class="text-xs font-bold text-[#8A9681] tracking-widest uppercase mb-2">Adicionales (Opcional)</h4>
+              <div class="flex flex-col gap-2">
+                <div class="flex items-center justify-between bg-white border border-stone-200 p-2 md:p-3 rounded-lg shadow-sm">
+                  
+                  <!-- Info del Producto -->
+                  <div class="flex items-center gap-4">
+                    <img src="producto-boniatos.jpg" alt="Boniato McCain (500g)" class="w-16 h-16 md:w-20 md:h-20 rounded-md object-cover">
+                    <div class="flex flex-col">
+                      <span class="font-bold text-[#1C1917] text-sm">Boniato McCain (500g)</span>
+                      <span class="text-xs text-stone-500 font-medium">+ $8.900</span>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center bg-white/50 rounded-full border border-stone-200 overflow-hidden h-10">
+                    <button id="btn-restar-boniato" type="button" class="w-10 h-full flex items-center justify-center text-stone-500 hover:text-[#1C1917] hover:bg-stone-200 font-bold transition-colors cursor-pointer">-</button>
+                    <span id="contador-boniato" class="text-sm font-bold text-[#1C1917] w-6 text-center bg-white h-full flex items-center justify-center">0</span>
+                    <button id="btn-sumar-boniato" type="button" class="w-10 h-full flex items-center justify-center text-stone-500 hover:text-[#1C1917] hover:bg-stone-200 font-bold transition-colors cursor-pointer">+</button>
+                  </div>
+
+                </div>
+
+                <div class="flex justify-end pr-2">
+                  <button id="btn-agregar-solo-boniato" onclick="agregarSoloBoniatoAlCarrito()" class="text-xs font-bold text-[#D68844] hover:text-[#1C1917] transition-colors hidden cursor-pointer">
+                    + Agregar solo boniatos al carrito
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Link sutil a tabla nutricional -->
+            <a href="#conoce-lo-que-comes" id="link-ver-tabla-nutricional" class="text-xs font-semibold text-[#D68844] hover:underline mt-3 block">
+              Ver ingredientes y tabla nutricional
+            </a>
+          </div>
+
+          <!-- SECCIÓN 4: BOTÓN DE COMPRA & SELLOS DE CONFIANZA -->
+          <div class="space-y-3 pt-1">
+            <button id="btn-add-cart" type="button" class="w-full py-3.5 bg-[#D68844] hover:bg-[#FDD991] text-[#1C1917] font-montserrat font-extrabold text-xs uppercase tracking-widest rounded-none transition-colors duration-200 border border-[#1C1917] cursor-pointer">
+              AGREGAR AL CARRITO - $71.250
+            </button>
+
+            <!-- 4 Íconos de Línea Fina -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-3 border-t border-[#1C1917]/10 text-center">
+              <div class="p-0.5">
+                <svg class="w-4 h-4 mx-auto mb-1 text-brand-ochre" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5a1.5 1.5 0 013 0v5m0 0V8a1.5 1.5 0 013 0v4.5" />
+                </svg>
+                <span class="block font-montserrat font-medium text-[10px] uppercase tracking-wider text-brand-dark/75">Hechos a mano</span>
+              </div>
+              <div class="p-0.5">
+                <svg class="w-4 h-4 mx-auto mb-1 text-brand-ochre" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                <span class="block font-montserrat font-medium text-[10px] uppercase tracking-wider text-brand-dark/75">Hasta 58g proteína</span>
+              </div>
+              <div class="p-0.5">
+                <svg class="w-4 h-4 mx-auto mb-1 text-brand-ochre" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 01-9-9c0-4.97 4.03-9 9-9 4.97 0 9 4.03 9 9 0 2.12-.74 4.07-1.97 5.61L12 21zm0 0v-8m0 0a4 4 0 00-4-4" />
+                </svg>
+                <span class="block font-montserrat font-medium text-[10px] uppercase tracking-wider text-brand-dark/75">Pocos ingredientes</span>
+              </div>
+              <div class="p-0.5">
+                <svg class="w-4 h-4 mx-auto mb-1 text-brand-ochre" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="9" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 3" />
+                </svg>
+                <span class="block font-montserrat font-medium text-[10px] uppercase tracking-wider text-brand-dark/75">Listos en 15 min</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- =========================================================================
+       DRAWER LATERAL DEL CARRITO (Slide-over desde la derecha)
+       ========================================================================= -->
+  <!-- Backdrop oscuro -->
+  <div id="cart-backdrop" class="fixed inset-0 bg-[#1C1917]/70 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+  <!-- Drawer Panel deslizable -->
+  <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-[#F9F1E6] text-[#1C1917] z-50 shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out border-l border-[#1C1917]/10">
+    
+    <!-- Header del Carrito (Fijo para ambas vistas) -->
+    <div class="p-6 border-b border-[#1C1917]/10 flex items-center justify-between bg-[#F9F1E6] shrink-0">
+      <h3 class="font-montserrat font-black text-xl tracking-tight text-[#1C1917] uppercase">
+        TUS BURRITOS <span id="cart-header-count" class="text-sm font-bold text-[#B5361D]">(0)</span>
+      </h3>
+      <button id="close-cart-btn" type="button" class="p-2 text-[#1C1917] hover:text-[#B5361D] transition-colors" aria-label="Cerrar carrito">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- VISTA 1 (#drawer-step-items): Lista de productos + Selector cantidad + Footer de totales -->
+    <div id="drawer-step-items" class="flex-1 flex flex-col justify-between overflow-y-auto">
+      
+      <!-- Contenedor scrollable de productos / estado vacío -->
+      <div class="flex-1 overflow-y-auto p-6 space-y-4">
+        <!-- Estado Vacío -->
+        <div id="cart-empty-state" class="flex flex-col items-center justify-center h-full text-center py-12">
+          <p class="font-poppins text-sm text-[#1C1917]/60 mb-4">
+            Todavía no agregaste ningún burrito al freezer.
+          </p>
+          <button id="cart-start-shopping" type="button" class="font-montserrat font-bold text-xs uppercase bg-[#D68844] text-[#F9F1E6] px-6 py-3 rounded-none hover:bg-[#1C1917] transition-colors">
+            Ver Burritos
+          </button>
+        </div>
+
+        <!-- Contenedor de Ítems -->
+        <div id="cart-items-container" class="space-y-4"></div>
+      </div>
+
+      <!-- Footer del Carrito (Vista 1) -->
+      <div id="cart-footer" class="p-6 border-t border-[#1C1917]/10 bg-[#EFE6D8]/50 shrink-0">
+        <div class="space-y-1 text-sm">
+          <!-- Fila 1: Subtotal base sin descuentos -->
+          <div class="flex justify-between items-center font-poppins text-stone-600">
+            <span>Subtotal</span>
+            <span id="cart-subtotal" class="font-poppins">$0</span>
+          </div>
+
+          <!-- Fila 2: Badge de ahorro alineado a la derecha -->
+          <div id="cart-savings-row" class="hidden justify-end w-full">
+            <span id="cart-savings-badge" class="text-xs font-bold text-[#B5361D] bg-[#B5361D]/10 px-2 py-0.5">
+              AHORRÁS $0
+            </span>
+          </div>
+
+          <!-- Separador -->
+          <div class="border-t border-stone-200 my-2"></div>
+
+          <!-- Fila 3: TOTAL GENERAL -->
+          <div class="flex justify-between items-center">
+            <span class="font-montserrat font-bold text-stone-900 text-sm">TOTAL GENERAL</span>
+            <span id="cart-total" class="text-xl font-bold font-montserrat text-stone-900">$0</span>
+          </div>
+        </div>
+
+        <!-- Botón Iniciar Pedido (Alterna a Vista 2) -->
+        <button id="cart-checkout-btn" type="button" class="w-full py-4 bg-[#D68844] text-[#F9F1E6] font-montserrat font-black text-sm uppercase tracking-wider text-center hover:bg-[#1C1917] transition-colors mt-4">
+          INICIAR PEDIDO
+        </button>
+      </div>
+    </div>
+
+    <!-- VISTA 2 (#drawer-step-checkout): Formulario Datos para el Envío -->
+    <div id="drawer-step-checkout" class="hidden flex-1 flex flex-col justify-between overflow-y-auto p-6 space-y-4">
+      <div class="space-y-4">
+        <!-- Botón de navegación superior -->
+        <button id="btn-volver-items" type="button" class="text-xs font-montserrat font-semibold text-[#1C1917]/70 hover:text-[#1C1917] mb-3 flex items-center gap-1.5 transition-colors">
+          ← Volver al carrito
+        </button>
+
+        <div>
+          <h4 class="font-montserrat font-black text-lg uppercase tracking-tight text-[#1C1917]">
+            DATOS PARA EL ENVÍO
+          </h4>
+          <p class="font-poppins text-xs text-[#1C1917]/70 mt-1">
+            Completá tus datos para coordinar el envío directo a tu freezer.
+          </p>
+        </div>
+
+        <!-- Campo 1: NOMBRE Y APELLIDO -->
+        <div>
+          <label for="checkout-nombre" class="block font-montserrat font-bold text-xs uppercase tracking-wider text-[#1C1917] mb-1">
+            Nombre y Apellido <span class="text-[#B5361D]">*</span>
+          </label>
+          <input type="text" id="checkout-nombre" required placeholder="Ej: Juan Pérez" class="w-full px-3 py-2 text-sm bg-transparent border border-[#1C1917]/30 rounded-none focus:outline-none focus:border-[#1C1917]">
+        </div>
+
+        <!-- Campo 2: LOCALIDAD DE ENTREGA (CON OPTGROUPS) -->
+        <div>
+          <label for="checkout-localidad" class="block font-montserrat font-bold text-xs uppercase tracking-wider text-[#1C1917] mb-1">
+            Localidad de entrega <span class="text-[#B5361D]">*</span>
+          </label>
+          <select id="checkout-localidad" required class="w-full px-3 py-2 text-sm bg-transparent border border-[#1C1917]/30 rounded-none focus:outline-none focus:border-[#1C1917] cursor-pointer">
+            <option value="" disabled selected>Seleccioná tu localidad...</option>
+            
+            <optgroup label="Tres de Febrero">
+              <option value="Caseros">Caseros</option>
+              <option value="Santos Lugares">Santos Lugares</option>
+              <option value="Sáenz Peña">Sáenz Peña</option>
+              <option value="Villa Raffo">Villa Raffo</option>
+              <option value="Palomar / Ciudad Jardín">Palomar / Ciudad Jardín</option>
+              <option value="Bosch / Coronado / Podestá">Bosch / Coronado / Podestá</option>
+              <option value="Ciudadela">Ciudadela</option>
+            </optgroup>
+
+            <optgroup label="San Martín">
+              <option value="San Martín Centro / San Andrés">San Martín Centro / San Andrés</option>
+              <option value="Villa Lynch">Villa Lynch</option>
+              <option value="Villa Ballester Sur">Villa Ballester Sur</option>
+              <option value="San Martín Norte (Villa Maipú / Ballester Norte)">San Martín Norte (Villa Maipú / Ballester Norte)</option>
+              <option value="José León Suárez / Billinghurst">José León Suárez / Billinghurst</option>
+              <option value="Loma Hermosa">Loma Hermosa</option>
+            </optgroup>
+
+            <optgroup label="CABA">
+              <option value="CABA (Devoto / Villa Real / Versalles)">CABA (Devoto / Villa Real / Versalles)</option>
+              <option value="CABA (Monte Castro / Villa del Parque / Villa Pueyrredón)">CABA (Monte Castro / Villa del Parque / Villa Pueyrredón)</option>
+              <option value="CABA (Agronomía, Liniers y Villa Luro - sobre Acc. Oeste)">CABA (Agronomía, Liniers y Villa Luro - sobre Acc. Oeste)</option>
+              <option value="CABA Norte (Belgrano / Núñez / Saavedra / Urquiza)">CABA Norte (Belgrano / Núñez / Saavedra / Urquiza)</option>
+            </optgroup>
+
+            <optgroup label="Zona Oeste">
+              <option value="Ramos Norte / Haedo Norte">Ramos Norte / Haedo Norte</option>
+              <option value="Ramos Sur / Haedo Sur">Ramos Sur / Haedo Sur</option>
+              <option value="Morón Centro / Castelar Norte">Morón Centro / Castelar Norte</option>
+              <option value="Hurlingham / Villa Tesei">Hurlingham / Villa Tesei</option>
+              <option value="Villa Luzuriaga">Villa Luzuriaga</option>
+            </optgroup>
+
+            <optgroup label="Zona Norte">
+              <option value="Vicente López (Todo el partido)">Vicente López (Todo el partido)</option>
+            </optgroup>
+
+            <option value="Otra zona">Otra zona (Consultar cobertura)</option>
+          </select>
+
+          <!-- Aviso dinámico de día -->
+          <div id="checkout-dia-aviso" class="hidden mt-1.5 px-3 py-2 bg-[#1C1917]/5 border-l-2 border-[#D68844] text-xs font-medium text-[#1C1917]"></div>
+        </div>
+
+        <!-- Campo 4: DIRECCIÓN (GRID 70/30) -->
+        <div>
+          <label class="block font-montserrat font-bold text-xs uppercase tracking-wider text-[#1C1917] mb-1">
+            Dirección de entrega <span class="text-[#B5361D]">*</span>
+          </label>
+          <div class="grid grid-cols-10 gap-2">
+            <input type="text" id="checkout-calle" required placeholder="Ej: Av. San Martín 1234" class="col-span-7 px-3 py-2 text-sm bg-transparent border border-[#1C1917]/30 rounded-none focus:outline-none focus:border-[#1C1917]">
+            <input type="text" id="checkout-depto" placeholder="Ej: 4° B" class="col-span-3 px-3 py-2 text-sm bg-transparent border border-[#1C1917]/30 rounded-none focus:outline-none focus:border-[#1C1917]">
+          </div>
+        </div>
+
+        <!-- Campo 5: MÉTODO DE PAGO -->
+        <div>
+          <label for="checkout-pago" class="block font-montserrat font-bold text-xs uppercase tracking-wider text-[#1C1917] mb-1">
+            Método de pago <span class="text-[#B5361D]">*</span>
+          </label>
+          <select id="checkout-pago" required class="w-full px-3 py-2 text-sm bg-transparent border border-[#1C1917]/30 rounded-none focus:outline-none focus:border-[#1C1917]">
+            <option value="" disabled selected>Seleccioná método de pago...</option>
+            <option value="Transferencia Bancaria (100% con Alias / CBU)">Transferencia Bancaria (100% con Alias / CBU)</option>
+            <option value="50% Transferencia (Seña) + 50% Efectivo al recibir">50% Transferencia (Seña) + 50% Efectivo al recibir</option>
+          </select>
+        </div>
+
+        <!-- Campo 6: NOTAS (OPCIONAL) -->
+        <div>
+          <label for="checkout-notas" class="block font-montserrat font-bold text-xs uppercase tracking-wider text-[#1C1917] mb-1">
+            Notas / Aclaraciones <span class="text-[#1C1917]/50 font-normal">(opcional)</span>
+          </label>
+          <textarea id="checkout-notas" rows="2" placeholder="Ej: Timbre roto, llamar al llegar..." class="w-full px-3 py-2 text-sm bg-transparent border border-[#1C1917]/30 rounded-none focus:outline-none focus:border-[#1C1917] resize-none"></textarea>
+        </div>
+      </div>
+
+      <!-- Resumen Financiero del Pedido (Vista 2) -->
+      <div id="checkout-resumen-box" class="border-t border-stone-200 pt-3 my-3 space-y-1.5">
+        <div class="flex justify-between items-center text-sm font-poppins text-stone-600">
+          <span>Subtotal productos</span>
+          <span id="checkout-resumen-subtotal" class="font-semibold text-stone-900">$0</span>
+        </div>
+        <div class="flex justify-between items-center text-sm font-poppins text-stone-600">
+          <span>Costo de envío</span>
+          <span id="checkout-resumen-envio" class="font-semibold text-stone-900">—</span>
+        </div>
+        <div class="flex justify-between items-center pt-2 border-t border-stone-200">
+          <span class="text-sm font-bold font-montserrat text-stone-900">TOTAL A PAGAR</span>
+          <span id="checkout-resumen-total" class="text-xl font-bold font-montserrat text-stone-900">$0</span>
+        </div>
+      </div>
+
+      <!-- Cierre y Botón de WhatsApp -->
+      <div class="mt-auto">
+        <p class="text-[11px] text-[#1C1917]/70 text-center mb-2">
+          Te confirmamos el horario estimado de llegada por WhatsApp una vez armada la ruta.
+        </p>
+        <button id="btn-confirmar-whatsapp" type="button" class="w-full py-3 bg-[#D68844] hover:bg-[#b86f31] text-white font-montserrat font-bold text-sm tracking-wide uppercase transition-colors rounded-none">
+          CONFIRMAR PEDIDO POR WHATSAPP
+        </button>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- =========================================================================
+       JAVASCRIPT: VISTAS + CONFIGURADOR REACTIVO + CARRITO
+       ========================================================================= -->
+  <script>
+    // -------------------------------------------------------------------------
+    // SISTEMA DE NAVEGACIÓN ENTRE VISTAS (HOME vs PRODUCTOS)
+    // -------------------------------------------------------------------------
+    const viewHome = document.getElementById('view-home');
+    const viewProductos = document.getElementById('view-productos');
+    const navHome = document.getElementById('nav-home');
+    const navProductos = document.getElementById('nav-productos');
+    const navFaq = document.getElementById('nav-faq');
+    const mobileNavHome = document.getElementById('mobile-nav-home');
+    const mobileNavProductos = document.getElementById('mobile-nav-productos');
+    const mobileNavFaq = document.getElementById('mobile-nav-faq');
+    const brandLogo = document.getElementById('brand-logo');
+    const heroCtaBtn = document.getElementById('hero-cta-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileToggle = document.getElementById('mobile-toggle');
+
+    const announcementBar = document.getElementById('announcement-bar');
+
+    function showView(view) {
+      if (view === 'productos') {
+        viewHome.classList.add('hidden');
+        viewProductos.classList.remove('hidden');
+        if (announcementBar) announcementBar.classList.add('hidden');
+        if (mainHeaderEl) {
+          mainHeaderEl.classList.remove('absolute', 'top-[34px]', 'bg-transparent');
+          mainHeaderEl.classList.add('fixed', 'top-0', 'bg-[#1C1917]', 'shadow-md');
+        }
+
+        // Actualizar estilos activos de navegación
+        if (navHome) {
+          navHome.classList.remove('text-brand-ochre');
+          navHome.classList.add('text-[#F9F1E6]');
+        }
+        if (navProductos) {
+          navProductos.classList.remove('text-[#F9F1E6]');
+          navProductos.classList.add('text-brand-ochre');
+        }
+        if (mobileNavHome) {
+          mobileNavHome.classList.remove('text-brand-ochre');
+          mobileNavHome.classList.add('text-[#F9F1E6]');
+        }
+        if (mobileNavProductos) {
+          mobileNavProductos.classList.remove('text-[#F9F1E6]');
+          mobileNavProductos.classList.add('text-brand-ochre');
+        }
+      } else {
+        viewProductos.classList.add('hidden');
+        viewHome.classList.remove('hidden');
+        if (announcementBar) announcementBar.classList.remove('hidden');
+
+        if (navHome) {
+          navHome.classList.add('text-[#F9F1E6]');
+          navHome.classList.remove('text-brand-ochre');
+        }
+        if (navProductos) {
+          navProductos.classList.add('text-[#F9F1E6]');
+          navProductos.classList.remove('text-brand-ochre');
+        }
+        if (mobileNavHome) {
+          mobileNavHome.classList.add('text-[#F9F1E6]');
+          mobileNavHome.classList.remove('text-brand-ochre');
+        }
+        if (mobileNavProductos) {
+          mobileNavProductos.classList.add('text-[#F9F1E6]');
+          mobileNavProductos.classList.remove('text-brand-ochre');
+        }
+      }
+
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      const formEl = document.getElementById('configurador-formulario');
+      if (formEl) formEl.scrollTop = 0;
+      updateHeaderBackground();
+    }
+
+    // -------------------------------------------------------------------------
+    // HEADER DINÁMICO: COMPORTAMIENTO DUAL (HOME VS PRODUCTOS)
+    // -------------------------------------------------------------------------
+    const mainHeaderEl = document.getElementById('main-header') || document.querySelector('header');
+    const formConfiguradorEl = document.getElementById('configurador-formulario');
+
+    function updateHeaderBackground() {
+      if (!mainHeaderEl) return;
+      const isProductos = viewProductos && !viewProductos.classList.contains('hidden');
+
+      if (isProductos) {
+        // En PRODUCTOS: Fondo sólido Carbón Base (#1C1917) permanente desde el inicio anclado a top-0
+        if (announcementBar) announcementBar.classList.add('hidden');
+        mainHeaderEl.classList.remove('bg-transparent', 'absolute', 'top-[34px]');
+        mainHeaderEl.classList.add('fixed', 'top-0', 'bg-[#1C1917]', 'shadow-md');
+      } else {
+        // En HOME: Transparente al inicio (debajo de announcement bar), sólido fijo al scrollear
+        if (window.scrollY >= 34) {
+          mainHeaderEl.classList.remove('absolute', 'top-[34px]', 'bg-transparent');
+          mainHeaderEl.classList.add('fixed', 'top-0', 'bg-[#1C1917]', 'shadow-md');
+        } else {
+          mainHeaderEl.classList.remove('fixed', 'top-0', 'bg-[#1C1917]', 'shadow-md');
+          mainHeaderEl.classList.add('absolute', 'top-[34px]', 'bg-transparent');
+        }
+      }
+    }
+
+    window.addEventListener('scroll', updateHeaderBackground, { passive: true });
+    if (formConfiguradorEl) {
+      formConfiguradorEl.addEventListener('scroll', updateHeaderBackground, { passive: true });
+    }
+    updateHeaderBackground();
+
+    // Función unificada para seleccionar tamaño, sincronizar el configurador y cambiar a vista productos
+    function selectSizeAndOpen(size = '280g') {
+      currentSize = size;
+      if (!currentPack) currentPack = 10;
+      if ((flavors.pollo + flavors.pulledPork) !== currentPack) {
+        balanceFlavorsForPack(currentPack);
+      }
+      updateConfiguratorUI();
+      showView('productos');
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+
+    // Eventos del Footer
+    const footerLinkHome = document.getElementById('footer-link-home');
+    const footerLinkBurritos = document.getElementById('footer-link-burritos');
+    const footerLinkFaq = document.getElementById('footer-link-faq');
+
+    if (footerLinkHome) {
+      footerLinkHome.addEventListener('click', (e) => {
+        e.preventDefault();
+        showView('home');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+    if (footerLinkBurritos) {
+      footerLinkBurritos.addEventListener('click', (e) => {
+        e.preventDefault();
+        selectSizeAndOpen('280g');
+      });
+    }
+    if (footerLinkFaq) {
+      footerLinkFaq.addEventListener('click', (e) => {
+        e.preventDefault();
+        scrollToFaq(e);
+      });
+    }
+
+    // Eventos de navegación
+    if (navHome) {
+      navHome.addEventListener('click', (e) => { 
+        e.preventDefault(); 
+        showView('home'); 
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      });
+    }
+    if (navProductos) {
+      navProductos.addEventListener('click', (e) => { 
+        e.preventDefault(); 
+        selectSizeAndOpen('280g'); 
+      });
+    }
+    if (brandLogo) {
+      brandLogo.addEventListener('click', (e) => { 
+        e.preventDefault(); 
+        showView('home'); 
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      });
+    }
+    if (heroCtaBtn) {
+      heroCtaBtn.addEventListener('click', () => { 
+        selectSizeAndOpen('280g'); 
+      });
+    }
+
+    if (mobileNavHome) {
+      mobileNavHome.addEventListener('click', (e) => { 
+        e.preventDefault(); 
+        showView('home'); 
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        if (mobileMenu) mobileMenu.classList.add('hidden');
+      });
+    }
+    if (mobileNavProductos) {
+      mobileNavProductos.addEventListener('click', (e) => { 
+        e.preventDefault(); 
+        selectSizeAndOpen('280g'); 
+        if (mobileMenu) mobileMenu.classList.add('hidden');
+      });
+    }
+
+    if (mobileToggle && mobileMenu) {
+      mobileToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // Navegación hacia la sección FAQ con scroll suave
+    function scrollToFaq(e) {
+      if (e) e.preventDefault();
+      const isProductos = !viewProductos.classList.contains('hidden');
+      if (isProductos) {
+        showView('home');
+        setTimeout(() => {
+          const faqEl = document.getElementById('faq-section');
+          if (faqEl) faqEl.scrollIntoView({ behavior: 'smooth' });
+        }, 30);
+      } else {
+        const faqEl = document.getElementById('faq-section');
+        if (faqEl) faqEl.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    if (navFaq) navFaq.addEventListener('click', scrollToFaq);
+    if (mobileNavFaq) mobileNavFaq.addEventListener('click', (e) => {
+      scrollToFaq(e);
+      if (mobileMenu) mobileMenu.classList.add('hidden');
+    });
+
+    // -------------------------------------------------------------------------
+    // ACORDEÓN DE PREGUNTAS FRECUENTES (FAQ)
+    // -------------------------------------------------------------------------
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const toggleBtn = item.querySelector('.faq-toggle');
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-icon');
+
+      if (toggleBtn && answer && icon) {
+        toggleBtn.addEventListener('click', () => {
+          const isOpen = !answer.classList.contains('hidden');
+
+          // Cerrar todos los demás acordeones para no estirar la página
+          faqItems.forEach(otherItem => {
+            const otherAnswer = otherItem.querySelector('.faq-answer');
+            const otherIcon = otherItem.querySelector('.faq-icon');
+            const otherToggle = otherItem.querySelector('.faq-toggle');
+            if (otherAnswer && otherIcon) {
+              otherAnswer.classList.add('hidden');
+              otherIcon.classList.remove('rotate-45', 'text-[#D68844]');
+              if (otherToggle) otherToggle.setAttribute('aria-expanded', 'false');
+            }
+          });
+
+          // Si estaba cerrado, lo abrimos y rotamos el indicador + a ✕
+          if (!isOpen) {
+            answer.classList.remove('hidden');
+            icon.classList.add('rotate-45', 'text-[#D68844]');
+            toggleBtn.setAttribute('aria-expanded', 'true');
+          }
+        });
+      }
+    });
+
+    // -------------------------------------------------------------------------
+    // BUSCADOR INTERACTIVO DE BARRIOS (FAQ Zonas de Envío)
+    // -------------------------------------------------------------------------
+    const zoneSearchInput = document.getElementById('zone-search-input');
+    const zoneCards = document.querySelectorAll('.zone-card');
+    const zoneNoResults = document.getElementById('zone-no-results');
+
+    if (zoneSearchInput) {
+      const normalizeText = (text) => text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+      zoneSearchInput.addEventListener('input', (e) => {
+        const query = normalizeText(e.target.value.trim());
+        let matchCount = 0;
+
+        zoneCards.forEach(card => {
+          if (!query) {
+            card.classList.remove('hidden');
+            card.classList.remove('border-brand-ochre', 'bg-[#FDD991]/25');
+            return;
+          }
+
+          const cardText = normalizeText(card.textContent);
+          if (cardText.includes(query)) {
+            card.classList.remove('hidden');
+            card.classList.add('border-brand-ochre', 'bg-[#FDD991]/25');
+            matchCount++;
+          } else {
+            card.classList.add('hidden');
+            card.classList.remove('border-brand-ochre', 'bg-[#FDD991]/25');
+          }
+        });
+
+        if (zoneNoResults) {
+          if (query && matchCount === 0) {
+            zoneNoResults.classList.remove('hidden');
+          } else {
+            zoneNoResults.classList.add('hidden');
+          }
+        }
+      });
+    }
+
+    // -------------------------------------------------------------------------
+    // TOGGLE TABLA NUTRICIONAL DETALLADA (COMIDA REAL)
+    // -------------------------------------------------------------------------
+    const toggleNutritionTableBtn = document.getElementById('toggle-nutrition-table');
+    const nutritionTableContainer = document.getElementById('nutrition-table-container');
+
+    if (toggleNutritionTableBtn && nutritionTableContainer) {
+      toggleNutritionTableBtn.addEventListener('click', () => {
+        const isHidden = nutritionTableContainer.classList.contains('hidden');
+        if (isHidden) {
+          nutritionTableContainer.classList.remove('hidden');
+          toggleNutritionTableBtn.textContent = '[ − OCULTAR TABLA NUTRICIONAL ]';
+        } else {
+          nutritionTableContainer.classList.add('hidden');
+          toggleNutritionTableBtn.textContent = '[ + VER TABLA NUTRICIONAL DETALLADA ]';
+        }
+      });
+    }
+
+    // -------------------------------------------------------------------------
+    // DATOS Y ESTADO DEL CONFIGURADOR DE PRODUCTO
+    // -------------------------------------------------------------------------
+    const PRODUCT_DATA = {
+      '280g': {
+        packs: {
+          5:  { unitPrice: 7500, total: 37500, label: 'UNIDADES' },
+          10: { unitPrice: 7125, total: 71250, label: '5% OFF' },
+          15: { unitPrice: 6750, total: 101250, label: '10% OFF' },
+          20: { unitPrice: 6375, total: 127500, label: '15% OFF' }
+        }
+      },
+      '400g': {
+        packs: {
+          5:  { unitPrice: 8500, total: 42500, label: 'UNIDADES' },
+          10: { unitPrice: 8075, total: 80750, label: '5% OFF' },
+          15: { unitPrice: 7650, total: 114750, label: '10% OFF' },
+          20: { unitPrice: 7225, total: 144500, label: '15% OFF' }
+        }
+      }
+    };
+
+    let currentSize = '280g';
+    let currentPack = 10;
+    let flavors = {
+      pollo: 5,
+      pulledPork: 5
+    };
+
+    // Persistencia y estado del Carrito
+    const CART_STORAGE_KEY = 'mancha_cart';
+    let cart = [];
+    var cantidadBoniato = 0;
+    window.cantidadBoniato = 0;
+
+    window.modificarBoniatoCarrito = function(cambio) {
+      const boniatoItem = cart.find(it => it.type === 'boniato' || it.isBoniato);
+      if (boniatoItem) {
+        boniatoItem.quantity = Math.max(0, (boniatoItem.quantity || 0) + cambio);
+        if (boniatoItem.quantity === 0) {
+          cart = cart.filter(it => it !== boniatoItem);
+        } else {
+          boniatoItem.totalPrice = boniatoItem.quantity * (boniatoItem.promoPrice || 8900);
+        }
+      } else if (cambio > 0) {
+        cart.push({
+          id: 'boniato_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6),
+          type: 'boniato',
+          isBoniato: true,
+          name: 'Boniato McCain (500g)',
+          originalPrice: 8900,
+          promoPrice: 8900,
+          price: 8900,
+          quantity: cambio,
+          totalPrice: cambio * 8900
+        });
+      }
+      cantidadBoniato = cart.filter(it => it.type === 'boniato' || it.isBoniato).reduce((sum, it) => sum + (it.quantity || 0), 0);
+      window.cantidadBoniato = cantidadBoniato;
+      saveCart();
+      updateCartUI();
+    };
+
+    window.agregarSoloBoniatoAlCarrito = function() {
+      const contadorBoniatoEl = document.getElementById('contador-boniato');
+      const boniatoQty = contadorBoniatoEl ? (parseInt(contadorBoniatoEl.textContent, 10) || 0) : 0;
+      
+      // A) Validar que cantidadBoniato > 0
+      if (boniatoQty <= 0) return;
+
+      // B) Crear el objeto del producto Boniato (Precio: 8900, Cantidad: cantidadBoniato) y pushearlo al array global del carrito
+      const existingBoniato = cart.find(it => it.type === 'boniato' || it.isBoniato);
+      if (existingBoniato) {
+        existingBoniato.quantity = (existingBoniato.quantity || 0) + boniatoQty;
+        existingBoniato.totalPrice = existingBoniato.quantity * (existingBoniato.promoPrice || 8900);
+      } else {
+        const newBoniatoItem = {
+          id: 'boniato_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6),
+          type: 'boniato',
+          isBoniato: true,
+          name: 'Boniato McCain (500g)',
+          originalPrice: 8900,
+          promoPrice: 8900,
+          price: 8900,
+          quantity: boniatoQty,
+          totalPrice: boniatoQty * 8900
+        };
+        cart.push(newBoniatoItem);
+      }
+
+      // C) Actualizar el ícono de la bolsa en el header y re-renderizar el modal del carrito lateral
+      saveCart();
+      updateCartUI();
+      showCartToast('¡Boniato agregado al carrito!');
+
+      // D) IMPORTANTE: Resetear la variable y el número en pantalla (contador-boniato.textContent = 0)
+      if (contadorBoniatoEl) {
+        contadorBoniatoEl.textContent = '0';
+      }
+
+      // E) Volver a ocultar el botón
+      const btnSoloBoniato = document.getElementById('btn-agregar-solo-boniato');
+      if (btnSoloBoniato) {
+        btnSoloBoniato.classList.add('hidden');
+      }
+
+      // F) Llamar a la función que actualiza el precio del Botón Naranja gigante para que reste el valor de los boniatos que ya se fueron al carrito
+      updateConfiguratorUI();
+    };
+
+    function showCartToast(message) {
+      const toastText = message || '¡Agregado al carrito!';
+      let toast = document.getElementById('cart-toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'cart-toast';
+        toast.className = 'fixed bottom-6 right-6 z-50 bg-[#1C1917] text-[#F9F1E6] px-5 py-3 rounded-full shadow-2xl flex items-center gap-3 transition-all duration-300 transform translate-y-20 opacity-0 pointer-events-none font-montserrat text-xs font-bold uppercase tracking-wider border border-[#F9F1E6]/20';
+        toast.innerHTML = `
+          <svg class="w-4 h-4 text-[#D68844]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+          <span id="cart-toast-msg">${toastText}</span>
+        `;
+        document.body.appendChild(toast);
+      } else {
+        const msgSpan = toast.querySelector('#cart-toast-msg');
+        if (msgSpan) msgSpan.textContent = toastText;
+      }
+
+      requestAnimationFrame(() => {
+        toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+        toast.classList.add('translate-y-0', 'opacity-100');
+      });
+
+      if (toast._timer) clearTimeout(toast._timer);
+      toast._timer = setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+      }, 2400);
+    }
+
+    function loadCart() {
+      try {
+        const saved = localStorage.getItem(CART_STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed)) {
+            cart = parsed;
+          }
+        }
+        let boniatoCount = cart.filter(it => it.type === 'boniato' || it.isBoniato).reduce((sum, it) => sum + (it.quantity || 0), 0);
+        const savedBoniato = localStorage.getItem('mancha_boniato_qty');
+        const legacyBoniato = savedBoniato !== null ? (parseInt(savedBoniato, 10) || 0) : 0;
+        if (boniatoCount === 0 && legacyBoniato > 0) {
+          cart.push({
+            id: 'boniato_legacy_' + Date.now(),
+            type: 'boniato',
+            isBoniato: true,
+            name: 'Boniato McCain (500g)',
+            originalPrice: 8900,
+            promoPrice: 8900,
+            price: 8900,
+            quantity: legacyBoniato,
+            totalPrice: legacyBoniato * 8900
+          });
+          boniatoCount = legacyBoniato;
+        }
+        cantidadBoniato = boniatoCount;
+        window.cantidadBoniato = cantidadBoniato;
+      } catch (e) {
+        cart = [];
+        cantidadBoniato = 0;
+        window.cantidadBoniato = 0;
+      }
+    }
+
+    function saveCart() {
+      try {
+        cantidadBoniato = cart.filter(it => it.type === 'boniato' || it.isBoniato).reduce((sum, it) => sum + (it.quantity || 0), 0);
+        window.cantidadBoniato = cantidadBoniato;
+        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+        localStorage.setItem('mancha_boniato_qty', String(cantidadBoniato || 0));
+      } catch (e) {
+        console.error('Error al guardar carrito:', e);
+      }
+    }
+
+    // Elementos del DOM del Configurador
+    const btnSize280 = document.getElementById('btn-size-280');
+    const btnSize400 = document.getElementById('btn-size-400');
+    const sizeBox280 = document.getElementById('size-box-280');
+    const sizeBox400 = document.getElementById('size-box-400');
+    const sizeCheck280 = document.getElementById('size-check-280');
+    const sizeCheck400 = document.getElementById('size-check-400');
+    const packButtons = document.querySelectorAll('.pack-btn');
+    const unitPriceLabel = document.getElementById('unit-price-label');
+    const btnAddCart = document.getElementById('btn-add-cart');
+    const cartCountEl = document.getElementById('cart-count');
+    const qtyPolloEl = document.getElementById('contador-pollo') || document.getElementById('qty-pollo');
+    const qtyPulledEl = document.getElementById('contador-pork') || document.getElementById('qty-pulled');
+    const btnMinusPollo = document.getElementById('btn-restar-pollo') || document.getElementById('btn-minus-pollo');
+    const btnPlusPollo = document.getElementById('btn-sumar-pollo') || document.getElementById('btn-plus-pollo');
+    const btnMinusPulled = document.getElementById('btn-restar-pork') || document.getElementById('btn-minus-pulled');
+    const btnPlusPulled = document.getElementById('btn-sumar-pork') || document.getElementById('btn-plus-pulled');
+    const productMainTitle = document.getElementById('product-main-title');
+
+    function formatCurrency(amount) {
+      return '$' + amount.toLocaleString('es-AR');
+    }
+
+    // Actualiza precios, textos y estados reactivos del configurador
+    function updateConfiguratorUI() {
+      const packData = PRODUCT_DATA[currentSize].packs[currentPack];
+      const totalFlavors = flavors.pollo + flavors.pulledPork;
+
+      // Precio unitario
+      if (unitPriceLabel) {
+        unitPriceLabel.textContent = `${formatCurrency(packData.unitPrice)} / UNIDAD`;
+      }
+
+      // Título dinámico
+      if (productMainTitle) {
+        productMainTitle.textContent = currentSize === '280g' 
+          ? 'BURRITO CLÁSICO (280G)' 
+          : 'BURROTE XL (400G)';
+      }
+
+      // Estados de Tamaño (Card 1 vs Card 2)
+      if (currentSize === '280g') {
+        if (sizeBox280) {
+          sizeBox280.className = 'relative w-20 h-20 border-2 border-[#1C1917] transition-all';
+        }
+        if (sizeCheck280) sizeCheck280.classList.remove('hidden');
+
+        if (sizeBox400) {
+          sizeBox400.className = 'relative w-20 h-20 border border-[#1C1917]/20 opacity-75 hover:opacity-100 transition-all';
+        }
+        if (sizeCheck400) sizeCheck400.classList.add('hidden');
+      } else {
+        if (sizeBox280) {
+          sizeBox280.className = 'relative w-20 h-20 border border-[#1C1917]/20 opacity-75 hover:opacity-100 transition-all';
+        }
+        if (sizeCheck280) sizeCheck280.classList.add('hidden');
+
+        if (sizeBox400) {
+          sizeBox400.className = 'relative w-20 h-20 border-2 border-[#1C1917] transition-all';
+        }
+        if (sizeCheck400) sizeCheck400.classList.remove('hidden');
+      }
+
+      // Selector de Packs (Estilo Verde Oliva Base #3A4534 activo)
+      packButtons.forEach(btn => {
+        const packNum = parseInt(btn.getAttribute('data-pack'), 10);
+        const isCurrent = (packNum === currentPack);
+        const currentPackData = PRODUCT_DATA[currentSize].packs[packNum];
+
+        btn.setAttribute('data-total', currentPackData.total);
+        btn.setAttribute('data-unit-price', currentPackData.unitPrice);
+        btn.setAttribute('title', `${packNum} unidades (${formatCurrency(currentPackData.total)})`);
+
+        const badgeEl = btn.querySelector('.pack-badge');
+
+        if (isCurrent) {
+          btn.className = 'pack-btn py-2.5 px-1.5 text-center rounded-none transition-colors duration-200 bg-[#3A4534] text-[#F9F1E6] border border-[#3A4534] flex flex-col items-center justify-center min-h-[64px] cursor-pointer';
+          if (badgeEl) {
+            badgeEl.className = 'pack-badge inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded mt-1 bg-[#F9F1E6] text-[#3A4534]';
+          }
+        } else {
+          btn.className = 'pack-btn py-2.5 px-1.5 text-center rounded-none transition-colors duration-200 bg-transparent text-[#1C1917] border border-[#1C1917]/30 hover:border-[#1C1917] flex flex-col items-center justify-center min-h-[64px] cursor-pointer';
+          if (badgeEl) {
+            badgeEl.className = 'pack-badge inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded mt-1 bg-stone-200 text-stone-500';
+          }
+        }
+      });
+
+      // Cantidades de sabores
+      if (qtyPolloEl) qtyPolloEl.textContent = flavors.pollo;
+      if (qtyPulledEl) qtyPulledEl.textContent = flavors.pulledPork;
+
+      // Botón CTA reactivo
+      if (btnAddCart) {
+        const contadorBoniatoEl = document.getElementById('contador-boniato');
+        const boniatoCount = contadorBoniatoEl ? (parseInt(contadorBoniatoEl.textContent, 10) || 0) : 0;
+        const totalConAdicionales = packData.total + (boniatoCount * 8900);
+
+        if (totalFlavors === currentPack) {
+          btnAddCart.disabled = false;
+          btnAddCart.textContent = `AGREGAR AL CARRITO - ${formatCurrency(totalConAdicionales)}`;
+          btnAddCart.className = 'w-full py-3.5 bg-[#D68844] hover:bg-[#FDD991] text-[#1C1917] font-montserrat font-extrabold text-xs uppercase tracking-widest rounded-none transition-colors duration-200 border border-[#1C1917] cursor-pointer';
+        } else if (totalFlavors < currentPack) {
+          const diff = currentPack - totalFlavors;
+          btnAddCart.disabled = true;
+          btnAddCart.textContent = `DISTRIBUÍ ${diff} ${diff === 1 ? 'UNIDAD' : 'UNIDADES'} MÁS`;
+          btnAddCart.className = 'w-full py-3.5 bg-stone-300 text-stone-600 font-montserrat font-extrabold text-xs uppercase tracking-widest rounded-none border border-stone-300 cursor-not-allowed';
+        } else {
+          const excess = totalFlavors - currentPack;
+          btnAddCart.disabled = true;
+          btnAddCart.textContent = `QUITÁ ${excess} ${excess === 1 ? 'UNIDAD' : 'UNIDADES'}`;
+          btnAddCart.className = 'w-full py-3.5 bg-stone-300 text-stone-600 font-montserrat font-extrabold text-xs uppercase tracking-widest rounded-none border border-stone-300 cursor-not-allowed';
+        }
+      }
+    }
+
+    // Auto-repartir sabores equitativamente según el pack
+    function balanceFlavorsForPack(pack) {
+      if (pack === 5) {
+        flavors.pollo = 3;
+        flavors.pulledPork = 2;
+      } else if (pack === 10) {
+        flavors.pollo = 5;
+        flavors.pulledPork = 5;
+      } else if (pack === 15) {
+        flavors.pollo = 8;
+        flavors.pulledPork = 7;
+      } else if (pack === 20) {
+        flavors.pollo = 10;
+        flavors.pulledPork = 10;
+      }
+    }
+
+    // Navegación fluida hacia tabla nutricional desde el configurador
+    const linkVerTabla = document.getElementById('link-ver-tabla-nutricional');
+    if (linkVerTabla) {
+      linkVerTabla.addEventListener('click', (e) => {
+        if (viewProductos && !viewProductos.classList.contains('hidden')) {
+          e.preventDefault();
+          showView('home');
+          setTimeout(() => {
+            const target = document.getElementById('conoce-lo-que-comes') || document.getElementById('valores-nutricionales');
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            const tableCont = document.getElementById('nutrition-table-container');
+            const toggleBtn = document.getElementById('toggle-nutrition-table');
+            if (tableCont && tableCont.classList.contains('hidden') && toggleBtn) {
+              toggleBtn.click();
+            }
+          }, 50);
+        }
+      });
+    }
+
+    // Eventos de selección de Tamaño
+    if (btnSize280) {
+      btnSize280.addEventListener('click', () => {
+        currentSize = '280g';
+        updateConfiguratorUI();
+      });
+    }
+
+    if (btnSize400) {
+      btnSize400.addEventListener('click', () => {
+        currentSize = '400g';
+        updateConfiguratorUI();
+      });
+    }
+
+    // Eventos de selección de Pack
+    packButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentPack = parseInt(btn.getAttribute('data-pack'), 10);
+        balanceFlavorsForPack(currentPack);
+        updateConfiguratorUI();
+      });
+    });
+
+    // Eventos de botones [+] y [-] de Sabores
+    if (btnPlusPollo) {
+      btnPlusPollo.addEventListener('click', () => {
+        const total = flavors.pollo + flavors.pulledPork;
+        if (total < currentPack) {
+          flavors.pollo++;
+        } else if (total === currentPack && flavors.pulledPork > 0) {
+          flavors.pollo++;
+          flavors.pulledPork--;
+        }
+        updateConfiguratorUI();
+      });
+    }
+
+    if (btnMinusPollo) {
+      btnMinusPollo.addEventListener('click', () => {
+        if (flavors.pollo > 0) {
+          flavors.pollo--;
+          updateConfiguratorUI();
+        }
+      });
+    }
+
+    if (btnPlusPulled) {
+      btnPlusPulled.addEventListener('click', () => {
+        const total = flavors.pollo + flavors.pulledPork;
+        if (total < currentPack) {
+          flavors.pulledPork++;
+        } else if (total === currentPack && flavors.pollo > 0) {
+          flavors.pulledPork++;
+          flavors.pollo--;
+        }
+        updateConfiguratorUI();
+      });
+    }
+
+    if (btnMinusPulled) {
+      btnMinusPulled.addEventListener('click', () => {
+        if (flavors.pulledPork > 0) {
+          flavors.pulledPork--;
+          updateConfiguratorUI();
+        }
+      });
+    }
+
+    // Eventos de selector de Boniato McCain en el configurador
+    const btnRestarBoniato = document.getElementById('btn-restar-boniato');
+    const btnSumarBoniato = document.getElementById('btn-sumar-boniato');
+    const contadorBoniato = document.getElementById('contador-boniato');
+
+    if (btnSumarBoniato && contadorBoniato) {
+      btnSumarBoniato.addEventListener('click', () => {
+        let val = parseInt(contadorBoniato.textContent, 10) || 0;
+        val++;
+        contadorBoniato.textContent = val;
+        updateConfiguratorUI();
+
+        const btnSoloBoniato = document.getElementById('btn-agregar-solo-boniato');
+        const cantidadBoniato = val;
+        if (btnSoloBoniato) {
+          if (cantidadBoniato > 0) { btnSoloBoniato.classList.remove('hidden'); } else { btnSoloBoniato.classList.add('hidden'); }
+        }
+      });
+    }
+
+    if (btnRestarBoniato && contadorBoniato) {
+      btnRestarBoniato.addEventListener('click', () => {
+        let val = parseInt(contadorBoniato.textContent, 10) || 0;
+        if (val > 0) {
+          val--;
+          contadorBoniato.textContent = val;
+          updateConfiguratorUI();
+        }
+
+        const btnSoloBoniato = document.getElementById('btn-agregar-solo-boniato');
+        const cantidadBoniato = val;
+        if (btnSoloBoniato) {
+          if (cantidadBoniato > 0) { btnSoloBoniato.classList.remove('hidden'); } else { btnSoloBoniato.classList.add('hidden'); }
+        }
+      });
+    }
+
+    // -------------------------------------------------------------------------
+    // CONTROLADOR DEL DRAWER DEL CARRITO & CHECKOUT WHATSAPP (2 PASOS)
+    // -------------------------------------------------------------------------
+    const NUMERO_WHATSAPP = "5491155264989";
+
+    const cartBackdrop = document.getElementById('cart-backdrop');
+    const cartDrawer = document.getElementById('cart-drawer');
+    const closeCartBtn = document.getElementById('close-cart-btn');
+    const cartBtn = document.getElementById('cart-btn');
+    const cartStartShopping = document.getElementById('cart-start-shopping');
+    const cartItemsContainer = document.getElementById('cart-items-container');
+    const cartEmptyState = document.getElementById('cart-empty-state');
+    const cartHeaderCount = document.getElementById('cart-header-count');
+    const cartFooter = document.getElementById('cart-footer');
+    const cartSubtotal = document.getElementById('cart-subtotal') || document.getElementById('cart-subtotal-price');
+    const cartSavingsRow = document.getElementById('cart-savings-row');
+    const cartSavingsBadge = document.getElementById('cart-savings-badge');
+    const cartTotal = document.getElementById('cart-total') || document.getElementById('cart-total-price');
+    const cartCheckoutBtn = document.getElementById('cart-checkout-btn');
+
+    // Vistas del Drawer y Navegación de 2 Pasos
+    const drawerStepItems = document.getElementById('drawer-step-items');
+    const drawerStepCheckout = document.getElementById('drawer-step-checkout');
+    const btnVolverItems = document.getElementById('btn-volver-items');
+    const btnConfirmarWhatsapp = document.getElementById('btn-confirmar-whatsapp');
+
+    // Resumen Financiero en Vista 2
+    const checkoutResumenSubtotal = document.getElementById('checkout-resumen-subtotal');
+    const checkoutResumenEnvio = document.getElementById('checkout-resumen-envio');
+    const checkoutResumenTotal = document.getElementById('checkout-resumen-total');
+
+    // Campos del Formulario de Envío
+    const checkoutNombre = document.getElementById('checkout-nombre');
+    const checkoutLocalidad = document.getElementById('checkout-localidad');
+    const checkoutDiaAviso = document.getElementById('checkout-dia-aviso');
+    const checkoutCalle = document.getElementById('checkout-calle');
+    const checkoutDepto = document.getElementById('checkout-depto');
+    const checkoutPago = document.getElementById('checkout-pago');
+    const checkoutNotas = document.getElementById('checkout-notas');
+
+    // Diccionario de Zonas y Franjas Horarias Oficiales
+    const LOGISTICA_ZONAS = {
+      // ANILLO 0 (Siempre Gratis)
+      "Caseros": { costo: 0, gratisMin: 0, dia: "Viernes de 17 a 21 hs" },
+      "Santos Lugares": { costo: 0, gratisMin: 0, dia: "Viernes de 17 a 21 hs" },
+      "Sáenz Peña": { costo: 0, gratisMin: 0, dia: "Viernes de 17 a 21 hs" },
+      "Villa Raffo": { costo: 0, gratisMin: 0, dia: "Viernes de 17 a 21 hs" },
+      "Palomar / Ciudad Jardín": { costo: 0, gratisMin: 0, dia: "Viernes de 17 a 21 hs" },
+      "Bosch / Coronado / Podestá": { costo: 0, gratisMin: 0, dia: "Viernes de 17 a 21 hs" },
+      "Ciudadela": { costo: 0, gratisMin: 0, dia: "Viernes de 17 a 21 hs" },
+      "San Martín Centro / San Andrés": { costo: 0, gratisMin: 0, dia: "Viernes de 17 a 21 hs" },
+      "Villa Lynch": { costo: 0, gratisMin: 0, dia: "Viernes de 17 a 21 hs" },
+      "Villa Ballester Sur": { costo: 0, gratisMin: 0, dia: "Viernes de 17 a 21 hs" },
+      "Ramos Norte / Haedo Norte": { costo: 0, gratisMin: 0, dia: "Viernes de 17 a 21 hs" },
+      "CABA (Devoto / Villa Real / Versalles)": { costo: 0, gratisMin: 0, dia: "Viernes de 17 a 21 hs" },
+
+      // ANILLO 1 ($4.000 - Gratis desde 10 unidades)
+      "San Martín Norte (Villa Maipú / Ballester Norte)": { costo: 4000, gratisMin: 10, dia: "Viernes de 17 a 21 hs" },
+      "Loma Hermosa": { costo: 4000, gratisMin: 10, dia: "Viernes de 17 a 21 hs" },
+      "Ramos Sur / Haedo Sur": { costo: 4000, gratisMin: 10, dia: "Viernes de 17 a 21 hs" },
+      "CABA (Monte Castro / Villa del Parque / Villa Pueyrredón)": { costo: 4000, gratisMin: 10, dia: "Viernes de 17 a 21 hs" },
+      "CABA (Agronomía, Liniers y Villa Luro - sobre Acc. Oeste)": { costo: 4000, gratisMin: 10, dia: "Viernes de 17 a 21 hs" },
+
+      // ANILLO 2 ($6.000 - Gratis desde 15 unidades)
+      "Morón Centro / Castelar Norte": { costo: 6000, gratisMin: 15, dia: "Viernes de 17 a 21 hs" },
+      "Hurlingham / Villa Tesei": { costo: 6000, gratisMin: 15, dia: "Viernes de 17 a 21 hs" },
+      "José León Suárez / Billinghurst": { costo: 6000, gratisMin: 15, dia: "Viernes de 17 a 21 hs" },
+      "Villa Luzuriaga": { costo: 6000, gratisMin: 15, dia: "Viernes de 17 a 21 hs" },
+
+      // RUTA ESPECIAL SÁBADOS ($8.000 - Gratis desde 15 unidades)
+      "CABA Norte (Belgrano / Núñez / Saavedra / Urquiza)": { costo: 8000, gratisMin: 15, dia: "Sábados de 10 a 14 hs" },
+      "Vicente López (Todo el partido)": { costo: 8000, gratisMin: 15, dia: "Sábados de 10 a 14 hs" },
+
+      // OTRA ZONA
+      "Otra zona": { costo: null, gratisMin: null, dia: "A coordinar vía WhatsApp" }
+    };
+
+    // Función para calcular costo, formato y textos de envío según la matriz oficial
+    function getShippingInfo(localidad, totalBurritos) {
+      if (!localidad) {
+        return {
+          costo: 0,
+          esGratis: false,
+          isOtraZona: false,
+          aviso: '',
+          html: '—',
+          textoWhatsApp: '—'
+        };
+      }
+
+      const zona = LOGISTICA_ZONAS[localidad];
+      if (!zona || localidad === 'Otra zona' || zona.costo === null) {
+        return {
+          costo: 0,
+          esGratis: false,
+          isOtraZona: true,
+          aviso: '📍 Entregas en tu zona: A coordinar vía WhatsApp',
+          html: 'A coordinar',
+          textoWhatsApp: 'A coordinar'
+        };
+      }
+
+      const esGratis = (zona.costo === 0) || (zona.gratisMin !== null && totalBurritos >= zona.gratisMin);
+
+      if (esGratis) {
+        return {
+          costo: 0,
+          esGratis: true,
+          isOtraZona: false,
+          aviso: `📍 Entregas en tu zona: ${zona.dia} · Envío: ¡GRATIS!`,
+          html: '<span class="text-[#3A4534] font-bold">GRATIS</span>',
+          textoWhatsApp: 'GRATIS'
+        };
+      }
+
+      const costoStr = `$${zona.costo.toLocaleString('es-AR')}`;
+      return {
+        costo: zona.costo,
+        esGratis: false,
+        isOtraZona: false,
+        aviso: `📍 Entregas en tu zona: ${zona.dia} · Envío: ${costoStr}`,
+        html: costoStr,
+        textoWhatsApp: costoStr
+      };
+    }
+
+    function showDrawerStep(step) {
+      if (step === 'checkout') {
+        if (drawerStepItems) drawerStepItems.classList.add('hidden');
+        if (drawerStepCheckout) drawerStepCheckout.classList.remove('hidden');
+      } else {
+        if (drawerStepItems) drawerStepItems.classList.remove('hidden');
+        if (drawerStepCheckout) drawerStepCheckout.classList.add('hidden');
+      }
+    }
+
+    function openCartDrawer() {
+      if (!cartBackdrop || !cartDrawer) return;
+      showDrawerStep('items');
+      cartBackdrop.classList.remove('opacity-0', 'pointer-events-none');
+      cartBackdrop.classList.add('opacity-100', 'pointer-events-auto');
+      cartDrawer.classList.remove('translate-x-full');
+      cartDrawer.classList.add('translate-x-0');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeCartDrawer() {
+      if (!cartBackdrop || !cartDrawer) return;
+      cartBackdrop.classList.remove('opacity-100', 'pointer-events-auto');
+      cartBackdrop.classList.add('opacity-0', 'pointer-events-none');
+      cartDrawer.classList.remove('translate-x-0');
+      cartDrawer.classList.add('translate-x-full');
+      document.body.classList.remove('overflow-hidden');
+      setTimeout(() => {
+        showDrawerStep('items');
+      }, 300);
+    }
+
+    if (cartBtn) cartBtn.addEventListener('click', openCartDrawer);
+    if (closeCartBtn) closeCartBtn.addEventListener('click', closeCartDrawer);
+    if (cartBackdrop) cartBackdrop.addEventListener('click', closeCartDrawer);
+    if (cartStartShopping) {
+      cartStartShopping.addEventListener('click', () => {
+        closeCartDrawer();
+        selectSizeAndOpen('280g');
+      });
+    }
+
+    // Navegación entre Vista 1 y Vista 2
+    if (cartCheckoutBtn) {
+      cartCheckoutBtn.addEventListener('click', () => {
+        if (cart.length === 0 && (!cantidadBoniato || cantidadBoniato === 0)) return;
+        showDrawerStep('checkout');
+      });
+    }
+
+    if (btnVolverItems) {
+      btnVolverItems.addEventListener('click', () => {
+        showDrawerStep('items');
+      });
+    }
+
+    // Aviso dinámico y recálculo de envío al cambiar localidad
+    if (checkoutLocalidad) {
+      checkoutLocalidad.addEventListener('change', () => {
+        updateCartUI();
+      });
+    }
+
+    // Limpieza de bordes: al escribir en los inputs o cambiar los selects obligatorios
+    [checkoutNombre, checkoutLocalidad, checkoutCalle, checkoutPago].forEach(el => {
+      if (el) {
+        el.addEventListener('input', () => el.classList.remove('border-[#B5361D]'));
+        el.addEventListener('change', () => el.classList.remove('border-[#B5361D]'));
+      }
+    });
+
+    // Tecla Escape cierra el drawer
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && cartDrawer && !cartDrawer.classList.contains('translate-x-full')) {
+        closeCartDrawer();
+      }
+    });
+
+    // Normaliza ítems cargados desde localStorage para garantizar quantity y precios
+    function normalizeCart() {
+      if (!Array.isArray(cart)) cart = [];
+      cart.forEach(item => {
+        if (!item.quantity || item.quantity < 1) item.quantity = 1;
+        if (item.type === 'boniato' || item.isBoniato) {
+          if (!item.promoPrice) item.promoPrice = 8900;
+          if (!item.originalPrice) item.originalPrice = 8900;
+          item.totalPrice = item.quantity * item.promoPrice;
+          return;
+        }
+        const unitBase = item.size === '280g' ? 7500 : 8500;
+        const boniatoTotal = (item.boniato || 0) * 8900;
+        if (!item.burritoOriginalPrice) item.burritoOriginalPrice = item.pack * unitBase;
+        if (!item.burritoPromoPrice) {
+          item.burritoPromoPrice = item.promoPrice ? (item.promoPrice - boniatoTotal) : (item.pack * unitBase);
+        }
+        if (!item.originalPrice) item.originalPrice = item.burritoOriginalPrice + boniatoTotal;
+        if (!item.promoPrice) item.promoPrice = item.burritoPromoPrice + boniatoTotal;
+        item.totalPrice = item.promoPrice;
+      });
+    }
+
+    // Renderiza la lista de packs en el drawer y actualiza totales con descuentos
+    function updateCartUI() {
+      normalizeCart();
+      const burritoPacks = cart.filter(it => !it.type || it.type !== 'boniato');
+      const boniatoItems = cart.filter(it => it.type === 'boniato' || it.isBoniato);
+      const totalPacks = burritoPacks.reduce((sum, it) => sum + (it.quantity || 1), 0);
+      const totalBurritos = burritoPacks.reduce((sum, it) => sum + ((it.pack || 0) * (it.quantity || 1)), 0);
+      const totalBoniatoQty = boniatoItems.reduce((sum, it) => sum + (it.quantity || 0), 0);
+      cantidadBoniato = totalBoniatoQty;
+      window.cantidadBoniato = totalBoniatoQty;
+      const totalItemsCount = totalPacks + totalBoniatoQty;
+
+      // Actualizar contador en header del navbar y en el header del drawer
+      if (cartCountEl) {
+        cartCountEl.textContent = totalItemsCount;
+      }
+      if (cartHeaderCount) {
+        cartHeaderCount.textContent = `(${totalItemsCount})`;
+      }
+
+      // Cálculo de montos: Subtotal base sin descuentos y Total neto de productos
+      const subtotalBurritosBase = burritoPacks.reduce((sum, it) => sum + ((it.burritoOriginalPrice || it.originalPrice || 0) * (it.quantity || 1)), 0);
+      const totalBurritosNeto = burritoPacks.reduce((sum, it) => sum + (((it.burritoPromoPrice !== undefined) ? it.burritoPromoPrice : (it.promoPrice || it.totalPrice || 0)) * (it.quantity || 1)), 0);
+
+      const subtotalBoniato = totalBoniatoQty * 8900;
+      const subtotalBase = subtotalBurritosBase + subtotalBoniato;
+      const totalNeto = totalBurritosNeto + subtotalBoniato;
+      const ahorro = subtotalBurritosBase - totalBurritosNeto;
+
+      // Vista 1 - Fila 1: Subtotal base sin descuentos
+      if (cartSubtotal) cartSubtotal.textContent = formatCurrency(subtotalBase);
+
+      // Vista 1 - Fila 2: Ahorro alineado a la derecha
+      if (ahorro > 0) {
+        if (cartSavingsRow) {
+          cartSavingsRow.classList.remove('hidden');
+          cartSavingsRow.classList.add('flex');
+        }
+        if (cartSavingsBadge) {
+          cartSavingsBadge.textContent = `AHORRÁS ${formatCurrency(ahorro)}`;
+        }
+      } else {
+        if (cartSavingsRow) {
+          cartSavingsRow.classList.add('hidden');
+          cartSavingsRow.classList.remove('flex');
+        }
+      }
+
+      // Vista 1 - Fila 3: Total neto de productos
+      if (cartTotal) cartTotal.textContent = formatCurrency(totalNeto);
+
+      // Vista 2 - Resumen Financiero Sincronizado y Cálculo Dinámico de Envío
+      const localidadSeleccionada = checkoutLocalidad ? checkoutLocalidad.value : '';
+      const shippingInfo = getShippingInfo(localidadSeleccionada, totalBurritos);
+
+      if (checkoutDiaAviso) {
+        if (shippingInfo.aviso) {
+          checkoutDiaAviso.textContent = shippingInfo.aviso;
+          checkoutDiaAviso.classList.remove('hidden');
+        } else {
+          checkoutDiaAviso.classList.add('hidden');
+        }
+      }
+
+      if (checkoutResumenSubtotal) {
+        checkoutResumenSubtotal.textContent = formatCurrency(totalNeto);
+      }
+      if (checkoutResumenEnvio) {
+        checkoutResumenEnvio.innerHTML = shippingInfo.html;
+      }
+      if (checkoutResumenTotal) {
+        checkoutResumenTotal.textContent = formatCurrency(totalNeto + shippingInfo.costo);
+      }
+
+      if (cart.length === 0) {
+        if (cartEmptyState) cartEmptyState.classList.remove('hidden');
+        if (cartItemsContainer) {
+          cartItemsContainer.innerHTML = '';
+          cartItemsContainer.classList.add('hidden');
+        }
+        if (cartFooter) cartFooter.classList.add('hidden');
+        showDrawerStep('items');
+        return;
+      }
+
+      // Con productos en el carrito
+      if (cartEmptyState) cartEmptyState.classList.add('hidden');
+      if (cartFooter) cartFooter.classList.remove('hidden');
+
+      if (cartItemsContainer) {
+        cartItemsContainer.classList.remove('hidden');
+        const packsHtml = burritoPacks.map(item => {
+          const qty = item.quantity || 1;
+          const packPromoPrice = (item.burritoPromoPrice !== undefined) ? item.burritoPromoPrice : (item.promoPrice || item.totalPrice || 0);
+          const packOrigPrice = (item.burritoOriginalPrice !== undefined) ? item.burritoOriginalPrice : (item.originalPrice || 0);
+
+          const packCurrentTotal = packPromoPrice * qty;
+          const packOrigTotal = packOrigPrice * qty;
+          const hasDiscount = packOrigPrice > packPromoPrice;
+          const discountPct = hasDiscount ? Math.round(((packOrigPrice - packPromoPrice) / packOrigPrice) * 100) : 0;
+
+          return `
+          <div class="flex items-start gap-3.5 py-4 border-b border-[#1C1917]/10">
+            <img src="${item.size === '280g' ? './Images/producto-burrito-280g.jpg' : './Images/producto-burrote-400g.jpg'}" alt="${item.sizeName}" loading="lazy" decoding="async" class="w-16 h-16 object-cover rounded-none border border-[#1C1917]/10 shrink-0">
+            <div class="flex-1 min-w-0">
+              <div class="font-montserrat font-extrabold text-xs uppercase tracking-tight text-[#1C1917]">
+                ${item.packLabel.toUpperCase()} · ${item.size === '280g' ? 'BURRITO 280G' : 'BURROTE 400G'}
+              </div>
+              <div class="font-poppins text-xs text-[#1C1917]/70 mt-0.5">
+                ${item.pollo}x Pollo Clásico · ${item.pulledPork}x Pulled Pork
+              </div>
+
+              <!-- Selector de Cantidad interactivo -->
+              <div class="flex items-center border border-[#1C1917]/20 mt-2 w-fit">
+                <button class="decrease-qty-btn px-2.5 py-1 text-sm font-bold text-[#1C1917] hover:bg-[#1C1917]/10" data-id="${item.id}">-</button>
+                <span class="px-3 py-1 font-montserrat font-bold text-xs text-[#1C1917]">${qty}</span>
+                <button class="increase-qty-btn px-2.5 py-1 text-sm font-bold text-[#1C1917] hover:bg-[#1C1917]/10" data-id="${item.id}">+</button>
+              </div>
+
+              <button type="button" class="remove-cart-item-btn text-[11px] font-poppins text-[#1C1917]/50 hover:text-[#B5361D] underline mt-1.5 cursor-pointer block text-left bg-transparent border-0 p-0" data-id="${item.id}">
+                Quitar
+              </button>
+            </div>
+
+            <!-- Columna de precios -->
+            <div class="flex flex-col items-end justify-center text-right shrink-0">
+              ${hasDiscount ? `
+                <div class="flex items-center gap-1 justify-end">
+                  <span class="text-stone-500 line-through text-xs font-poppins">${formatCurrency(packOrigTotal)}</span>
+                  <span class="text-xs font-bold text-[#B5361D]">-${discountPct}%</span>
+                </div>
+              ` : ''}
+              <span class="text-base md:text-lg font-bold font-montserrat text-[#1C1917]">${formatCurrency(packCurrentTotal)}</span>
+            </div>
+          </div>
+          `;
+        }).join('');
+
+        let boniatoHtml = '';
+        if (cantidadBoniato > 0) {
+          const boniatoTotal = cantidadBoniato * 8900;
+          boniatoHtml = `
+          <div class="flex items-start gap-3.5 py-4 border-b border-[#1C1917]/10">
+            <img src="producto-boniatos.jpg" alt="Boniato McCain (500g)" loading="lazy" decoding="async" class="w-16 h-16 object-cover rounded-none border border-[#1C1917]/10 shrink-0">
+            <div class="flex-1 min-w-0">
+              <div class="font-montserrat font-extrabold text-xs uppercase tracking-tight text-[#1C1917]">
+                Boniato McCain (500g)
+              </div>
+              <div class="flex items-center gap-4 mt-2">
+                <div class="flex items-center bg-white rounded-md border border-stone-200 overflow-hidden h-8">
+                  <button class="w-8 h-full flex items-center justify-center text-stone-500 hover:text-black hover:bg-stone-100 transition-colors cursor-pointer" onclick="modificarBoniatoCarrito(-1)">-</button>
+                  <span class="text-sm font-bold text-[#1C1917] w-6 text-center">${cantidadBoniato}</span>
+                  <button class="w-8 h-full flex items-center justify-center text-stone-500 hover:text-black hover:bg-stone-100 transition-colors cursor-pointer" onclick="modificarBoniatoCarrito(1)">+</button>
+                </div>
+              </div>
+
+              <button type="button" class="remove-boniato-btn text-[11px] font-poppins text-[#1C1917]/50 hover:text-[#B5361D] underline mt-3 cursor-pointer block text-left bg-transparent border-0 p-0" onclick="modificarBoniatoCarrito(-cantidadBoniato)">
+                Quitar
+              </button>
+            </div>
+
+            <!-- Columna de precios -->
+            <div class="flex flex-col items-end justify-center text-right shrink-0">
+              <span class="text-base md:text-lg font-bold font-montserrat text-[#1C1917]">${formatCurrency(boniatoTotal)}</span>
+            </div>
+          </div>
+          `;
+        }
+
+        cartItemsContainer.innerHTML = packsHtml + boniatoHtml;
+
+        // Eventos de controles de cantidad (+ / -)
+        const decButtons = cartItemsContainer.querySelectorAll('.decrease-qty-btn');
+        decButtons.forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const id = e.currentTarget.getAttribute('data-id');
+            const item = cart.find(it => it.id === id);
+            if (!item) return;
+            if (item.quantity > 1) {
+              item.quantity -= 1;
+            } else {
+              cart = cart.filter(it => it.id !== id);
+            }
+            saveCart();
+            updateCartUI();
+          });
+        });
+
+        const incButtons = cartItemsContainer.querySelectorAll('.increase-qty-btn');
+        incButtons.forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const id = e.currentTarget.getAttribute('data-id');
+            const item = cart.find(it => it.id === id);
+            if (!item) return;
+            item.quantity = (item.quantity || 1) + 1;
+            saveCart();
+            updateCartUI();
+          });
+        });
+
+        // Eventos para quitar ítem individual
+        const removeButtons = cartItemsContainer.querySelectorAll('.remove-cart-item-btn');
+        removeButtons.forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const id = e.currentTarget.getAttribute('data-id');
+            cart = cart.filter(it => it.id !== id);
+            saveCart();
+            updateCartUI();
+          });
+        });
+      }
+    }
+
+    // Agregar al Carrito desde el Configurador
+    btnAddCart.addEventListener('click', () => {
+      // A) Validar que los sabores de burritos sumen la cantidad correcta del pack
+      const totalFlavors = flavors.pollo + flavors.pulledPork;
+      if (totalFlavors !== currentPack) {
+        alert(`Debes seleccionar exactamente ${currentPack} unidades en total.`);
+        return;
+      }
+
+      // B) Crear y pushear el objeto del "Pack de Burritos" al array del carrito
+      const packData = PRODUCT_DATA[currentSize].packs[currentPack];
+      const unitBase = currentSize === '280g' ? 7500 : 8500;
+      const burritoOriginalPrice = currentPack * unitBase;
+      const burritoPromoPrice = packData.total;
+
+      const newItem = {
+        id: 'cart_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6),
+        type: 'burrito',
+        size: currentSize,
+        sizeName: currentSize === '280g' ? 'BURRITO (280G)' : 'BURROTE XL (400G)',
+        pack: currentPack,
+        packLabel: `Pack x${currentPack}`,
+        pollo: flavors.pollo,
+        pulledPork: flavors.pulledPork,
+        burritoOriginalPrice: burritoOriginalPrice,
+        burritoPromoPrice: burritoPromoPrice,
+        quantity: 1,
+        originalPrice: burritoOriginalPrice,
+        promoPrice: burritoPromoPrice,
+        totalPrice: burritoPromoPrice
+      };
+      cart.push(newItem);
+
+      // C) Evaluar: if (cantidadBoniato > 0). Si es verdadero, crear y pushear un objeto INDEPENDIENTE de "Boniato McCain" al array del carrito (Precio: 8900, Cantidad: cantidadBoniato)
+      const contadorBoniatoEl = document.getElementById('contador-boniato');
+      const boniatoEnConfigurador = contadorBoniatoEl ? (parseInt(contadorBoniatoEl.textContent, 10) || 0) : 0;
+      const cantidadBoniatoVal = boniatoEnConfigurador;
+
+      if (cantidadBoniatoVal > 0) {
+        const existingBoniato = cart.find(it => it.type === 'boniato' || it.isBoniato);
+        if (existingBoniato) {
+          existingBoniato.quantity = (existingBoniato.quantity || 0) + cantidadBoniatoVal;
+          existingBoniato.totalPrice = existingBoniato.quantity * (existingBoniato.promoPrice || 8900);
+        } else {
+          const newBoniatoItem = {
+            id: 'boniato_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6),
+            type: 'boniato',
+            isBoniato: true,
+            name: 'Boniato McCain (500g)',
+            originalPrice: 8900,
+            promoPrice: 8900,
+            price: 8900,
+            quantity: cantidadBoniatoVal,
+            totalPrice: cantidadBoniatoVal * 8900
+          };
+          cart.push(newBoniatoItem);
+        }
+      }
+
+      // D) Actualizar el contador visual del icono de la bolsa en el Header
+      saveCart();
+      updateCartUI();
+
+      // E) RESETEAR el formulario: volver los contadores de sabores y boniatos a 0
+      flavors.pollo = 0;
+      flavors.pulledPork = 0;
+      if (qtyPolloEl) qtyPolloEl.textContent = '0';
+      if (qtyPulledEl) qtyPulledEl.textContent = '0';
+      if (contadorBoniatoEl) {
+        contadorBoniatoEl.textContent = '0';
+      }
+      const btnSoloBoniato = document.getElementById('btn-agregar-solo-boniato');
+      if (btnSoloBoniato) {
+        btnSoloBoniato.classList.add('hidden');
+      }
+
+      // F) CRÍTICO: NO abrir el modal del carrito lateral. Mostrar feedback visual sutil
+      showCartToast('¡Agregado al carrito!');
+
+      const originalText = btnAddCart.textContent;
+      btnAddCart.textContent = '¡AGREGADO AL CARRITO! ✓';
+      btnAddCart.classList.add('bg-[#8A9681]', 'text-white');
+      btnAddCart.classList.remove('bg-[#D68844]');
+
+      setTimeout(() => {
+        btnAddCart.classList.remove('bg-[#8A9681]', 'text-white');
+        updateConfiguratorUI();
+      }, 900);
+    });
+
+    // Disparo final a WhatsApp desde Vista 2 (Checkout)
+    if (btnConfirmarWhatsapp) {
+      btnConfirmarWhatsapp.addEventListener('click', () => {
+        if (cart.length === 0) {
+          showDrawerStep('items');
+          return;
+        }
+
+        const nombre = checkoutNombre ? checkoutNombre.value.trim() : '';
+        const localidad = checkoutLocalidad ? checkoutLocalidad.value : '';
+        const calle = checkoutCalle ? checkoutCalle.value.trim() : '';
+        const depto = checkoutDepto ? checkoutDepto.value.trim() : '';
+        const pago = checkoutPago ? checkoutPago.value : '';
+        const notas = checkoutNotas ? checkoutNotas.value.trim() : '';
+
+        // 1. Valida que #checkout-nombre, #checkout-localidad, #checkout-calle y #checkout-pago tengan valor.
+        // Si alguno falta, aplica border-[#B5361D], hace focus en el primer campo faltante y frena la ejecución.
+        const campos = [
+          { el: checkoutNombre, val: nombre },
+          { el: checkoutLocalidad, val: localidad },
+          { el: checkoutCalle, val: calle },
+          { el: checkoutPago, val: pago }
+        ];
+
+        let hasError = false;
+        campos.forEach(({ el, val }) => {
+          if (el) {
+            el.classList.remove('border-[#B5361D]');
+            if (!val) {
+              el.classList.add('border-[#B5361D]');
+              if (!hasError) {
+                el.focus();
+                hasError = true;
+              }
+            }
+          }
+        });
+
+        if (hasError) return;
+
+        const burritoPacks = cart.filter(it => !it.type || it.type !== 'boniato');
+        const boniatoItems = cart.filter(it => it.type === 'boniato' || it.isBoniato);
+        const totalBurritos = burritoPacks.reduce((sum, it) => sum + ((it.pack || 0) * (it.quantity || 1)), 0);
+        const totalBoniatoQty = boniatoItems.reduce((sum, it) => sum + (it.quantity || 0), 0);
+        const totalNetoProductos = burritoPacks.reduce((sum, it) => sum + ((it.burritoPromoPrice || it.promoPrice || it.totalPrice || 0) * (it.quantity || 1)), 0) + (totalBoniatoQty * 8900);
+        const shippingInfo = getShippingInfo(localidad, totalBurritos);
+        const totalFinal = totalNetoProductos + shippingInfo.costo;
+
+        // 2. Construye el mensaje respetando la estructura limpia y libre de mojibake
+        const direccionCompleta = (calle + (depto ? ' ' + depto : '')).trim();
+        const costoEnvioTexto = shippingInfo.textoWhatsApp;
+
+        let itemsTexto = burritoPacks.map(item => {
+          const cantidad = item.quantity || 1;
+          const burritoPromoPrice = (item.burritoPromoPrice !== undefined) ? item.burritoPromoPrice : (item.promoPrice || item.totalPrice || 0);
+          const precioTotalPack = burritoPromoPrice * cantidad;
+          const sizeLabel = item.size === '280g' ? '280g' : '400g';
+          const nombrePack = `${item.packLabel} (${sizeLabel})`;
+          const sabores = [];
+          if (item.pollo > 0) sabores.push(`${item.pollo}x Pollo Clásico`);
+          if (item.pulledPork > 0) sabores.push(`${item.pulledPork}x Pulled Pork`);
+          const saboresTexto = sabores.length > 0 ? sabores.join(', ') : 'Surtido';
+
+          return `• ${cantidad}x ${nombrePack} — $${precioTotalPack.toLocaleString('es-AR')}\n  (${saboresTexto})`;
+        }).join('\n');
+
+        if (totalBoniatoQty > 0) {
+          const totalBoniato = totalBoniatoQty * 8900;
+          const boniatoLine = `• ${totalBoniatoQty}x Boniato McCain (500g) — $${totalBoniato.toLocaleString('es-AR')}`;
+          itemsTexto = itemsTexto ? `${itemsTexto}\n${boniatoLine}` : boniatoLine;
+        }
+
+        let mensaje = `*MANCHA BURRITOS · NUEVO PEDIDO*\n\n`;
+        mensaje += `*Cliente:* ${nombre}\n`;
+        mensaje += `*Entrega:* ${localidad}\n`;
+        mensaje += `*Dirección:* ${direccionCompleta}\n`;
+        mensaje += `*Pago:* ${pago}\n`;
+        mensaje += `*Notas:* ${notas || "Sin aclaraciones adicionales"}\n\n`;
+        mensaje += `*PEDIDO:*\n`;
+        mensaje += `${itemsTexto}\n\n`;
+        mensaje += `-----------------------------------\n`;
+        mensaje += `Subtotal: $${totalNetoProductos.toLocaleString('es-AR')}\n`;
+        mensaje += `Envío: ${costoEnvioTexto}\n`;
+        mensaje += `*TOTAL A PAGAR: $${totalFinal.toLocaleString('es-AR')}*\n`;
+        mensaje += `-----------------------------------`;
+
+        // 3. Disparo seguro sin transformaciones intermedias ni mojibake
+        const url = "https://wa.me/" + NUMERO_WHATSAPP + "?text=" + encodeURIComponent(mensaje);
+        window.open(url, "_blank");
+
+        // Limpiar carrito y cerrar drawer
+        cart = [];
+        cantidadBoniato = 0;
+        window.cantidadBoniato = 0;
+        saveCart();
+        updateCartUI();
+        showDrawerStep('items');
+        closeCartDrawer();
+      });
+    }
+
+    // Eventos de selección desde la sección Formatos en Home ("ASEGURÁ TUS BURRITOS")
+    const cardFormat280 = document.getElementById('card-format-280');
+    const cardFormat400 = document.getElementById('card-format-400');
+    const btnPedirBurrito = document.getElementById('btn-pedir-burrito');
+    const btnPedirBurrote = document.getElementById('btn-pedir-burrote');
+
+    if (cardFormat280) {
+      cardFormat280.addEventListener('click', () => selectSizeAndOpen('280g'));
+    }
+    if (btnPedirBurrito) {
+      btnPedirBurrito.addEventListener('click', (e) => {
+        e.stopPropagation();
+        selectSizeAndOpen('280g');
+      });
+    }
+
+    if (cardFormat400) {
+      cardFormat400.addEventListener('click', () => selectSizeAndOpen('400g'));
+    }
+    if (btnPedirBurrote) {
+      btnPedirBurrote.addEventListener('click', (e) => {
+        e.stopPropagation();
+        selectSizeAndOpen('400g');
+      });
+    }
+
+    // Scroll suave desde el botón CTA de Franjas Macro hacia la sección de Formatos en Home
+    const btnCtaFranjas = document.getElementById('btn-cta-franjas');
+    if (btnCtaFranjas) {
+      btnCtaFranjas.addEventListener('click', () => {
+        const target = document.getElementById('seccion-asegura-burritos') || document.getElementById('card-format-280');
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    }
+
+    // -------------------------------------------------------------------------
+    // INDICADORES REACTIVOS DE CARRUSELES MOBILE (DOTS)
+    // -------------------------------------------------------------------------
+    function initMobileCarouselDots(carouselId, dotsContainerId) {
+      const carousel = document.getElementById(carouselId);
+      const dotsContainer = document.getElementById(dotsContainerId);
+      if (!carousel || !dotsContainer) return;
+
+      const dots = dotsContainer.querySelectorAll('button, span');
+      if (dots.length === 0) return;
+
+      const isLightDots = dots[0].classList.contains('bg-[#F9F1E6]') || dots[0].classList.contains('bg-[#F9F1E6]/30');
+      const activeClass = isLightDots ? 'bg-[#F9F1E6]' : 'bg-[#1C1917]';
+      const inactiveClass = isLightDots ? 'bg-[#F9F1E6]/30' : 'bg-[#1C1917]/30';
+
+      carousel.addEventListener('scroll', () => {
+        const itemWidth = carousel.firstElementChild ? carousel.firstElementChild.offsetWidth : carousel.clientWidth;
+        const activeIndex = Math.min(dots.length - 1, Math.max(0, Math.round(carousel.scrollLeft / itemWidth)));
+        dots.forEach((dot, idx) => {
+          if (idx === activeIndex) {
+            dot.classList.remove(inactiveClass);
+            dot.classList.add(activeClass);
+          } else {
+            dot.classList.remove(activeClass);
+            dot.classList.add(inactiveClass);
+          }
+        });
+      }, { passive: true });
+    }
+
+    initMobileCarouselDots('carousel-productos', 'dots-asegura');
+    initMobileCarouselDots('carousel-ingredientes', 'dots-ingredientes');
+    initMobileCarouselDots('carousel-proceso', 'dots-proceso');
+
+    loadCart();
+    updateCartUI();
+    updateConfiguratorUI();
+  </script>
+</body>
+</html>

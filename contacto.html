@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto | MANCHA BURRITOS</title>
+  
+  <!-- Open Graph / Previsualización WhatsApp y Redes -->
+  <meta property="og:title" content="Contacto | MANCHA BURRITOS" />
+  <meta property="og:description" content="Atención al cliente y ventas mayoristas. Dudas, pedidos y distribución para gastronomía." />
+  <meta property="og:image" content="./Images/og-share.jpg" />
+  <meta property="og:type" content="website" />
+  
+  <!-- Google Fonts: Montserrat (700, 900), Playfair Display (ital@0;1) & Poppins (400, 500, 600) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Playfair+Display:ital@0;1&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          spacing: {
+            '4.5': '1.125rem',
+          },
+          colors: {
+            // Paleta Oficial Mancha Burritos
+            'crema-mancha': '#F9F1E6',
+            'carbon': '#1C1917',
+            'rojo-mancha': '#B5361D',
+            'ocre-caliente': '#D68844',
+            'verde-oliva-base': '#3A4534',
+            'verde-oliva-claro': '#525E4C',
+            brand: {
+              cream: '#F9F1E6',
+              red: '#B5361D',
+              ochre: '#D68844',
+              yellow: '#FDD991',
+              dark: '#1C1917',
+              olive: '#3A4534',
+              'olive-light': '#525E4C',
+            }
+          },
+          fontFamily: {
+            montserrat: ['"Montserrat"', 'sans-serif'],
+            poppins: ['"Poppins"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #F9F1E6;
+      color: #1C1917;
+      font-family: 'Poppins', sans-serif;
+    }
+    .font-serif {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+  </style>
+</head>
+<body class="bg-[#F9F1E6] flex flex-col min-h-screen md:h-screen md:overflow-hidden text-[#1C1917]">
+
+  <!-- =========================================================================
+       HEADER / NAVBAR (Fijo superior sólido Carbón Base bg-[#1C1917])
+       ========================================================================= -->
+  <header id="main-header" class="fixed top-0 w-full z-50 bg-[#1C1917] shadow-md px-6 md:px-16 py-3.5 h-[66px] flex items-center justify-between select-none">
+    
+    <!-- Izquierda: Logo "MANCHA" -->
+    <a href="index.html" id="brand-logo" class="flex items-center leading-none focus:outline-none group shrink-0" aria-label="Mancha Home">
+      <span class="font-montserrat font-black text-3xl md:text-4xl tracking-tighter text-[#B5361D] uppercase group-hover:text-brand-ochre transition-colors">MANCHA</span>
+    </a>
+
+    <!-- Centro: Enlaces de navegación -->
+    <nav class="hidden md:flex items-center space-x-9" aria-label="Navegación principal">
+      <a href="index.html" class="nav-item font-poppins font-medium text-[13px] tracking-[0.14em] uppercase text-[#F9F1E6] hover:text-brand-ochre transition-colors duration-200">
+        HOME
+      </a>
+      <a href="index.html#armado-pedido" class="nav-item font-poppins font-medium text-[13px] tracking-[0.14em] uppercase text-[#F9F1E6] hover:text-brand-ochre transition-colors duration-200">
+        PRODUCTOS
+      </a>
+      <a href="index.html#faq-section" class="nav-item font-poppins font-medium text-[13px] tracking-[0.14em] uppercase text-[#F9F1E6] hover:text-brand-ochre transition-colors duration-200">
+        PREGUNTAS FRECUENTES
+      </a>
+      <a href="contacto.html" class="nav-item font-poppins font-medium text-[13px] tracking-[0.14em] uppercase text-brand-ochre font-semibold transition-colors duration-200">
+        CONTACTO
+      </a>
+    </nav>
+
+    <!-- Derecha: Botón de acceso a compra -->
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="index.html#armado-pedido" class="text-[#F9F1E6] hover:text-[#D68844] transition-colors flex items-center gap-1.5 font-montserrat text-sm p-1 focus:outline-none group" aria-label="Pedir Burritos">
+        <svg class="w-5 h-5 text-[#F9F1E6] group-hover:text-[#D68844] transition-colors duration-200" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+        </svg>
+        <span class="tracking-wider text-[#F9F1E6] group-hover:text-[#D68844] transition-colors duration-200 font-bold text-xs uppercase">
+          PEDIR
+        </span>
+      </a>
+
+      <!-- Botón hamburguesa mobile -->
+      <button id="mobile-toggle" type="button" class="md:hidden text-[#F9F1E6] hover:text-brand-ochre p-1 focus:outline-none transition-colors" aria-label="Abrir Menú">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Menú Mobile desplegable -->
+    <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-[#1C1917] px-8 py-5 border-t border-[#1C1917]/40 shadow-xl">
+      <nav class="flex flex-col space-y-4">
+        <a href="index.html" class="font-poppins font-medium text-sm tracking-widest uppercase text-[#F9F1E6] hover:text-brand-ochre transition-colors">
+          HOME
+        </a>
+        <a href="index.html#armado-pedido" class="font-poppins font-medium text-sm tracking-widest uppercase text-[#F9F1E6] hover:text-brand-ochre transition-colors">
+          PRODUCTOS
+        </a>
+        <a href="index.html#faq-section" class="font-poppins font-medium text-sm tracking-widest uppercase text-[#F9F1E6] hover:text-brand-ochre transition-colors">
+          PREGUNTAS FRECUENTES
+        </a>
+        <a href="contacto.html" class="font-poppins font-medium text-sm tracking-widest uppercase text-brand-ochre font-semibold transition-colors">
+          CONTACTO
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       CONTENIDO PRINCIPAL: GRILLA CENTRAL DE 2 COLUMNAS (FORMULARIO + WHATSAPP)
+       ========================================================================= -->
+    <main class="flex-grow flex flex-col items-center justify-center pt-24 pb-8 px-4 md:pt-20 md:pb-6">
+    <div class="max-w-6xl w-full">
+      
+      <!-- ENCABEZADO CENTRADO CON COMBINACIÓN TIPOGRÁFICA DE MARCA -->
+      <div class="w-full text-center mb-10 md:mb-14">
+        <h1 class="font-montserrat font-black text-4xl md:text-5xl text-[#1C1917] uppercase tracking-tight mb-2">
+          HABLEMOS
+        </h1>
+        <p class="font-serif italic text-lg md:text-xl text-stone-600">
+          Elegí cómo querés contactarnos.
+        </p>
+      </div>
+
+      <!-- GRILLA CENTRAL DE 2 COLUMNAS -->
+      <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 items-start">
+        
+        <!-- COLUMNA IZQUIERDA: FORMULARIO DE MENSAJE CON SEPARADOR DESKTOP -->
+        <div class="w-full md:border-r md:border-stone-300 md:pr-12 md:mr-4">
+          <h2 class="font-montserrat font-black text-xl md:text-2xl uppercase tracking-tight mb-5 md:mb-6 text-[#1C1917]">
+            DEJANOS TU MENSAJE
+          </h2>
+
+          <form id="form-contacto" onsubmit="event.preventDefault(); document.getElementById('form-feedback').classList.remove('hidden'); this.reset();">
+            <!-- Campo 1: Nombre -->
+            <div class="mb-6">
+              <label for="contacto-nombre" class="sr-only">Tu nombre</label>
+              <input type="text" id="contacto-nombre" name="nombre" required placeholder="Tu nombre" class="w-full bg-transparent border-b-2 border-stone-400 py-3 text-[#1C1917] placeholder-stone-500 focus:outline-none focus:border-[#D68844] transition-colors font-poppins text-sm md:text-base">
+            </div>
+
+            <!-- Campo 2: Email o Celular -->
+            <div class="mb-6">
+              <label for="contacto-contacto" class="sr-only">Email o Celular</label>
+              <input type="text" id="contacto-contacto" name="contacto" required placeholder="Email o celular" class="w-full bg-transparent border-b-2 border-stone-400 py-3 text-[#1C1917] placeholder-stone-500 focus:outline-none focus:border-[#D68844] transition-colors font-poppins text-sm md:text-base">
+            </div>
+
+            <!-- Campo 3: Mensaje (rows=4) -->
+            <div class="mb-6">
+              <label for="contacto-mensaje" class="sr-only">Mensaje</label>
+              <textarea id="contacto-mensaje" name="mensaje" rows="4" required placeholder="Tu mensaje..." class="w-full bg-transparent border-b-2 border-stone-400 py-3 text-[#1C1917] placeholder-stone-500 focus:outline-none focus:border-[#D68844] transition-colors font-poppins text-sm md:text-base resize-none"></textarea>
+            </div>
+
+            <!-- Botón submit -->
+            <button type="submit" id="btn-submit-contacto" class="bg-[#1C1917] text-[#F9F1E6] w-full py-3.5 mt-2 rounded font-montserrat font-bold tracking-widest text-sm hover:bg-black uppercase transition-colors cursor-pointer">
+              ENVIAR MENSAJE
+            </button>
+
+            <!-- Micro-copy de confianza -->
+            <p class="text-xs text-stone-400 text-center mt-3">Te respondemos al mail en menos de 24hs.</p>
+
+            <!-- Feedback de envío exitoso -->
+            <div id="form-feedback" class="hidden p-3 bg-[#3A4534]/15 border border-[#3A4534]/30 rounded text-center text-xs font-montserrat font-semibold text-[#3A4534] mt-3">
+              ¡Mensaje enviado con éxito! Te responderemos a la brevedad.
+            </div>
+          </form>
+        </div>
+
+        <!-- COLUMNA DERECHA: TARJETAS VERTICALES DE ACCIÓN DIRECTA -->
+        <div class="w-full">
+          <h2 class="font-montserrat font-black text-xl md:text-2xl uppercase tracking-tight mb-5 md:mb-6 text-[#1C1917]">
+            O HABLAMOS DIRECTO
+          </h2>
+
+          <div class="flex flex-col gap-5">
+            <!-- Bloque B2C: WhatsApp con horario -->
+            <div>
+              <div class="bg-white rounded-xl p-6 border border-stone-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow text-left">
+                <div>
+                  <h3 class="font-montserrat font-bold text-lg text-[#1C1917]">
+                    Dudas y Pedidos
+                  </h3>
+                  <p class="font-poppins text-xs md:text-sm text-stone-600 mt-1 leading-relaxed">
+                    Consultas sobre tu orden o envíos.
+                  </p>
+                </div>
+                <a href="https://wa.me/5491155264989?text=Hola%20Mancha!%20Tengo%20una%20consulta%20sobre%20mi%20pedido" target="_blank" rel="noopener noreferrer" class="bg-[#3A4534] hover:bg-[#2c3427] text-[#F9F1E6] w-full mt-4 py-3 rounded text-sm font-semibold transition-colors duration-200 flex items-center justify-center gap-2 font-montserrat tracking-wide">
+                  <!-- Ícono WhatsApp SVG -->
+                  <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.05 20.16C10.57 20.16 9.12 19.76 7.85 19.01L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.8 13.47 3.8 11.91C3.8 7.37 7.5 3.67 12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.16 12.05 20.16ZM16.57 14.46C16.32 14.33 15.1 13.73 14.88 13.65C14.65 13.57 14.49 13.53 14.32 13.78C14.15 14.03 13.67 14.6 13.52 14.77C13.38 14.94 13.23 14.96 12.98 14.84C12.73 14.71 11.93 14.45 10.98 13.6C10.24 12.94 9.74 12.13 9.6 11.88C9.45 11.63 9.58 11.5 9.71 11.37C9.82 11.26 9.96 11.08 10.08 10.93C10.21 10.79 10.25 10.68 10.33 10.52C10.41 10.35 10.37 10.2 10.31 10.08C10.25 9.95 9.76 8.75 9.55 8.26C9.35 7.77 9.15 7.84 8.99 7.83C8.84 7.82 8.68 7.82 8.51 7.82C8.34 7.82 8.08 7.88 7.85 8.13C7.63 8.38 7 8.96 7 10.15C7 11.34 7.87 12.49 7.99 12.65C8.11 12.82 9.7 15.27 12.13 16.32C12.71 16.57 13.16 16.72 13.51 16.83C14.1 17.02 14.63 16.99 15.06 16.93C15.54 16.86 16.53 16.33 16.74 15.75C16.94 15.16 16.94 14.67 16.88 14.56C16.82 14.46 16.7 14.4 16.57 14.46Z"/>
+                  </svg>
+                  <span>WhatsApp</span> &rarr;
+                </a>
+              </div>
+              <!-- Micro-copy de atención -->
+              <p class="text-xs text-stone-400 text-center mt-3">Atención por WhatsApp: Lun a Sáb 10 a 18hs.</p>
+            </div>
+
+            <!-- Bloque B2B: Mayoristas / Locales -->
+            <div class="bg-white rounded-xl p-6 border border-stone-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow text-left">
+              <div>
+                <h3 class="font-montserrat font-bold text-lg text-[#1C1917]">
+                  Ventas Mayoristas
+                </h3>
+                <p class="font-poppins text-xs md:text-sm text-stone-600 mt-1 leading-relaxed">
+                  Llevá Mancha a tu local. Consultá nuestra lista de precios para gastronomía.
+                </p>
+              </div>
+              <a href="https://wa.me/5491155264989?text=Hola%20Mancha!%20Quiero%20solicitar%20informaci%C3%B3n%20para%20ventas%20mayoristas" target="_blank" rel="noopener noreferrer" class="bg-[#D68844] hover:bg-[#b87032] text-white w-full mt-4 py-3 rounded text-sm font-semibold transition-colors duration-200 flex items-center justify-center gap-2 font-montserrat tracking-wide">
+                <!-- Ícono Maletín SVG -->
+                <svg class="w-4 h-4 fill-none stroke-current stroke-2 shrink-0" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect width="20" height="14" x="2" y="7" rx="2" ry="2"/>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                </svg>
+                <span>Info Mayorista</span> &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- =========================================================================
+       FOOTER MINIMALISTA (Una sola línea en Carbón Base #1C1917)
+       ========================================================================= -->
+  <footer class="bg-[#1C1917] text-[#F9F1E6] py-4 px-6 shrink-0 w-full flex flex-col md:flex-row justify-between items-center text-xs md:text-sm font-medium">
+    <!-- Izquierda -->
+    <div class="tracking-wide">
+      MANCHA BURRITOS &copy; 2026
+    </div>
+
+    <!-- Centro (oculto en mobile) -->
+    <div class="hidden md:flex gap-6">
+      <a href="index.html" class="hover:text-brand-ochre transition-colors">Inicio</a>
+      <a href="index.html#armado-pedido" class="hover:text-brand-ochre transition-colors">Productos</a>
+      <a href="index.html#faq-section" class="hover:text-brand-ochre transition-colors">FAQ</a>
+    </div>
+
+    <!-- Derecha -->
+    <div class="mt-2 md:mt-0 text-[#F9F1E6]/80">
+      <a href="https://instagram.com/manchaburritos" target="_blank" rel="noopener noreferrer" class="hover:text-brand-ochre transition-colors">
+        Instagram: @manchaburritos
+      </a>
+    </div>
+  </footer>
+
+  <!-- Script para Menú Mobile -->
+  <script>
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileToggle && mobileMenu) {
+      mobileToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+  </script>
+</body>
+</html>
