@@ -4,16 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MANCHA BURRITOS | Burritos Congelados de Comida Real</title>
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="./Images/favicon.png">
+  <meta name="description" content="Burritos 100% caseros y congelados. Directo del freezer a tu horno, listos en 15 minutos.">
 
   <!-- Open Graph / Previsualización WhatsApp y Redes -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.manchaburritos.com/">
-  <meta property="og:title" content="Mancha Burritos">
-  <meta property="og:description" content="Comida real congelada lista en 15 minutos. Directo del freezer a tu horno.">
-  <meta property="og:image" content="https://www.manchaburritos.com/Images/og-share.png">
+  <meta property="og:url" content="https://manchaburritos.com/">
+  <meta property="og:title" content="MANCHA BURRITOS | Comida 100% casera">
+  <meta property="og:description" content="Burritos 100% caseros y congelados. Directo del freezer a tu horno, listos en 15 minutos.">
+  <meta property="og:image" content="https://manchaburritos.com/Images/og-share.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./Images/favicon.png">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XPXKCQXPXZ"></script>
@@ -1563,6 +1564,55 @@
   </aside>
 
   <!-- =========================================================================
+       MODAL DE ALERTA INTELIGENTE (UP-SELLING DE PACKS)
+       ========================================================================= -->
+  <div id="modal-upsell" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4">
+    <!-- Backdrop oscuro translúcido con desenfoque suave -->
+    <div id="modal-upsell-backdrop" class="fixed inset-0 bg-[#1C1917]/75 backdrop-blur-sm transition-opacity"></div>
+
+    <!-- Contenedor del Modal -->
+    <div class="relative bg-[#F9F1E6] border-2 border-[#1C1917] max-w-md w-full p-6 sm:p-8 shadow-2xl z-10 text-left">
+      <!-- Badge de Ahorro -->
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-[#D68844]/20 border border-[#D68844] text-[#D68844] text-[11px] font-montserrat font-black uppercase tracking-wider mb-3">
+        <span>💡 AHORRO INTELIGENTE</span>
+      </div>
+
+      <!-- Título -->
+      <h3 class="font-montserrat font-black text-2xl sm:text-3xl text-[#1C1917] tracking-tight uppercase leading-tight mb-3">
+        ¡Podés ahorrar más!
+      </h3>
+
+      <!-- Mensaje dinámico -->
+      <p id="upsell-modal-msg" class="font-poppins text-xs sm:text-sm text-[#1C1917]/80 leading-relaxed mb-4">
+        Estás llevando burritos separados. Si los llevás como un pack mayor, te ahorrás plata. ¿Querés que lo actualicemos por vos?
+      </p>
+
+      <!-- Tarjeta Resumen del Nuevo Pack Consolidado -->
+      <div class="bg-white border border-[#1C1917]/15 p-3.5 mb-6 flex items-center justify-between gap-3">
+        <div class="text-xs font-poppins min-w-0">
+          <span id="upsell-modal-pack-name" class="block font-montserrat font-bold text-[#1C1917] text-sm uppercase truncate">Pack x10 (280g)</span>
+          <span id="upsell-modal-sabores" class="text-stone-600 block text-xs truncate">Consolidando sabores...</span>
+        </div>
+        <div class="text-right shrink-0">
+          <span id="upsell-modal-precio-viejo" class="text-xs text-stone-400 line-through block font-poppins">$75.000</span>
+          <span id="upsell-modal-precio-nuevo" class="text-base sm:text-lg font-montserrat font-black text-[#D68844] block">$71.250</span>
+        </div>
+      </div>
+
+      <!-- Botones de Acción -->
+      <div class="flex flex-col sm:flex-row gap-3">
+        <button id="btn-upsell-confirm" type="button" class="w-full sm:flex-1 py-3 px-4 bg-[#D68844] hover:bg-[#b86f31] text-white font-montserrat font-black text-xs uppercase tracking-wider transition-colors duration-200 text-center cursor-pointer shadow-md">
+          Sí, aplicar descuento
+        </button>
+        <button id="btn-upsell-reject" type="button" class="w-full sm:w-auto py-3 px-4 bg-transparent hover:bg-stone-200 text-[#1C1917]/70 hover:text-[#1C1917] font-montserrat font-bold text-xs uppercase tracking-wider transition-colors duration-200 text-center cursor-pointer border border-[#1C1917]/20">
+          No, dejarlo así
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- =========================================================================
        JAVASCRIPT: VISTAS + CONFIGURADOR REACTIVO + CARRITO
        ========================================================================= -->
   <script>
@@ -3028,7 +3078,387 @@
       }, 900);
     });
 
-    // Disparo final a WhatsApp desde Vista 2 (Checkout)
+    // =========================================================================
+    // SISTEMA DE ALERTAS INTELIGENTES (UP-SELLING EN CHECKOUT)
+    // =========================================================================
+    const modalUpsell = document.getElementById('modal-upsell');
+    const modalUpsellBackdrop = document.getElementById('modal-upsell-backdrop');
+    const modalUpsellMsg = document.getElementById('upsell-modal-msg');
+    const modalUpsellPackName = document.getElementById('upsell-modal-pack-name');
+    const modalUpsellSabores = document.getElementById('upsell-modal-sabores');
+    const modalUpsellPrecioViejo = document.getElementById('upsell-modal-precio-viejo');
+    const modalUpsellPrecioNuevo = document.getElementById('upsell-modal-precio-nuevo');
+    const btnUpsellConfirm = document.getElementById('btn-upsell-confirm');
+    const btnUpsellReject = document.getElementById('btn-upsell-reject');
+
+    let currentUpSellOpportunity = null;
+
+    function abrirModalUpSell(opp) {
+      if (!modalUpsell) return;
+      currentUpSellOpportunity = opp;
+
+      const sizeLabel = opp.size === '280g' ? '280g' : '400g';
+      const ahorroTexto = formatCurrency(opp.ahorro);
+
+      if (modalUpsellMsg) {
+        modalUpsellMsg.innerHTML = `Estás llevando <strong class="text-[#1C1917]">${opp.totalBurritos} burritos</strong> en total separados. Si los llevás como un <strong class="text-[#D68844]">Pack x${opp.targetPack} (${sizeLabel})</strong>, te ahorrás <strong class="text-[#3A4534] font-bold">${ahorroTexto}</strong>. ¿Querés que lo actualicemos por vos?`;
+      }
+      if (modalUpsellPackName) {
+        modalUpsellPackName.textContent = `Pack x${opp.targetPack} · ${opp.size === '280g' ? 'BURRITO 280G' : 'BURROTE 400G'}`;
+      }
+      if (modalUpsellSabores) {
+        const sabores = [];
+        if (opp.totalPollo > 0) sabores.push(`${opp.totalPollo}x Pollo Clásico`);
+        if (opp.totalPork > 0) sabores.push(`${opp.totalPork}x Pulled Pork`);
+        modalUpsellSabores.textContent = sabores.join(' · ') || 'Sabores combinados';
+      }
+      if (modalUpsellPrecioViejo) {
+        modalUpsellPrecioViejo.textContent = formatCurrency(opp.precioViejo);
+      }
+      if (modalUpsellPrecioNuevo) {
+        modalUpsellPrecioNuevo.textContent = formatCurrency(opp.precioNuevo);
+      }
+
+      modalUpsell.classList.remove('hidden');
+    }
+
+    function cerrarModalUpSell() {
+      if (modalUpsell) modalUpsell.classList.add('hidden');
+      currentUpSellOpportunity = null;
+    }
+
+    function extraerPacksParaConsumir(size, reqs) {
+      const needed = { ...reqs };
+      const consumedUnits = [];
+
+      for (let i = 0; i < cart.length; i++) {
+        const it = cart[i];
+        if (it.type === 'boniato' || it.isBoniato || it.size !== size) continue;
+
+        const pack = it.pack;
+        if (needed[pack] && needed[pack] > 0) {
+          const available = it.quantity || 1;
+          const take = Math.min(available, needed[pack]);
+          needed[pack] -= take;
+
+          const unitPromoPrice = (it.burritoPromoPrice !== undefined) ? it.burritoPromoPrice : (it.promoPrice || it.totalPrice || 0);
+
+          consumedUnits.push({
+            itemId: it.id,
+            pack: pack,
+            take: take,
+            polloPerUnit: it.pollo || 0,
+            pulledPorkPerUnit: it.pulledPork || 0,
+            unitPrice: unitPromoPrice
+          });
+
+          if (Object.values(needed).every(v => v <= 0)) break;
+        }
+      }
+
+      if (Object.values(needed).some(v => v > 0)) {
+        return null;
+      }
+
+      return consumedUnits;
+    }
+
+    function evaluarUpSellPorSize(size) {
+      const itemsOfSize = cart.filter(it => (!it.type || it.type !== 'burrito') && it.size === size);
+      if (itemsOfSize.length === 0) return null;
+
+      const count5 = itemsOfSize.filter(it => it.pack === 5).reduce((s, it) => s + (it.quantity || 1), 0);
+      const count10 = itemsOfSize.filter(it => it.pack === 10).reduce((s, it) => s + (it.quantity || 1), 0);
+      const count15 = itemsOfSize.filter(it => it.pack === 15).reduce((s, it) => s + (it.quantity || 1), 0);
+
+      let targetPack = null;
+      let reqs = null;
+
+      // Prioridad 1: Packs hacia Pack x20 (20 burritos)
+      if (count5 >= 4) {
+        targetPack = 20;
+        reqs = { 5: 4 };
+      } else if (count10 >= 2) {
+        targetPack = 20;
+        reqs = { 10: 2 };
+      } else if (count15 >= 1 && count5 >= 1) {
+        targetPack = 20;
+        reqs = { 15: 1, 5: 1 };
+      }
+      // Prioridad 2: Packs hacia Pack x15 (15 burritos)
+      else if (count5 >= 3) {
+        targetPack = 15;
+        reqs = { 5: 3 };
+      } else if (count10 >= 1 && count5 >= 1) {
+        targetPack = 15;
+        reqs = { 10: 1, 5: 1 };
+      }
+      // Prioridad 3: Packs hacia Pack x10 (10 burritos)
+      else if (count5 >= 2) {
+        targetPack = 10;
+        reqs = { 5: 2 };
+      }
+
+      if (!targetPack || !reqs) return null;
+
+      const consumedUnits = extraerPacksParaConsumir(size, reqs);
+      if (!consumedUnits) return null;
+
+      const totalPollo = consumedUnits.reduce((sum, u) => sum + (u.polloPerUnit * u.take), 0);
+      const totalPork = consumedUnits.reduce((sum, u) => sum + (u.pulledPorkPerUnit * u.take), 0);
+      const precioViejo = consumedUnits.reduce((sum, u) => sum + (u.unitPrice * u.take), 0);
+      const precioNuevo = PRODUCT_DATA[size].packs[targetPack].total;
+      const ahorro = Math.max(0, precioViejo - precioNuevo);
+
+      if (ahorro <= 0) return null;
+
+      return {
+        size,
+        targetPack,
+        totalBurritos: targetPack,
+        consumedUnits,
+        totalPollo,
+        totalPork,
+        precioViejo,
+        precioNuevo,
+        ahorro
+      };
+    }
+
+    function detectarOportunidadUpSell() {
+      const sizes = ['280g', '400g'];
+      for (const size of sizes) {
+        const opp = evaluarUpSellPorSize(size);
+        if (opp) return opp;
+      }
+      return null;
+    }
+
+    function aplicarUpgradeUpSell(opp) {
+      if (!opp) return;
+      const { size, targetPack, consumedUnits, totalPollo, totalPork } = opp;
+
+      // Descontar unidades consumidas o eliminar los items viejos
+      consumedUnits.forEach(u => {
+        const itemIndex = cart.findIndex(it => it.id === u.itemId);
+        if (itemIndex !== -1) {
+          const it = cart[itemIndex];
+          const currentQty = it.quantity || 1;
+          if (currentQty <= u.take) {
+            cart.splice(itemIndex, 1);
+          } else {
+            it.quantity = currentQty - u.take;
+            const unitBase = size === '280g' ? 7500 : 8500;
+            const boniatoTotal = (it.boniato || 0) * 8900;
+            it.totalPrice = it.quantity * (it.promoPrice || (it.burritoPromoPrice + boniatoTotal));
+          }
+        }
+      });
+
+      // Crear y agregar el nuevo pack consolidado con los sabores combinados
+      const unitBase = size === '280g' ? 7500 : 8500;
+      const packData = PRODUCT_DATA[size].packs[targetPack];
+      const burritoOriginalPrice = targetPack * unitBase;
+      const burritoPromoPrice = packData.total;
+
+      const newItem = {
+        id: 'cart_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6),
+        type: 'burrito',
+        size: size,
+        sizeName: size === '280g' ? 'BURRITO (280G)' : 'BURROTE XL (400G)',
+        pack: targetPack,
+        packLabel: `Pack x${targetPack}`,
+        pollo: totalPollo,
+        pulledPork: totalPork,
+        burritoOriginalPrice: burritoOriginalPrice,
+        burritoPromoPrice: burritoPromoPrice,
+        quantity: 1,
+        originalPrice: burritoOriginalPrice,
+        promoPrice: burritoPromoPrice,
+        totalPrice: burritoPromoPrice
+      };
+
+      cart.push(newItem);
+
+      saveCart();
+      updateCartUI();
+    }
+
+    // Eventos de los botones del modal de Up-selling
+    if (btnUpsellConfirm) {
+      btnUpsellConfirm.addEventListener('click', () => {
+        if (currentUpSellOpportunity) {
+          aplicarUpgradeUpSell(currentUpSellOpportunity);
+        }
+        cerrarModalUpSell();
+        ejecutarCheckoutFinal();
+      });
+    }
+
+    if (btnUpsellReject) {
+      btnUpsellReject.addEventListener('click', () => {
+        cerrarModalUpSell();
+        ejecutarCheckoutFinal();
+      });
+    }
+
+    if (modalUpsellBackdrop) {
+      modalUpsellBackdrop.addEventListener('click', () => {
+        cerrarModalUpSell();
+        ejecutarCheckoutFinal();
+      });
+    }
+
+    // Ejecución final del Checkout (Google Sheets Webhook + Redirección WhatsApp)
+    function ejecutarCheckoutFinal() {
+      const nombre = checkoutNombre ? checkoutNombre.value.trim() : '';
+      const telefonoRaw = checkoutTelefono ? checkoutTelefono.value.trim() : '';
+      const numero = telefonoRaw.replace(/\D/g, '');
+      const localidad = checkoutLocalidad ? checkoutLocalidad.value : '';
+      const calle = checkoutCalle ? checkoutCalle.value.trim() : '';
+      const depto = checkoutDepto ? checkoutDepto.value.trim() : '';
+      const pago = checkoutPago ? checkoutPago.value : '';
+      const notas = checkoutNotas ? checkoutNotas.value.trim() : '';
+
+      const burritoPacks = cart.filter(it => !it.type || it.type !== 'boniato');
+      const boniatoItems = cart.filter(it => it.type === 'boniato' || it.isBoniato);
+      const totalBurritos = burritoPacks.reduce((sum, it) => sum + ((it.pack || 0) * (it.quantity || 1)), 0);
+      const totalBoniatoQty = boniatoItems.reduce((sum, it) => sum + (it.quantity || 0), 0);
+      const totalNetoProductos = burritoPacks.reduce((sum, it) => sum + ((it.burritoPromoPrice || it.promoPrice || it.totalPrice || 0) * (it.quantity || 1)), 0) + (totalBoniatoQty * 8900);
+      const shippingInfo = getShippingInfo(localidad, totalBurritos);
+      const totalFinal = totalNetoProductos + shippingInfo.costo;
+
+      // Franja horaria y resumen de logística
+      const zona = LOGISTICA_ZONAS[localidad];
+      const franja = zona ? zona.dia : (localidad === 'Otra zona' ? 'A coordinar vía WhatsApp' : '');
+
+      // Resumen de packs y desglose por sabor/tamaño para el webhook
+      const resumenPacksArr = burritoPacks.map(item => {
+        const qty = item.quantity || 1;
+        const label = item.packLabel || ('Pack x' + item.pack);
+        return qty > 1 ? (qty + 'x ' + label) : label;
+      });
+      if (totalBoniatoQty > 0) {
+        resumenPacksArr.push(totalBoniatoQty + 'x Boniato McCain');
+      }
+      const detallesPacks = resumenPacksArr.length > 0 ? resumenPacksArr.join(', ') : 'Sin packs';
+
+      const pollo280 = burritoPacks
+        .filter(it => it.size === '280g')
+        .reduce((sum, it) => sum + ((it.pollo || 0) * (it.quantity || 1)), 0);
+
+      const pork280 = burritoPacks
+        .filter(it => it.size === '280g')
+        .reduce((sum, it) => sum + ((it.pulledPork || 0) * (it.quantity || 1)), 0);
+
+      const pollo400 = burritoPacks
+        .filter(it => it.size === '400g')
+        .reduce((sum, it) => sum + ((it.pollo || 0) * (it.quantity || 1)), 0);
+
+      const pork400 = burritoPacks
+        .filter(it => it.size === '400g')
+        .reduce((sum, it) => sum + ((it.pulledPork || 0) * (it.quantity || 1)), 0);
+
+      // Cálculo de porcentaje de descuento
+      const subtotalBurritosBase = burritoPacks.reduce((sum, it) => sum + ((it.burritoOriginalPrice || it.originalPrice || 0) * (it.quantity || 1)), 0);
+      const totalBurritosNeto = burritoPacks.reduce((sum, it) => sum + (((it.burritoPromoPrice !== undefined) ? it.burritoPromoPrice : (it.promoPrice || it.totalPrice || 0)) * (it.quantity || 1)), 0);
+      const ahorro = subtotalBurritosBase - totalBurritosNeto;
+      const descuento = (subtotalBurritosBase > 0 && ahorro > 0)
+        ? Math.round((ahorro / subtotalBurritosBase) * 100) + '%'
+        : '0%';
+
+      // 1. Disparo asíncrono al Webhook de Google Sheets (en segundo plano, sin bloquear WhatsApp)
+      const webhookData = {
+        cliente: nombre,
+        numero: numero,
+        franja: franja,
+        direccion: calle,
+        localidad: localidad,
+        depto: depto,
+        detallesPacks: detallesPacks,
+        pollo280: pollo280,
+        pork280: pork280,
+        pollo400: pollo400,
+        pork400: pork400,
+        boniatos: totalBoniatoQty,
+        envio: shippingInfo.costo,
+        total: totalFinal,
+        descuento: descuento,
+        pago: pago,
+        notas: notas
+      };
+
+      try {
+        fetch('https://script.google.com/macros/s/AKfycbwKCSc0ZRz1ccEV83uHi8rdzfAZX_EAh2jZmADdhVGzCeSnfAPwNzmrZlzdXc43J10J/exec', {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+          },
+          body: JSON.stringify(webhookData)
+        }).catch(err => {
+          console.warn('Error al registrar pedido en Google Sheets:', err);
+        });
+      } catch (fetchErr) {
+        console.warn('Error al invocar webhook:', fetchErr);
+      }
+
+      // 2. Construye el mensaje respetando la estructura limpia y libre de mojibake
+      const direccionCompleta = (calle + (depto ? ' ' + depto : '')).trim();
+      const costoEnvioTexto = shippingInfo.textoWhatsApp;
+
+      let itemsTexto = burritoPacks.map(item => {
+        const cantidad = item.quantity || 1;
+        const burritoPromoPrice = (item.burritoPromoPrice !== undefined) ? item.burritoPromoPrice : (item.promoPrice || item.totalPrice || 0);
+        const precioTotalPack = burritoPromoPrice * cantidad;
+        const sizeLabel = item.size === '280g' ? '280g' : '400g';
+        const nombrePack = `${item.packLabel} (${sizeLabel})`;
+        const sabores = [];
+        if (item.pollo > 0) sabores.push(`${item.pollo}x Pollo Clásico`);
+        if (item.pulledPork > 0) sabores.push(`${item.pulledPork}x Pulled Pork`);
+        const saboresTexto = sabores.length > 0 ? sabores.join(', ') : 'Surtido';
+
+        return `• ${cantidad}x ${nombrePack} — $${precioTotalPack.toLocaleString('es-AR')}\n  (${saboresTexto})`;
+      }).join('\n');
+
+      if (totalBoniatoQty > 0) {
+        const totalBoniato = totalBoniatoQty * 8900;
+        const boniatoLine = `• ${totalBoniatoQty}x Boniato McCain (500g) — $${totalBoniato.toLocaleString('es-AR')}`;
+        itemsTexto = itemsTexto ? `${itemsTexto}\n${boniatoLine}` : boniatoLine;
+      }
+
+      let mensaje = `*MANCHA BURRITOS · NUEVO PEDIDO*\n\n`;
+      mensaje += `*Cliente:* ${nombre}\n`;
+      if (numero) {
+        mensaje += `*Teléfono:* ${numero}\n`;
+      }
+      mensaje += `*Entrega:* ${localidad}\n`;
+      mensaje += `*Dirección:* ${direccionCompleta}\n`;
+      mensaje += `*Pago:* ${pago}\n`;
+      mensaje += `*Notas:* ${notas || "Sin aclaraciones adicionales"}\n\n`;
+      mensaje += `*PEDIDO:*\n`;
+      mensaje += `${itemsTexto}\n\n`;
+      mensaje += `-----------------------------------\n`;
+      mensaje += `Subtotal: $${totalNetoProductos.toLocaleString('es-AR')}\n`;
+      mensaje += `Envío: ${costoEnvioTexto}\n`;
+      mensaje += `*TOTAL A PAGAR: $${totalFinal.toLocaleString('es-AR')}*\n`;
+      mensaje += `-----------------------------------`;
+
+      // 3. Disparo seguro a WhatsApp sin transformaciones intermedias ni mojibake
+      const url = "https://wa.me/" + NUMERO_WHATSAPP + "?text=" + encodeURIComponent(mensaje);
+      window.open(url, "_blank");
+
+      // 4. Limpiar carrito y cerrar drawer
+      cart = [];
+      cantidadBoniato = 0;
+      window.cantidadBoniato = 0;
+      saveCart();
+      updateCartUI();
+      showDrawerStep('items');
+      closeCartDrawer();
+    }
+
+    // Evento de clic en botón final de checkout: validación + intercepción de up-selling
     if (btnConfirmarWhatsapp) {
       btnConfirmarWhatsapp.addEventListener('click', () => {
         if (cart.length === 0) {
@@ -3037,16 +3467,11 @@
         }
 
         const nombre = checkoutNombre ? checkoutNombre.value.trim() : '';
-        const telefonoRaw = checkoutTelefono ? checkoutTelefono.value.trim() : '';
-        const numero = telefonoRaw.replace(/\D/g, '');
         const localidad = checkoutLocalidad ? checkoutLocalidad.value : '';
         const calle = checkoutCalle ? checkoutCalle.value.trim() : '';
-        const depto = checkoutDepto ? checkoutDepto.value.trim() : '';
         const pago = checkoutPago ? checkoutPago.value : '';
-        const notas = checkoutNotas ? checkoutNotas.value.trim() : '';
 
-        // 1. Valida que #checkout-nombre, #checkout-localidad, #checkout-calle y #checkout-pago tengan valor.
-        // Si alguno falta, aplica border-[#B5361D], hace focus en el primer campo faltante y frena la ejecución.
+        // 1. Valida que los campos obligatorios tengan valor
         const campos = [
           { el: checkoutNombre, val: nombre },
           { el: checkoutLocalidad, val: localidad },
@@ -3070,142 +3495,15 @@
 
         if (hasError) return;
 
-        const burritoPacks = cart.filter(it => !it.type || it.type !== 'boniato');
-        const boniatoItems = cart.filter(it => it.type === 'boniato' || it.isBoniato);
-        const totalBurritos = burritoPacks.reduce((sum, it) => sum + ((it.pack || 0) * (it.quantity || 1)), 0);
-        const totalBoniatoQty = boniatoItems.reduce((sum, it) => sum + (it.quantity || 0), 0);
-        const totalNetoProductos = burritoPacks.reduce((sum, it) => sum + ((it.burritoPromoPrice || it.promoPrice || it.totalPrice || 0) * (it.quantity || 1)), 0) + (totalBoniatoQty * 8900);
-        const shippingInfo = getShippingInfo(localidad, totalBurritos);
-        const totalFinal = totalNetoProductos + shippingInfo.costo;
-
-        // Franja horaria y resumen de logística
-        const zona = LOGISTICA_ZONAS[localidad];
-        const franja = zona ? zona.dia : (localidad === 'Otra zona' ? 'A coordinar vía WhatsApp' : '');
-
-        // Resumen de packs y desglose por sabor/tamaño para el webhook
-        const resumenPacksArr = burritoPacks.map(item => {
-          const qty = item.quantity || 1;
-          const label = item.packLabel || ('Pack x' + item.pack);
-          return qty > 1 ? (qty + 'x ' + label) : label;
-        });
-        if (totalBoniatoQty > 0) {
-          resumenPacksArr.push(totalBoniatoQty + 'x Boniato McCain');
-        }
-        const detallesPacks = resumenPacksArr.length > 0 ? resumenPacksArr.join(', ') : 'Sin packs';
-
-        const pollo280 = burritoPacks
-          .filter(it => it.size === '280g')
-          .reduce((sum, it) => sum + ((it.pollo || 0) * (it.quantity || 1)), 0);
-
-        const pork280 = burritoPacks
-          .filter(it => it.size === '280g')
-          .reduce((sum, it) => sum + ((it.pulledPork || 0) * (it.quantity || 1)), 0);
-
-        const pollo400 = burritoPacks
-          .filter(it => it.size === '400g')
-          .reduce((sum, it) => sum + ((it.pollo || 0) * (it.quantity || 1)), 0);
-
-        const pork400 = burritoPacks
-          .filter(it => it.size === '400g')
-          .reduce((sum, it) => sum + ((it.pulledPork || 0) * (it.quantity || 1)), 0);
-
-        // Cálculo de porcentaje de descuento
-        const subtotalBurritosBase = burritoPacks.reduce((sum, it) => sum + ((it.burritoOriginalPrice || it.originalPrice || 0) * (it.quantity || 1)), 0);
-        const totalBurritosNeto = burritoPacks.reduce((sum, it) => sum + (((it.burritoPromoPrice !== undefined) ? it.burritoPromoPrice : (it.promoPrice || it.totalPrice || 0)) * (it.quantity || 1)), 0);
-        const ahorro = subtotalBurritosBase - totalBurritosNeto;
-        const descuento = (subtotalBurritosBase > 0 && ahorro > 0)
-          ? Math.round((ahorro / subtotalBurritosBase) * 100) + '%'
-          : '0%';
-
-        // 2. Disparo asíncrono al Webhook de Google Sheets (en segundo plano, sin bloquear WhatsApp)
-        const webhookData = {
-          cliente: nombre,
-          numero: numero,
-          franja: franja,
-          direccion: calle,
-          localidad: localidad,
-          depto: depto,
-          detallesPacks: detallesPacks,
-          pollo280: pollo280,
-          pork280: pork280,
-          pollo400: pollo400,
-          pork400: pork400,
-          boniatos: totalBoniatoQty,
-          envio: shippingInfo.costo,
-          total: totalFinal,
-          descuento: descuento,
-          pago: pago,
-          notas: notas
-        };
-
-        try {
-          fetch('https://script.google.com/macros/s/AKfycbwKCSc0ZRz1ccEV83uHi8rdzfAZX_EAh2jZmADdhVGzCeSnfAPwNzmrZlzdXc43J10J/exec', {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-              'Content-Type': 'text/plain;charset=utf-8'
-            },
-            body: JSON.stringify(webhookData)
-          }).catch(err => {
-            console.warn('Error al registrar pedido en Google Sheets:', err);
-          });
-        } catch (fetchErr) {
-          console.warn('Error al invocar webhook:', fetchErr);
+        // 2. Interceptar con Alerta Inteligente de Up-selling si aplica
+        const oportunidadUpSell = detectarOportunidadUpSell();
+        if (oportunidadUpSell) {
+          abrirModalUpSell(oportunidadUpSell);
+          return; // Pausar checkout
         }
 
-        // 3. Construye el mensaje respetando la estructura limpia y libre de mojibake
-        const direccionCompleta = (calle + (depto ? ' ' + depto : '')).trim();
-        const costoEnvioTexto = shippingInfo.textoWhatsApp;
-
-        let itemsTexto = burritoPacks.map(item => {
-          const cantidad = item.quantity || 1;
-          const burritoPromoPrice = (item.burritoPromoPrice !== undefined) ? item.burritoPromoPrice : (item.promoPrice || item.totalPrice || 0);
-          const precioTotalPack = burritoPromoPrice * cantidad;
-          const sizeLabel = item.size === '280g' ? '280g' : '400g';
-          const nombrePack = `${item.packLabel} (${sizeLabel})`;
-          const sabores = [];
-          if (item.pollo > 0) sabores.push(`${item.pollo}x Pollo Clásico`);
-          if (item.pulledPork > 0) sabores.push(`${item.pulledPork}x Pulled Pork`);
-          const saboresTexto = sabores.length > 0 ? sabores.join(', ') : 'Surtido';
-
-          return `• ${cantidad}x ${nombrePack} — $${precioTotalPack.toLocaleString('es-AR')}\n  (${saboresTexto})`;
-        }).join('\n');
-
-        if (totalBoniatoQty > 0) {
-          const totalBoniato = totalBoniatoQty * 8900;
-          const boniatoLine = `• ${totalBoniatoQty}x Boniato McCain (500g) — $${totalBoniato.toLocaleString('es-AR')}`;
-          itemsTexto = itemsTexto ? `${itemsTexto}\n${boniatoLine}` : boniatoLine;
-        }
-
-        let mensaje = `*MANCHA BURRITOS · NUEVO PEDIDO*\n\n`;
-        mensaje += `*Cliente:* ${nombre}\n`;
-        if (numero) {
-          mensaje += `*Teléfono:* ${numero}\n`;
-        }
-        mensaje += `*Entrega:* ${localidad}\n`;
-        mensaje += `*Dirección:* ${direccionCompleta}\n`;
-        mensaje += `*Pago:* ${pago}\n`;
-        mensaje += `*Notas:* ${notas || "Sin aclaraciones adicionales"}\n\n`;
-        mensaje += `*PEDIDO:*\n`;
-        mensaje += `${itemsTexto}\n\n`;
-        mensaje += `-----------------------------------\n`;
-        mensaje += `Subtotal: $${totalNetoProductos.toLocaleString('es-AR')}\n`;
-        mensaje += `Envío: ${costoEnvioTexto}\n`;
-        mensaje += `*TOTAL A PAGAR: $${totalFinal.toLocaleString('es-AR')}*\n`;
-        mensaje += `-----------------------------------`;
-
-        // 4. Disparo seguro a WhatsApp sin transformaciones intermedias ni mojibake
-        const url = "https://wa.me/" + NUMERO_WHATSAPP + "?text=" + encodeURIComponent(mensaje);
-        window.open(url, "_blank");
-
-        // Limpiar carrito y cerrar drawer
-        cart = [];
-        cantidadBoniato = 0;
-        window.cantidadBoniato = 0;
-        saveCart();
-        updateCartUI();
-        showDrawerStep('items');
-        closeCartDrawer();
+        // Si no hay combinación de ahorro, ejecutar checkout directamente
+        ejecutarCheckoutFinal();
       });
     }
 
