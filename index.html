@@ -142,16 +142,16 @@
 <body class="bg-brand-cream text-brand-dark min-h-screen flex flex-col antialiased selection:bg-brand-ochre selection:text-brand-dark overflow-x-hidden">
 
     <!-- =========================================================================
-       1. ANNOUNCEMENT BAR (Posicionamiento normal/relativo en lo más alto del body)
+       1. STOCK SCARCITY BANNER (Sticky/Fixed en el tope absoluto de la web)
        ========================================================================= -->
-  <div id="announcement-bar" class="relative w-full z-50 bg-[#3A4534] text-[#F9F1E6] text-[10px] md:text-[11px] font-montserrat font-medium py-2 px-4 text-center tracking-widest uppercase border-b border-[#F9F1E6]/10 h-[34px] flex items-center justify-center">
-    ENVÍOS PROGRAMADOS A TU FREEZER
+  <div id="announcement-bar" class="fixed top-0 left-0 w-full z-50 bg-[#3A4534] text-[#F9F1E6] text-xs font-montserrat font-bold py-2 px-4 text-center tracking-wide h-[34px] flex items-center justify-center transition-colors duration-300 shadow-sm border-b border-[#1C1917]/10 select-none">
+    <span id="stock-banner-text">ENVÍOS PROGRAMADOS A TU FREEZER</span>
   </div>
 
   <!-- =========================================================================
-       2. HEADER / NAVBAR (Al inicio debajo de la barra, fijo al scrollear)
+       2. HEADER / NAVBAR (Fixed debajo del banner en top-[34px])
        ========================================================================= -->
-  <header id="main-header" class="absolute top-[34px] left-0 w-full z-50 bg-transparent transition-all duration-300 px-8 md:px-16 py-3.5 h-[66px] flex items-center justify-between select-none">
+  <header id="main-header" class="fixed top-[34px] left-0 w-full z-40 bg-transparent transition-all duration-300 px-8 md:px-16 py-3.5 h-[66px] flex items-center justify-between select-none">
     
     <!-- Izquierda: Logo "MANCHA" con tamaño y protagonismo oficial -->
     <a href="#home" id="brand-logo" class="flex items-center leading-none focus:outline-none group shrink-0" aria-label="Mancha Home">
@@ -1109,8 +1109,8 @@
     <!-- =======================================================================
          VISTA 2: PRODUCTOS (Configurador interactivo Split 50/50 estilo BAD HAMBRES)
          ======================================================================= -->
-    <div id="view-productos" class="hidden w-full bg-brand-cream pt-[66px]">
-      <div id="armado-pedido" data-id="product-builder" class="flex flex-col w-full h-auto overflow-visible md:flex-row md:h-[calc(100vh-66px)] md:overflow-hidden relative">
+    <div id="view-productos" class="hidden w-full bg-brand-cream pt-[100px]">
+      <div id="armado-pedido" data-id="product-builder" class="flex flex-col w-full h-auto overflow-visible md:flex-row md:h-[calc(100vh-100px)] md:overflow-hidden relative">
         
         <!-- COLUMNA IZQUIERDA (FOTO: 72 en mobile / h-full en desktop) -->
         <div class="w-full md:w-1/2 h-72 md:h-full relative shrink-0 block overflow-hidden border-b md:border-b-0 md:border-r border-[#1C1917]/15 bg-brand-cream">
@@ -1225,9 +1225,12 @@
               
               <!-- Fila Pollo Clásico -->
               <div class="flex items-center justify-between py-2.5 border-b border-stone-200">
-                <span class="font-montserrat font-bold text-sm text-[#1C1917] uppercase">
-                  POLLO CLÁSICO
-                </span>
+                <div class="flex items-center gap-2">
+                  <span class="font-montserrat font-bold text-sm text-[#1C1917] uppercase">
+                    POLLO CLÁSICO
+                  </span>
+                  <span id="badge-agotado-pollo" class="hidden text-[10px] font-black tracking-wider text-[#B5361D] bg-[#B5361D]/10 px-2 py-0.5 rounded-full uppercase">Agotado</span>
+                </div>
 
                 <!-- Estructura exacta para Pollo Clásico -->
                 <div class="flex items-center bg-white rounded-full border border-stone-200 overflow-hidden h-10">
@@ -1239,9 +1242,12 @@
 
               <!-- Fila Pulled Pork -->
               <div class="flex items-center justify-between py-2.5 border-b border-stone-200">
-                <span class="font-montserrat font-bold text-sm text-[#1C1917] uppercase">
-                  PULLED PORK
-                </span>
+                <div class="flex items-center gap-2">
+                  <span class="font-montserrat font-bold text-sm text-[#1C1917] uppercase">
+                    PULLED PORK
+                  </span>
+                  <span id="badge-agotado-pork" class="hidden text-[10px] font-black tracking-wider text-[#B5361D] bg-[#B5361D]/10 px-2 py-0.5 rounded-full uppercase">Agotado</span>
+                </div>
 
                 <!-- Estructura exacta para Pulled Pork -->
                 <div class="flex items-center bg-white rounded-full border border-stone-200 overflow-hidden h-10">
@@ -1263,7 +1269,10 @@
                   <div class="flex items-center gap-4">
                     <img src="Images/producto-boniatos.jpg" alt="Boniato McCain (500g)" loading="lazy" decoding="async" class="w-16 h-16 md:w-20 md:h-20 rounded-md object-cover">
                     <div class="flex flex-col">
-                      <span class="font-bold text-[#1C1917] text-sm">Boniato McCain (500g)</span>
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-[#1C1917] text-sm">Boniato McCain (500g)</span>
+                        <span id="badge-agotado-boniato" class="hidden text-[10px] font-black tracking-wider text-[#B5361D] bg-[#B5361D]/10 px-2 py-0.5 rounded-full uppercase">Agotado</span>
+                      </div>
                       <span class="text-xs text-stone-500 font-medium">+ $8.900</span>
                     </div>
                   </div>
@@ -1579,10 +1588,10 @@
       if (view === 'productos') {
         viewHome.classList.add('hidden');
         viewProductos.classList.remove('hidden');
-        if (announcementBar) announcementBar.classList.add('hidden');
+        // announcementBar permanece visible como banner sticky
         if (mainHeaderEl) {
-          mainHeaderEl.classList.remove('absolute', 'top-[34px]', 'bg-transparent');
-          mainHeaderEl.classList.add('fixed', 'top-0', 'bg-[#1C1917]', 'shadow-md');
+          mainHeaderEl.classList.remove('bg-transparent');
+          mainHeaderEl.classList.add('bg-[#1C1917]', 'shadow-md');
         }
 
         // Actualizar estilos activos de navegación
@@ -1605,7 +1614,7 @@
       } else {
         viewProductos.classList.add('hidden');
         viewHome.classList.remove('hidden');
-        if (announcementBar) announcementBar.classList.remove('hidden');
+        // announcementBar permanece visible
 
         if (navHome) {
           navHome.classList.add('text-[#F9F1E6]');
@@ -1644,16 +1653,16 @@
       if (isProductos) {
         // En PRODUCTOS: Fondo sólido Carbón Base (#1C1917) permanente desde el inicio anclado a top-0
         if (announcementBar) announcementBar.classList.add('hidden');
-        mainHeaderEl.classList.remove('bg-transparent', 'absolute', 'top-[34px]');
-        mainHeaderEl.classList.add('fixed', 'top-0', 'bg-[#1C1917]', 'shadow-md');
+        mainHeaderEl.classList.remove('bg-transparent');
+        mainHeaderEl.classList.add('bg-[#1C1917]', 'shadow-md');
       } else {
         // En HOME: Transparente al inicio (debajo de announcement bar), sólido fijo al scrollear
         if (window.scrollY >= 34) {
-          mainHeaderEl.classList.remove('absolute', 'top-[34px]', 'bg-transparent');
-          mainHeaderEl.classList.add('fixed', 'top-0', 'bg-[#1C1917]', 'shadow-md');
+          mainHeaderEl.classList.remove('bg-transparent');
+          mainHeaderEl.classList.add('bg-[#1C1917]', 'shadow-md');
         } else {
-          mainHeaderEl.classList.remove('fixed', 'top-0', 'bg-[#1C1917]', 'shadow-md');
-          mainHeaderEl.classList.add('absolute', 'top-[34px]', 'bg-transparent');
+          mainHeaderEl.classList.remove('bg-[#1C1917]', 'shadow-md');
+          mainHeaderEl.classList.add('bg-transparent');
         }
       }
     }
@@ -2074,14 +2083,117 @@
     const btnPlusPulled = document.getElementById('btn-sumar-pork') || document.getElementById('btn-plus-pulled');
     const productMainTitle = document.getElementById('product-main-title');
 
+    // =========================================================================
+    // SISTEMA DE LECTURA DE STOCK EN VIVO Y CONTROL DE ESCASEZ
+    // =========================================================================
+    const STOCK_ENDPOINT = 'https://script.google.com/macros/s/AKfycbw63Do_XKTmCjSAmQwh3iWWZEN0byUFXHnjwU7f7aWp7etgiIALghz5t91xOPxpj1HF/exec';
+    let stockActual = null; // null mientras carga
+
+    // Obtener cantidad de unidades de un SKU actualmente reservadas en el carrito
+    function getCartCountForSku(sku) {
+      if (!Array.isArray(cart)) return 0;
+      const burritoPacks = cart.filter(it => !it.type || it.type !== 'boniato');
+      if (sku === 'pollo280') {
+        return burritoPacks.filter(it => it.size === '280g').reduce((sum, it) => sum + ((it.pollo || 0) * (it.quantity || 1)), 0);
+      }
+      if (sku === 'pork280') {
+        return burritoPacks.filter(it => it.size === '280g').reduce((sum, it) => sum + ((it.pulledPork || 0) * (it.quantity || 1)), 0);
+      }
+      if (sku === 'pollo400') {
+        return burritoPacks.filter(it => it.size === '400g').reduce((sum, it) => sum + ((it.pollo || 0) * (it.quantity || 1)), 0);
+      }
+      if (sku === 'pork400') {
+        return burritoPacks.filter(it => it.size === '400g').reduce((sum, it) => sum + ((it.pulledPork || 0) * (it.quantity || 1)), 0);
+      }
+      if (sku === 'boniatos') {
+        const boniatoItems = cart.filter(it => it.type === 'boniato' || it.isBoniato);
+        return boniatoItems.reduce((sum, it) => sum + (it.quantity || 0), 0);
+      }
+      return 0;
+    }
+
+    // Helper para deshabilitar / habilitar botones de incremento/decremento
+    function setBtnDisabled(btn, disabled) {
+      if (!btn) return;
+      btn.disabled = disabled;
+      if (disabled) {
+        btn.classList.add('opacity-30', 'cursor-not-allowed', 'text-stone-300', 'bg-stone-50');
+        btn.classList.remove('hover:text-[#1C1917]', 'hover:bg-stone-100', 'hover:bg-stone-200', 'cursor-pointer', 'text-stone-500');
+      } else {
+        btn.classList.remove('opacity-30', 'cursor-not-allowed', 'text-stone-300', 'bg-stone-50');
+        btn.classList.add('cursor-pointer', 'text-stone-500');
+        if (btn.id && btn.id.includes('boniato')) {
+          btn.classList.add('hover:bg-stone-200');
+        } else {
+          btn.classList.add('hover:bg-stone-100');
+        }
+        btn.classList.add('hover:text-[#1C1917]');
+      }
+    }
+
+    // Actualiza el banner sticky según la suma total de burritos en stock
+    function actualizarBannerStock() {
+      const banner = document.getElementById('announcement-bar');
+      const bannerText = document.getElementById('stock-banner-text');
+      if (!banner || !bannerText || !stockActual) return;
+
+      const totalBurritos = (stockActual.pollo280 || 0) + 
+                            (stockActual.pork280 || 0) + 
+                            (stockActual.pollo400 || 0) + 
+                            (stockActual.pork400 || 0);
+
+      if (totalBurritos > 0) {
+        // Fondo amarillo/verde lima, texto negro
+        banner.className = 'fixed top-0 left-0 w-full z-50 bg-[#FACC15] text-[#1C1917] text-xs md:text-sm font-montserrat font-extrabold py-2 px-4 text-center tracking-wide h-[34px] flex items-center justify-center transition-colors duration-300 shadow-sm border-b border-[#1C1917]/10 select-none';
+        bannerText.textContent = `🔥 ¡Última tanda! Quedan solo ${totalBurritos} burritos`;
+      } else {
+        // Fondo rojo o verde flúor, texto negro: Sold out - Tanda agotada
+        banner.className = 'fixed top-0 left-0 w-full z-50 bg-[#EF4444] text-[#1C1917] text-xs md:text-sm font-montserrat font-black py-2 px-4 text-center tracking-wide h-[34px] flex items-center justify-center transition-colors duration-300 shadow-sm border-b border-[#1C1917]/10 select-none';
+        bannerText.textContent = 'Sold out - Tanda agotada';
+      }
+    }
+
+    // Fetch inicial asíncrono para obtener stock desde Google Apps Script
+    async function cargarStockEnVivo() {
+      try {
+        const response = await fetch(STOCK_ENDPOINT);
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        const data = await response.json();
+
+        if (data && typeof data === 'object' && !data.error && data.status !== 'error') {
+          stockActual = {
+            pollo280: Math.max(0, parseInt(data.pollo280, 10) || 0),
+            pork280: Math.max(0, parseInt(data.pork280, 10) || 0),
+            pollo400: Math.max(0, parseInt(data.pollo400, 10) || 0),
+            pork400: Math.max(0, parseInt(data.pork400, 10) || 0),
+            boniatos: Math.max(0, parseInt(data.boniatos, 10) || 0)
+          };
+          actualizarBannerStock();
+          balanceFlavorsForPack(currentPack);
+          updateConfiguratorUI();
+        } else {
+          console.warn('Respuesta de stock no válida o error devuelto:', data);
+        }
+      } catch (err) {
+        console.warn('Error al consultar stock en vivo:', err);
+      }
+    }
+
     function formatCurrency(amount) {
       return '$' + amount.toLocaleString('es-AR');
     }
 
-    // Actualiza precios, textos y estados reactivos del configurador
+    // Actualiza precios, textos y estados reactivos del configurador con lectura de stock
     function updateConfiguratorUI() {
       const packData = PRODUCT_DATA[currentSize].packs[currentPack];
       const totalFlavors = flavors.pollo + flavors.pulledPork;
+
+      // Lectura de stock para el tamaño actual
+      const skuPollo = currentSize === '280g' ? 'pollo280' : 'pollo400';
+      const skuPork = currentSize === '280g' ? 'pork280' : 'pork400';
+      const stockMaxPollo = stockActual ? Math.max(0, (stockActual[skuPollo] || 0) - getCartCountForSku(skuPollo)) : 999;
+      const stockMaxPork = stockActual ? Math.max(0, (stockActual[skuPork] || 0) - getCartCountForSku(skuPork)) : 999;
+      const totalStockSize = stockMaxPollo + stockMaxPork;
 
       // Precio unitario
       if (unitPriceLabel) {
@@ -2141,19 +2253,59 @@
             badgeEl.className = 'pack-badge inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded mt-1 bg-stone-200 text-stone-500';
           }
         }
+
+        // Si el stock total de este tamaño no alcanza para el pack, deshabilitar visualmente
+        if (stockActual && totalStockSize < packNum) {
+          btn.classList.add('opacity-40', 'pointer-events-none');
+        } else {
+          btn.classList.remove('opacity-40', 'pointer-events-none');
+        }
       });
 
       // Cantidades de sabores
       if (qtyPolloEl) qtyPolloEl.textContent = flavors.pollo;
       if (qtyPulledEl) qtyPulledEl.textContent = flavors.pulledPork;
 
+      // Badges de Agotado
+      const badgeAgotadoPollo = document.getElementById('badge-agotado-pollo');
+      const badgeAgotadoPork = document.getElementById('badge-agotado-pork');
+      if (badgeAgotadoPollo) {
+        if (stockActual && stockMaxPollo <= 0) badgeAgotadoPollo.classList.remove('hidden');
+        else badgeAgotadoPollo.classList.add('hidden');
+      }
+      if (badgeAgotadoPork) {
+        if (stockActual && stockMaxPork <= 0) badgeAgotadoPork.classList.remove('hidden');
+        else badgeAgotadoPork.classList.add('hidden');
+      }
+
+      // Bloqueo y UX de botones [+] y [-] de sabores
+      setBtnDisabled(btnPlusPollo, flavors.pollo >= stockMaxPollo);
+      setBtnDisabled(btnMinusPollo, flavors.pollo <= 0);
+
+      setBtnDisabled(btnPlusPulled, flavors.pulledPork >= stockMaxPork);
+      setBtnDisabled(btnMinusPulled, flavors.pulledPork <= 0);
+
+      // Boniato: Control de stock y botones
+      const contadorBoniatoEl = document.getElementById('contador-boniato');
+      const boniatoCount = contadorBoniatoEl ? (parseInt(contadorBoniatoEl.textContent, 10) || 0) : 0;
+      const stockMaxBoniato = stockActual ? Math.max(0, (stockActual.boniatos || 0) - getCartCountForSku('boniatos')) : 999;
+      const badgeAgotadoBoniato = document.getElementById('badge-agotado-boniato');
+      if (badgeAgotadoBoniato) {
+        if (stockActual && stockMaxBoniato <= 0) badgeAgotadoBoniato.classList.remove('hidden');
+        else badgeAgotadoBoniato.classList.add('hidden');
+      }
+      setBtnDisabled(btnSumarBoniato, boniatoCount >= stockMaxBoniato);
+      setBtnDisabled(btnRestarBoniato, boniatoCount <= 0);
+
       // Botón CTA reactivo
       if (btnAddCart) {
-        const contadorBoniatoEl = document.getElementById('contador-boniato');
-        const boniatoCount = contadorBoniatoEl ? (parseInt(contadorBoniatoEl.textContent, 10) || 0) : 0;
         const totalConAdicionales = packData.total + (boniatoCount * 8900);
 
-        if (totalFlavors === currentPack) {
+        if (stockActual && totalStockSize < currentPack) {
+          btnAddCart.disabled = true;
+          btnAddCart.textContent = 'STOCK INSUFICIENTE';
+          btnAddCart.className = 'w-full py-3.5 bg-stone-300 text-stone-600 font-montserrat font-extrabold text-xs uppercase tracking-widest rounded-none border border-stone-300 cursor-not-allowed';
+        } else if (totalFlavors === currentPack) {
           btnAddCart.disabled = false;
           btnAddCart.textContent = `AGREGAR AL CARRITO - ${formatCurrency(totalConAdicionales)}`;
           btnAddCart.className = 'w-full py-3.5 bg-[#D68844] hover:bg-[#FDD991] text-[#1C1917] font-montserrat font-extrabold text-xs uppercase tracking-widest rounded-none transition-colors duration-200 border border-[#1C1917] cursor-pointer';
@@ -2171,21 +2323,38 @@
       }
     }
 
-    // Auto-repartir sabores equitativamente según el pack
+    // Auto-repartir sabores equitativamente según el pack respetando el stock disponible
     function balanceFlavorsForPack(pack) {
-      if (pack === 5) {
-        flavors.pollo = 3;
-        flavors.pulledPork = 2;
-      } else if (pack === 10) {
-        flavors.pollo = 5;
-        flavors.pulledPork = 5;
-      } else if (pack === 15) {
-        flavors.pollo = 8;
-        flavors.pulledPork = 7;
-      } else if (pack === 20) {
-        flavors.pollo = 10;
-        flavors.pulledPork = 10;
+      const skuPollo = currentSize === '280g' ? 'pollo280' : 'pollo400';
+      const skuPork = currentSize === '280g' ? 'pork280' : 'pork400';
+      const stockMaxPollo = stockActual ? Math.max(0, (stockActual[skuPollo] || 0) - getCartCountForSku(skuPollo)) : 999;
+      const stockMaxPork = stockActual ? Math.max(0, (stockActual[skuPork] || 0) - getCartCountForSku(skuPork)) : 999;
+
+      let idealPollo = Math.ceil(pack / 2);
+      let idealPork = pack - idealPollo;
+      if (pack === 5) { idealPollo = 3; idealPork = 2; }
+      else if (pack === 15) { idealPollo = 8; idealPork = 7; }
+
+      let pollo = Math.min(idealPollo, stockMaxPollo);
+      let pork = Math.min(idealPork, stockMaxPork);
+
+      if (pollo + pork < pack) {
+        const faltan = pack - (pollo + pork);
+        if (pollo < stockMaxPollo) {
+          const sumar = Math.min(faltan, stockMaxPollo - pollo);
+          pollo += sumar;
+        }
       }
+      if (pollo + pork < pack) {
+        const faltan = pack - (pollo + pork);
+        if (pork < stockMaxPork) {
+          const sumar = Math.min(faltan, stockMaxPork - pork);
+          pork += sumar;
+        }
+      }
+
+      flavors.pollo = pollo;
+      flavors.pulledPork = pork;
     }
 
     // Navegación fluida hacia tabla nutricional desde el configurador
@@ -2214,6 +2383,7 @@
     if (btnSize280) {
       btnSize280.addEventListener('click', () => {
         currentSize = '280g';
+        balanceFlavorsForPack(currentPack);
         updateConfiguratorUI();
       });
     }
@@ -2221,6 +2391,7 @@
     if (btnSize400) {
       btnSize400.addEventListener('click', () => {
         currentSize = '400g';
+        balanceFlavorsForPack(currentPack);
         updateConfiguratorUI();
       });
     }
@@ -2234,9 +2405,13 @@
       });
     });
 
-    // Eventos de botones [+] y [-] de Sabores
+    // Eventos de botones [+] y [-] de Sabores con bloqueo por stock
     if (btnPlusPollo) {
       btnPlusPollo.addEventListener('click', () => {
+        const skuPollo = currentSize === '280g' ? 'pollo280' : 'pollo400';
+        const stockMaxPollo = stockActual ? Math.max(0, (stockActual[skuPollo] || 0) - getCartCountForSku(skuPollo)) : 999;
+        if (flavors.pollo >= stockMaxPollo) return;
+
         const total = flavors.pollo + flavors.pulledPork;
         if (total < currentPack) {
           flavors.pollo++;
@@ -2259,6 +2434,10 @@
 
     if (btnPlusPulled) {
       btnPlusPulled.addEventListener('click', () => {
+        const skuPork = currentSize === '280g' ? 'pork280' : 'pork400';
+        const stockMaxPork = stockActual ? Math.max(0, (stockActual[skuPork] || 0) - getCartCountForSku(skuPork)) : 999;
+        if (flavors.pulledPork >= stockMaxPork) return;
+
         const total = flavors.pollo + flavors.pulledPork;
         if (total < currentPack) {
           flavors.pulledPork++;
@@ -2279,14 +2458,16 @@
       });
     }
 
-    // Eventos de selector de Boniato McCain en el configurador
+    // Eventos de selector de Boniato McCain en el configurador con control de stock
     const btnRestarBoniato = document.getElementById('btn-restar-boniato');
     const btnSumarBoniato = document.getElementById('btn-sumar-boniato');
     const contadorBoniato = document.getElementById('contador-boniato');
 
     if (btnSumarBoniato && contadorBoniato) {
       btnSumarBoniato.addEventListener('click', () => {
+        const stockMaxBoniato = stockActual ? Math.max(0, (stockActual.boniatos || 0) - getCartCountForSku('boniatos')) : 999;
         let val = parseInt(contadorBoniato.textContent, 10) || 0;
+        if (val >= stockMaxBoniato) return;
         val++;
         contadorBoniato.textContent = val;
         updateConfiguratorUI();
@@ -3101,6 +3282,12 @@
     loadCart();
     updateCartUI();
     updateConfiguratorUI();
-  </script>
+      // Inicialización del Stock en Vivo al cargar la página
+    cargarStockEnVivo();
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) cargarStockEnVivo();
+    });
+  
+</script>
 </body>
 </html>
