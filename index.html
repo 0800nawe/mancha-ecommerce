@@ -3452,9 +3452,9 @@
       mensaje += `*TOTAL A PAGAR: $${totalFinal.toLocaleString('es-AR')}*\n`;
       mensaje += `-----------------------------------`;
 
-      // 3. Disparo seguro a WhatsApp sin transformaciones intermedias ni mojibake
+      // 3. Disparo BLINDADO a WhatsApp (Evita bloqueos de popup en móviles)
       const url = "https://wa.me/" + NUMERO_WHATSAPP + "?text=" + encodeURIComponent(mensaje);
-      window.open(url, "_blank");
+      window.location.href = url;
 
       // 4. Limpiar carrito y cerrar drawer
       cart = [];
