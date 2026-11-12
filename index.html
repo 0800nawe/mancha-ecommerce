@@ -1226,16 +1226,16 @@
 
             <div class="border-t border-stone-200">
               
-              <!-- Fila Pollo Clásico -->
+              <!-- Fila Pollo Cítrico -->
               <div class="flex items-center justify-between py-2.5 border-b border-stone-200">
                 <div class="flex items-center gap-2">
                   <span class="font-montserrat font-bold text-sm text-[#1C1917] uppercase">
-                    POLLO CLÁSICO
+                    POLLO CÍTRICO
                   </span>
                   <span id="badge-agotado-pollo" class="hidden text-[10px] font-black tracking-wider text-[#B5361D] bg-[#B5361D]/10 px-2 py-0.5 rounded-full uppercase">Agotado</span>
                 </div>
 
-                <!-- Estructura exacta para Pollo Clásico -->
+                <!-- Estructura exacta para Pollo Cítrico -->
                 <div class="flex items-center bg-white rounded-full border border-stone-200 overflow-hidden h-10">
                   <button id="btn-restar-pollo" class="w-10 h-full flex items-center justify-center text-stone-500 hover:text-[#1C1917] hover:bg-stone-100 font-bold transition-colors cursor-pointer">-</button>
                   <span id="contador-pollo" class="text-sm font-bold text-[#1C1917] w-8 text-center h-full flex items-center justify-center">0</span>
@@ -2858,7 +2858,7 @@
                 ${item.packLabel.toUpperCase()} · ${item.size === '280g' ? 'BURRITO 280G' : 'BURROTE 400G'}
               </div>
               <div class="font-poppins text-xs text-[#1C1917]/70 mt-0.5">
-                ${item.pollo}x Pollo Clásico · ${item.pulledPork}x Pulled Pork
+                ${item.pollo}x Pollo Cítrico · ${item.pulledPork}x Pulled Pork
               </div>
 
               <!-- Selector de Cantidad interactivo -->
@@ -3109,7 +3109,7 @@
       }
       if (els.sabores) {
         const sabores = [];
-        if (opp.totalPollo > 0) sabores.push(opp.totalPollo + 'x Pollo Clásico');
+        if (opp.totalPollo > 0) sabores.push(opp.totalPollo + 'x Pollo Cítrico');
         if (opp.totalPork > 0) sabores.push(opp.totalPork + 'x Pulled Pork');
         els.sabores.textContent = sabores.join(' · ') || 'Sabores combinados';
       }
@@ -3422,7 +3422,7 @@
         const sizeLabel = item.size === '280g' ? '280g' : '400g';
         const nombrePack = `${item.packLabel} (${sizeLabel})`;
         const sabores = [];
-        if (item.pollo > 0) sabores.push(`${item.pollo}x Pollo Clásico`);
+        if (item.pollo > 0) sabores.push(`${item.pollo}x Pollo Cítrico`);
         if (item.pulledPork > 0) sabores.push(`${item.pulledPork}x Pulled Pork`);
         const saboresTexto = sabores.length > 0 ? sabores.join(', ') : 'Surtido';
 
