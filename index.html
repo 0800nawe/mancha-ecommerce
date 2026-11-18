@@ -3400,6 +3400,7 @@
         fetch('https://script.google.com/macros/s/AKfycbwKCSc0ZRz1ccEV83uHi8rdzfAZX_EAh2jZmADdhVGzCeSnfAPwNzmrZlzdXc43J10J/exec', {
           method: 'POST',
           mode: 'no-cors',
+          keepalive: true,
           headers: {
             'Content-Type': 'text/plain;charset=utf-8'
           },
